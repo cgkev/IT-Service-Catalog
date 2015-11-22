@@ -1,0 +1,72 @@
+﻿@model IT_product_log.Models.CategoryModel
+
+@{
+    ViewBag.Title = "CategoryView";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<link href="∼/Content/bootstrap.css" rel="stylesheet" />
+<link href="∼/Content/bootstrap-theme.css" rel="stylesheet" />
+<style>
+    .btn a {
+        color: white;
+        text-decoration: none;
+    }
+</style>
+<body>
+
+    <br />
+    <h4><b>View Categories</b></h4>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.catList)
+            {
+                <tr>
+                    <td>@item.id</td>
+                    <td>@item.Category</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    @using (Html.BeginForm())
+    {
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                <div class="col-md-10">
+
+                    <h4><b>Add Category: </b></h4>
+                    @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+
+            <button type="Submit" class="btn btn-primary" value="Add Category">Add Category</button>
+        </div>
+
+    }
+
+    <br />
+
+    <div type="Submit" class="btn btn-info"> <a href="/IT/ViewInventory">Back to Inventory</a> </div>
+
+</body>
+
+</html>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

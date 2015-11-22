@@ -1,0 +1,50 @@
+﻿@model IT_product_log.Models.Model
+
+@{
+    ViewBag.Title = "ViewInventory";
+}
+
+<!DOCTYPE html>
+<html>
+<link href="∼/Content/bootstrap.css" rel="stylesheet" />
+<link href="∼/Content/bootstrap-theme.css" rel="stylesheet" />
+<style>
+    .btn a {
+        color: white;
+        text-decoration: none;
+    }
+
+</style>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+        </br>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Code</th>
+            <th scope="col">Category</th>
+            <th scope="col">Name</th>
+            <th scope="col">&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.list)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.Code</td>
+                <td>@item.Category</td>
+                <td>@item.Name</td>
+                <td> <div type="Submit" class="btn btn-primary"> <a href="/IT/ViewItem/@item.id">View</a> </div></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div type="Submit" class="btn btn-primary"> <a href="AddCategory">Add Category</a> </div>
+<div class="btn btn-success"> <a href="AddItem">Add Equipment</a> </div>
+
+
+</html>

@@ -1,0 +1,54 @@
+﻿
+@model IT_product_log.Models.Model
+
+@{
+    ViewBag.Title = "ViewItem";
+}
+
+<!DOCTYPE html>
+<html>
+<link href="∼/Content/bootstrap.css" rel="stylesheet" />
+<link href="∼/Content/bootstrap-theme.css" rel="stylesheet" />
+<style>
+    .btn a {
+        color: white;
+        text-decoration: none;
+    }
+
+    
+</style>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+</br>
+
+<div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><h4>ID:</h4></td>
+                <td>@ViewBag.id</td>
+            </tr>
+            <tr>
+                <td><h4>Code:</h4></td>
+                <td>@ViewBag.list[@ViewBag.id-1].Code</td>
+            </tr>
+            <tr>
+                <td><h4>Category:</h4></td>
+                <td>@ViewBag.list[@ViewBag.id - 1].Category</td>
+            </tr>
+            <tr>
+                <td><h4>Name:</h4></td>
+                <td>@ViewBag.list[@ViewBag.id - 1].Name</td>
+            </tr>
+            <tr>
+                <td><h4>Description:</h4></td>
+                <td>@ViewBag.list[@ViewBag.id - 1].Description</td>
+            </tr>
+        </tbody>
+</table>
+</div>
+<div type="Submit" class="btn btn-info"> <a href="/IT/ViewInventory">Back to Inventory</a> </div>
+
+</html>

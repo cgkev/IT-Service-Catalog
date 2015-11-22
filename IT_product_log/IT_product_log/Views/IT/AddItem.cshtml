@@ -1,0 +1,80 @@
+﻿@model IT_product_log.Models.Model
+
+@{
+    ViewBag.Title = "AddItem";
+}
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<link href="∼/Content/bootstrap.css" rel="stylesheet" />
+<link href="∼/Content/bootstrap-theme.css" rel="stylesheet" />
+<style>
+    .btn a {
+        color: white;
+        text-decoration: none;
+    }
+
+   
+</style>
+
+
+
+<h4>Add Inventory</h4>
+<hr />
+
+<b>@Html.ValidationSummary("", new { @class = "text-danger" })</b>
+
+
+<body>
+
+        @using (Html.BeginForm())
+        {
+            <table cellpadding="20" cellspacing="10" style="text-align:left">
+                <tr>
+                    <th><b>ID:</b></th>
+                    <th>@ViewBag.id</th>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Code):</td>
+                    <td>@Html.TextBoxFor(model => model.Code)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Category):</td>
+                    <td>
+                        <select name="category">
+                            @foreach (var item in ViewBag.catList)
+                            {
+                                <option value="@item.Category">@item.Category</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Name):</td>
+                    <td>@Html.TextBoxFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Description):</td>
+                    <td> @Html.TextBoxFor(model => model.Description)</td>
+                </tr>
+            </table>
+            <br />
+
+            <div><button type="Submit" class="btn btn-primary" value="Create">Create Item</button></div>
+
+        }
+
+</body>
+
+<br />
+<div type="Submit" class="btn btn-info"> <a href="/IT/ViewInventory">Back to Inventory</a> </div>
+
+</html>
