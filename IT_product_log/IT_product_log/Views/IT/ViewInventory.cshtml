@@ -37,14 +37,14 @@
                 <td>@item.Code</td>
                 <td>@item.Category</td>
                 <td>@item.Name</td>
-                <td> <div type="Submit" class="btn btn-primary"> <a href="/IT/ViewItem/@item.id">View</a> </div></td>
+                <td><a href="/IT/ViewItem/@item.id" class="btn btn-primary" role="button">View</a> </td>
             </tr>
         }
     </tbody>
 </table>
 
-<div type="Submit" class="btn btn-primary"> <a href="AddCategory">Add Category</a> </div>
-<div class="btn btn-success"> <a href="AddItem">Add Equipment</a> </div>
+<a href="AddCategory" class="btn btn-primary" role="button">Add Category</a>
+<a href="AddItem" class="btn btn-success" role="button">Add Equipment</a> 
 
 
 </html>

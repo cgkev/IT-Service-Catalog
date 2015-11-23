@@ -31,10 +31,10 @@
         <tbody>
             @foreach (var item in ViewBag.catList)
             {
-                <tr>
-                    <td>@item.id</td>
-                    <td>@item.Category</td>
-                </tr>
+            <tr>
+                <td>@item.id</td>
+                <td>@item.Category</td>
+            </tr>
             }
         </tbody>
     </table>
@@ -44,25 +44,25 @@
 
     @using (Html.BeginForm())
     {
-        <div class="form-horizontal">
+    <div class="form-horizontal">
 
-            <div class="form-group">
-                <div class="col-md-10">
+        <div class="form-group">
+            <div class="col-md-10">
 
-                    <h4><b>Add Category: </b></h4>
-                    @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
+                <h4><b>Add Category: </b></h4>
+                @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
             </div>
-
-
-            <button type="Submit" class="btn btn-primary" value="Add Category">Add Category</button>
         </div>
+
+
+        <input type="submit" class="btn btn-primary" value="Add Category"></div>
 
     }
 
     <br />
 
-    <div type="Submit" class="btn btn-info"> <a href="/IT/ViewInventory">Back to Inventory</a> </div>
+    <a href="/IT/ViewInventory" class="btn btn-info" role="button">Back to Inventory</a>
+
 
 </body>
 
