@@ -97,6 +97,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Portal_Assest\Management\1-Management.png" />
+    <Content Include="Portal_Assest\Management\Employee Transfers.png" />
+    <Content Include="Portal_Assest\Management\New Employee %28Onboarding%29.png" />
+    <Content Include="Portal_Assest\Management\Procurement Requests.png" />
+    <Content Include="Portal_Assest\Management\Staff Move Request.png" />
+    <Content Include="Portal_Assest\QTC-logo.png" />
+    <Content Include="Portal_Assest\Service Desk Support\1-Service Desk Support.png" />
+    <Content Include="Portal_Assest\Service Desk Support\Facilities Support.png" />
+    <Content Include="Portal_Assest\Service Desk Support\General IT Support.png" />
+    <Content Include="Portal_Assest\Service Desk Support\Printer, Fax, Copier, Scanner Support.png" />
+    <Content Include="Portal_Assest\Service Desk Support\QTC Internal Application Support.png" />
+    <Content Include="Portal_Assest\System Access\1-System Access.png" />
+    <Content Include="Portal_Assest\System Access\Guest Wireless Access Request.png" />
+    <Content Include="Portal_Assest\System Access\Mobile Device Requests.png" />
+    <Content Include="Portal_Assest\System Access\USB Storage Access Requests.png" />
+    <Content Include="Portal_Assest\System Access\VPN %28Remote Access%29 Request.png" />
+    <Content Include="Portal_Assest\System Access\WebEx Account Request.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -141,6 +158,10 @@
     <Content Include="Views\IT\AddItem.cshtml" />
     <Content Include="Views\IT\AddCategory.cshtml" />
     <Content Include="Views\IT\CategoryView.cshtml" />
+    <Content Include="Views\IT\ViewPortal.cshtml" />
+    <Content Include="Views\IT\Service_Desk.cshtml" />
+    <Content Include="Views\IT\System_Access.cshtml" />
+    <Content Include="Views\IT\Management.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

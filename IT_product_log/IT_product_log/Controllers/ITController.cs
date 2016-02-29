@@ -12,6 +12,36 @@ namespace IT_product_log.Controllers
         {
             return View();
         }
+        // -------------Start of Portal Views-------------
+
+        public ViewResult ViewPortal()
+        {
+            return View();
+        }
+
+        public ViewResult Service_Desk()
+        {
+            return View();
+        }
+
+        public ViewResult System_Access()
+        {
+            return View();
+        }
+
+        public ViewResult Management()
+        {
+            return View();
+        }
+        
+        public ViewResult ViewManagementPortal()
+        {
+            return View();
+        }
+
+        // -------------End of Portal Views-------------
+
+
 
         public ViewResult ViewInventory()
         {
