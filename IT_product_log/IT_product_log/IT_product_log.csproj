@@ -124,8 +124,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Model Maps\CategoryMap.cs" />
-    <Compile Include="Model Maps\ModelMap.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,6 +140,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\IT\AddItem.cshtml" />
     <Content Include="Views\IT\AddCategory.cshtml" />
+    <Content Include="Views\IT\CategoryView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

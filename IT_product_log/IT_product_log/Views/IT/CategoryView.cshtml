@@ -1,0 +1,35 @@
+﻿@model IT_product_log.Models.Model
+
+@{
+    ViewBag.Title = "CategoryView";
+}
+<form action="CategoryView" method="post">
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+
+        <div class="form-horizontal">
+            <h4>Add Category</h4>
+            <hr/>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <b>Add a New Category: </b>
+                    @Html.TextBox("Category")
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add" />
+                </div>
+            </div>
+        </div>
+    }
+</form>
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "ViewInventory")
+</div>
+

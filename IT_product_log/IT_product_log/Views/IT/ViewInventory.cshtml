@@ -6,15 +6,6 @@
 
 <!DOCTYPE html>
 <html>
-<link href="∼/Content/bootstrap.css" rel="stylesheet" />
-<link href="∼/Content/bootstrap-theme.css" rel="stylesheet" />
-<style>
-    .btn a {
-        color: white;
-        text-decoration: none;
-    }
-
-</style>
 <head>
     <meta name="viewport" content="width=device-width" />
 </head>
@@ -37,14 +28,13 @@
                 <td>@item.Code</td>
                 <td>@item.Category</td>
                 <td>@item.Name</td>
-                <td><a href="/IT/ViewItem/@item.id" class="btn btn-primary" role="button">View</a> </td>
+                <td><a href="/IT/ViewItem/@item.id">View</a></td>
             </tr>
         }
     </tbody>
 </table>
-
-<a href="AddCategory" class="btn btn-primary" role="button">Add Category</a>
-<a href="AddItem" class="btn btn-success" role="button">Add Equipment</a> 
+<a href="AddItem">Add Item</a> |
+<a href="CategoryView">Category</a>
 
 
 </html>

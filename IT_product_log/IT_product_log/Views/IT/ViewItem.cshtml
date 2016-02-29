@@ -7,16 +7,6 @@
 
 <!DOCTYPE html>
 <html>
-<link href="∼/Content/bootstrap.css" rel="stylesheet" />
-<link href="∼/Content/bootstrap-theme.css" rel="stylesheet" />
-<style>
-    .btn a {
-        color: white;
-        text-decoration: none;
-    }
-
-    
-</style>
 <head>
     <meta name="viewport" content="width=device-width" />
 </head>
@@ -49,6 +39,6 @@
         </tbody>
 </table>
 </div>
-<a href="/IT/ViewInventory" class="btn btn-info" role="button">Back to Inventory</a>
+@Html.ActionLink("Back to Inventory", "ViewInventory")
 
 </html>
