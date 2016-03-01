@@ -131,13 +131,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
-    <Content Include="Views\IT\ViewInventory.cshtml" />
-    <Content Include="Views\IT\ViewItem.cshtml" />
+    <Content Include="Views\Portal\ViewInventory.cshtml" />
+    <Content Include="Views\Portal\ViewItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context.cs" />
-    <Compile Include="Controllers\ITController.cs" />
+    <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -150,18 +150,18 @@
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\IT\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\IT\AddItem.cshtml" />
-    <Content Include="Views\IT\AddCategory.cshtml" />
-    <Content Include="Views\IT\CategoryView.cshtml" />
-    <Content Include="Views\IT\ViewPortal.cshtml" />
-    <Content Include="Views\IT\Service_Desk.cshtml" />
-    <Content Include="Views\IT\System_Access.cshtml" />
-    <Content Include="Views\IT\Management.cshtml" />
+    <Content Include="Views\Portal\AddItem.cshtml" />
+    <Content Include="Views\Portal\AddCategory.cshtml" />
+    <Content Include="Views\Portal\CategoryView.cshtml" />
+    <Content Include="Views\Portal\Index.cshtml" />
+    <Content Include="Views\Portal\Service_Desk.cshtml" />
+    <Content Include="Views\Portal\System_Access.cshtml" />
+    <Content Include="Views\Portal\Management.cshtml" />
+    <Content Include="Views\Portal\MyRequest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

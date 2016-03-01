@@ -1,0 +1,40 @@
+﻿@model IT_product_log.Models.Model
+
+@{
+    ViewBag.Title = "ViewInventory";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+        </br>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Code</th>
+            <th scope="col">Category</th>
+            <th scope="col">Name</th>
+            <th scope="col">&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.list)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.Code</td>
+                <td>@item.Category</td>
+                <td>@item.Name</td>
+                <td><a href="/IT/ViewItem/@item.id">View</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="AddItem">Add Item</a> |
+<a href="CategoryView">Category</a>
+
+
+</html>
