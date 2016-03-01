@@ -137,6 +137,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -162,6 +163,7 @@
     <Content Include="Views\Portal\System_Access.cshtml" />
     <Content Include="Views\Portal\Management.cshtml" />
     <Content Include="Views\Portal\MyRequest.cshtml" />
+    <Content Include="Views\Forms\VPNRequest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
