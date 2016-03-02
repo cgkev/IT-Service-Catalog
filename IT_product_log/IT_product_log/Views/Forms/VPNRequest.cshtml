@@ -1,7 +1,129 @@
-﻿
+﻿@model IT_product_log.Models.VpnRequest
 @{
     ViewBag.Title = "VPNRequest";
 }
-
 <h2>VPN Request</h2>
 
+<!DOCTYPE html>
+<html lang="en">
+
+
+<h4>Add Inventory</h4>
+<hr />
+
+<b>@Html.ValidationSummary("", new { @class = "text-danger" })</b>
+
+
+<body>
+    <div class="form-horizontal">
+
+        @using (Html.BeginForm())
+        {
+            <table cellpadding="12" cellspacing="0" style="text-align:left">
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.VPN_requestor)</td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_requestor) </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.VPN_recipientFirst)</td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientFirst) </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.VPN_recipientLast)</td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientLast) </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.VPN_userStatus)</td>
+                    <td>
+                        <select name="category">
+                            @foreach (var item in ViewBag.vpnStatusType)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.VPN_userDept)</td>
+                    <td>
+                        <select name="category">
+                            @foreach (var item in ViewBag.deptName)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.VPN_userCode)</td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode) </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.Work_Phone)</td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.Work_Phone) </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.VPN_recipientEmail)</td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientEmail) </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.Company_Name)</td>
+                    <td>
+                        <select name="category">
+                            @foreach (var item in ViewBag.companyName)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.Office_Location)</td>
+                    <td>
+                        <select name="category">
+                            @foreach (var item in ViewBag.officeLoc)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.Machine_Owner)</td>
+                    <td>
+                        <select name="category">
+                            @foreach (var item in ViewBag.machineOwner)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.Systems_List)</td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.Systems_List) </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.VPN_justification)</td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_justification) </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(vpnrequest => vpnrequest.Manager)</td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.Manager) </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Create" /> </td>
+                </tr>
+            </table>
+
+        }
+
+    </div>
+</body>
+
+
+@Html.ActionLink("Back to List", "ViewInventory")
+
+
+</html>
