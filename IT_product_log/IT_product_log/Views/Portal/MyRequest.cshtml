@@ -2,6 +2,65 @@
 @{
     ViewBag.Title = "MyRequest";
 }
-
+<!DOCTYPE html>
+<html>
 <h2>My Request</h2>
 
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+        </br>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Request Type</th>
+                <th scope="col">Date Submitted</th>
+                <th scope="col">Status</th>
+                <th scope="col">More Info</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td><b>VPN Access</b></td>
+                <td>02-20-2016</td>
+                <td><button type="button" class="btn btn-warning">Pending Manager Approval</button></td>
+                <td>
+                    <a href="#">
+                        <button type="button" class="btn btn-info-outline">Info</button>
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td><b>USB Storage Access</b></td>
+                <td>01-10-2016</td>
+                <td><button type="button" class="btn btn-success">Success</button></td>
+                <td>
+                    <a href="#">
+                        <button type="button" class="btn btn-info-outline">Info</button>
+                    </a>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td><b>WebEx Account Request</b></td>
+                <td>06-20-2015</td>
+                <td><button type="button" class="btn btn-danger">Denied</button></td>
+                <td>
+                    <a href="#">
+                        <button type="button" class="btn btn-info-outline">Info</button>
+                    </a>
+                </td>
+            </tr>
+
+
+
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -36,6 +36,13 @@ namespace IT_product_log.Controllers
         }
 
         // -------------End of Portal Views-------------
+
+        public ViewResult ThankYou()
+        {
+            return View();
+        }
+
+
         public ViewResult MyRequest()
         {
             return View();
