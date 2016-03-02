@@ -20,17 +20,17 @@ namespace IT_product_log.Controllers
             ViewBag.qtcOfficSelect = new string[] { "Diamond Bar", "Diamand Bar2", "San Antonio", "Philadelphia" };
             ViewBag.machineOwner = new string[] { "QTC Owned PC", "Company", "Asset (Non-QTC)", "Personal PC" };
 
-            //this is the model
             return View();
         }
 
         [HttpPost]
         public ActionResult VPNRequest(VpnRequest input)
         {
+            //Too do need to add the form validation here.
             List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
             storage.Add(input);
-            //int var = storage.Count;
-            return RedirectToAction("/ThankYou");
+            //int var = storage.Count;//Just used this to see if the request was sent in
+            return RedirectToAction("/ThankYou", "Portal");
         }
     }
 }
