@@ -12,6 +12,36 @@ namespace IT_product_log
     {
         protected void Application_Start()
         {
+            //VPN request model loaded :D
+            List<VpnRequest> vpnRequests = new List<VpnRequest>();
+
+            VpnRequest request = new VpnRequest
+            {
+                Company_Name = "QTC",
+                Company_Other = "QTC",
+                Machine_Owner = "Yes",
+                Manager = "Kevin",
+                Office_Address = "123 fake st",
+                Office_Location = "QTC Head Quarters",
+                Radius_Profile_Other = "Null",
+                Radius_Profile_Select = "Null",
+                Systems_List = "Hello World",
+                VPN_profileSelect = "Null",
+                VPN_justification = "Reasons",
+                VPN_recipientEmail = "test123@gmail.com",
+                VPN_recipientFirst = "Ignacio",
+                VPN_recipientLast = "Zuniga",
+                VPN_requestID = 123,
+                VPN_requestStatus = "accepted",
+                VPN_userCode = 123,
+                VPN_userDept = "123???String",
+                VPN_userStatus = "Nope",
+                VPN_requestor = "what goes here"
+
+            };
+
+            vpnRequests.Add(request);
+
 
             List<Model> productList = new List<Model>();
 
@@ -51,11 +81,8 @@ namespace IT_product_log
 
 
             productList.Add(item1);
-            productList.Add(item2);
-            productList.Add(item3);
 
-
-
+            Application["vpnList"] = vpnRequests;
             Application["list"] = productList;
 
             AreaRegistration.RegisterAllAreas();
