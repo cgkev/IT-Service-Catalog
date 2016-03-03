@@ -2,8 +2,6 @@
 @{
     ViewBag.Title = "MyRequest";
 }
-<!DOCTYPE html>
-<html>
 <h2>My Request</h2>
 
 
@@ -15,6 +13,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th scope="col">Request ID</th>
                 <th scope="col">Request Type</th>
                 <th scope="col">Date Submitted</th>
                 <th scope="col">Status</th>
@@ -24,6 +23,7 @@
         <tbody>
 
             <tr>
+                <td><b>72</b></td>
                 <td><b>VPN Access</b></td>
                 <td>02-20-2016</td>
                 <td><button type="button" class="btn btn-warning">Pending Manager Approval</button></td>
@@ -35,6 +35,7 @@
             </tr>
 
             <tr>
+                <td><b>84</b></td>
                 <td><b>USB Storage Access</b></td>
                 <td>01-10-2016</td>
                 <td><button type="button" class="btn btn-success">Approved</button></td>
@@ -47,6 +48,7 @@
 
 
             <tr>
+                <td><b>87</b></td>
                 <td><b>WebEx Account Request</b></td>
                 <td>06-20-2015</td>
                 <td><button type="button" class="btn btn-danger">Denied</button></td>
@@ -62,5 +64,3 @@
         </tbody>
     </table>
 </body>
-
-</html>
