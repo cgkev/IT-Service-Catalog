@@ -1,58 +1,53 @@
 
-#mainwrapper {
-    font: 12pt Arial, sans-serif;
-    text-align: center;
+
+/* Image Box Style */
+#mainwrapper .box {
+    float: left;
+    cursor: pointer;
+    height: 167px;
+    margin: 5px;
+    position: relative;
+    width: 265px;
 }
 
-    /* Image Box Style */
-    #mainwrapper .box {
-        float: left;
-        cursor: pointer;
-        height: 167px;
-        margin: 5px;
-        position: relative;
-        width: 265px;
+    #mainwrapper .box img {
+        border-radius: 25px;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        -webkit-transition: all 300ms ease-out;
+        -moz-transition: all 300ms ease-out;
+        -o-transition: all 300ms ease-out;
+        -ms-transition: all 300ms ease-out;
+        transition: all 300ms ease-out;
     }
 
-        #mainwrapper .box img {
-            border-radius: 25px;
-            text-align: center;
-            position: absolute;
-            left: 0;
-            -webkit-transition: all 300ms ease-out;
-            -moz-transition: all 300ms ease-out;
-            -o-transition: all 300ms ease-out;
-            -ms-transition: all 300ms ease-out;
-            transition: all 300ms ease-out;
-        }
-
-        /* Caption Common Style */
-        #mainwrapper .box .caption {
-            border-radius: 25px;
-            background-color: rgba(0,0,0,0.8);
-            position: absolute;
-            color: #fff;
-            -webkit-transition: all 300ms ease-out;
-            -moz-transition: all 300ms ease-out;
-            -o-transition: all 300ms ease-out;
-            transition: all 300ms ease-out;
-            left: 0;
-        }
+    /* Caption Common Style */
+    #mainwrapper .box .caption {
+        border-radius: 25px;
+        background-color: rgba(0,0,0,0.8);
+        position: absolute;
+        color: #fff;
+        -webkit-transition: all 300ms ease-out;
+        -moz-transition: all 300ms ease-out;
+        -o-transition: all 300ms ease-out;
+        transition: all 300ms ease-out;
+        left: 0;
+    }
 
 
 
-        /** Caption 3: Fade **/
-        #mainwrapper .box .fade-caption, #mainwrapper .box .scale-caption {
-            opacity: 0;
-            margin-top: 10px;
-            width: 265px;
-            height: 147px;
-            text-align: center;
-            padding: 20px;
-            
-        }
+    /** Caption 3: Fade **/
+    #mainwrapper .box .fade-caption, #mainwrapper .box .scale-caption {
+        opacity: 0;
+        margin-top: 10px;
+        width: 265px;
+        height: 147px;
+        text-align: center;
+        padding: 20px;
+    }
 
-        /** Fade Caption :hover Behaviour **/
-        #mainwrapper .box:hover .fade-caption, #mainwrapper .box:hover .scale-caption {
-            opacity: 1;
-        }
+    /** Fade Caption :hover Behaviour **/
+    #mainwrapper .box:hover .fade-caption, #mainwrapper .box:hover .scale-caption {
+        opacity: 1;
+    }
