@@ -97,6 +97,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\QTC.css" />
+    <Content Include="CSS\QTCStyle.css" />
     <Content Include="CSS\style.css" />
     <Content Include="Portal_Assest\greenCheckMark.png" />
     <Content Include="Portal_Assest\Management\1-Management.png" />
@@ -168,6 +170,7 @@
     <Content Include="Views\Portal\MyRequest.cshtml" />
     <Content Include="Views\Forms\VPNRequest.cshtml" />
     <Content Include="Views\Portal\ThankYou.cshtml" />
+    <Content Include="Views\Portal\VPNfaq.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

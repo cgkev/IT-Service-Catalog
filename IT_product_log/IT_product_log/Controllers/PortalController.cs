@@ -42,6 +42,15 @@ namespace IT_product_log.Controllers
             return View();
         }
 
+        // -------------Start of Info FAQ Views-------------
+
+        public ViewResult VPNfaq()
+        {
+            return View();
+        }
+
+
+
 
         public ViewResult MyRequest()
         {
