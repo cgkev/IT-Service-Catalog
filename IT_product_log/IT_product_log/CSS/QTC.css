@@ -1,0 +1,1463 @@
+.s4-title h1 a, .s4-title h2 a, .s4-tn li.static > .menu-item, .ms-WPBody a:link, .link-item a, .link-item a:link, .s4-ql ul.root > li > .menu-item, .s4-qlheader, .s4-ql a.selected, .s4-ql ul.root ul > li > a, .ms-menutoolbar td a, a.ms-addnew, .ms-ltviewselectormenuheader .ms-viewselector a, .ms-ltviewselectormenuheader .ms-viewselectorhover a, .ms-vb a:link, .ms-vb2 a:link, .ms-vb-user a:link, .ms-linksection-level1 ul li a, .ms-WPTitle a {
+    color: #2f7799;
+    text-decoration: none;
+}
+
+    .ms-WPBody a:visited, .link-item a:visited, .s4-qlheader:visited, a.ms-addnew:visited, .ms-ltviewselectormenuheader .ms-viewselector a:visited, .ms-ltviewselectormenuheader .ms-viewselectorhover a:visited, .ms-vb a:visited, .ms-vb2 a:visited, .ms-vb-user a:visited, .ms-linksection-level1 ul li a:visited {
+        color: #2f7799;
+        text-decoration: none;
+    }
+
+    .s4-title h1 a:hover, .s4-title h2 a:hover, .s4-tn li.static > a:hover, .s4-toplinks .s4-tn a.selected:hover, .ms-WPBody a:hover, .link-item a:hover, .s4-ql ul > li > a:hover, .s4-ql ul.root > li > a:hover, .s4-qlheader:hover, .ms-rtestate-field a:hover, .s4-ql ul.root ul > li > a:hover, .ms-menutoolbar td a:hover, .ms-vh a:hover, .ms-vh2 a:hover, a.ms-addnew:hover, .ms-ltviewselectormenuheader .ms-viewselector a:hover, .ms-ltviewselectormenuheader .ms-viewselectorhover a:hover, a.ms-toolbar:hover, .ms-vh2-nofilter a:hover, .ms-vh2-nofilter-notextalign a:hover, .ms-vb a:hover, .ms-vb2 a:hover, .ms-vb-user a:hover, .ms-linksection-level1 ul li a:hover, .ms-propertysheet a:hover, .ms-sectionheader a:hover, .ms-disc a:hover {
+        color: #115d90;
+        text-decoration: none;
+    }
+
+    .link-item a:active, a.ms-addnew:active, .ms-ltviewselectormenuheader .ms-viewselector a:active, .ms-ltviewselectormenuheader .ms-viewselectorhover a:active, .ms-vb a:active, .ms-vb2 a:active, .ms-vb-user a:active, .ms-linksection-level1 ul li a:active {
+        color: #115d90;
+        text-decoration: none;
+    }
+
+.s4-ql a.selected, .ms-viewlsts .ms-vb2 > a, .ms-addnew a, .ms-selectorlink a, .ms-selectorlink a:visited, .ms-navitem a:link {
+    color: #2f7799!important;
+    text-decoration: none!important;
+}
+
+    .s4-ql a.selected:visited, .ms-viewlsts .ms-vb2 > a:visited, .ms-addnew a:visited, .ms-navitem a:visited {
+        color: #2f7799!important;
+        text-decoration: none!important;
+    }
+
+    .s4-ql a.selected:hover, .ms-viewlsts .ms-vb2 > a:hover, .ms-addnew a:hover, tr.s4-itm-hover a:hover, tr.ms-itmhover a:hover, .ms-selectorlink a:hover, .ms-navitem a:hover, .ms-WPTitle a:hover {
+        color: #115d90!important;
+        text-decoration: none!important;
+    }
+
+    .s4-ql a.selected:active, .ms-viewlsts .ms-vb2 > a:active, .ms-addnew a:active, .ms-navitem a:active {
+        color: #115d90!important;
+        text-decoration: none!important;
+    }
+
+.ms-cui-ribbon, .ms-cui-menu, .ms-siteactionsmenuinner, .ms-siteactionsmenuhover, .ms-welcomeMenu, div.ms-MenuUIPopupBody.ms-MenuUIPopupScreen, div.ms-MenuUIPopupBody.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner, div.ms-MenuUIPopupBody.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div, .ms-cui-toolbar-toolbar, .s4-titletable, .ms-socialNotif-Container, .ms-sbplain, .ms-sbtable, body #pageStatusBar, .link-item, .link-item a, .link-item a:link, .ms-WPBody, .ms-menutoolbar td a, .ms-toolbar, .ms-listheaderlabel, .ms-viewselector, .ms-viewselectortext, .ms-viewselectorhover, .ms-vh2-nofilter, .ms-vh2-nofilter-notextalign, .ms-vh, .ms-vh2, .ms-vh-icon, .ms-vh-icon-empty, .ms-vhImage, .ms-gb, .ms-gb2, .ms-gbload, .ms-vb, .ms-vb2, .ms-vb-tall, .ms-vb-user, .ms-vh2-nograd, .ms-vh3-nograd, .ms-vh2-nograd-icon, .ms-vh2-nofilter-icon, .ms-pb, .ms-pb-selected, .ms-ph, td.ms-vb, a.ms-addnew, .ms-ltviewselectormenuheader .ms-viewselector a, .ms-ltviewselectormenuheader .ms-viewselectorhover a, th.ms-vh, td.ms-vb, .ms-dlgTitleText, .ms-formlabel, .ms-descriptiontext, .ms-formtoolbar, select, .ms-input, .ms-long, .ms-inputuserfield, .ms-toolbarContainer, div.ms-formfieldlabelcontainer span.ms-formfieldlabel, .ms-formfieldlabelcontainer, .description, .ms-sectionheader, .ms-linksection-level1, .ms-pageinformation h3.ms-standardheader, table.ms-pageinformation, table.ms-createpageinformation, .ms-pageinformation table td, .ms-createpageinformation table td, .ms-linksectionheader, th .ms-vb, .ms-vh2-nofilter-icon, th.ms-vh2-nograd, th.ms-vh2-nograd-icon, .ms-propertysheet, .ms-formdescription, .ms-paging, .ms-listedit .ms-standardheader, .ms-listedit .ms-linksectionheader, .ms-listedit .ms-linksectionheader .ms-standardheader, .ms-listedit table.ms-pageinformation, .ms-listedit .ms-pageinformation table td, .ms-listedit .ms-propertysheet, .ms-listedit .ms-descriptiontext, .ms-SPZoneLabel, .ms-SPButton, .ms-wpadder-sectionhead, .ms-wpadder-wpname, .ms-wpadder-categoryColumn, .ms-wpadder-categoryColumn td, .ms-wpadder-items, .ms-wpadder-upload input, .ms-wpadder-upload button, .ms-wpadder-tabTable th, .ms-wpadder-description, .ms-wpadder-zoneArea button, .ms-WPTitle, .link-item-large, .link-item-large a, .link-item-large a:link, div.title-With-Background a, div.title-With-Background a:link, div.title-With-Background a:hover, div.title-With-Background a:visited, div.title-With-Background a:active, .headertitle, .headertitle a, .headertitle a:link, .level-item, .level-item a, .level-item a:link, .headertitle-band, .headertitle-band a, .headertitle-band a:link, .headertitle-large, .headertitle-large a, .headertitle-large a:link, .headertitle-small, .headertitle-small a, .headertitle-small a:link, .level-description, .ms-WPBody td, .medium, groupheader, .ms-rtelong, .ms-longer, .ms-rtelonger, .ms-radiotext, .ms-rtedropdown, .ms-lookuptypeintextbox, .ms-rtefield, table.ms-disc td, table tr td.ms-disc-bordered-noleft, .ms-formbodysurvey, .ms-gridCol, .ms-gridT1, .ms-surveyVBarT, .ms-surveyVBarTC, .ms-surveyTotal {
+    font-family: inherit;
+}
+
+.ms-selectorlink a, .ms-selectorlink a:visited {
+    font-family: inherit!important;
+}
+
+.ms-cui-ribbon, .ms-cui-menu, .ms-siteactionsmenu, .s4-breadcrumb-menu, .ms-cui-TabRowLeft, .ms-cui-toolbar-toolbar, .ms-MenuUILabel, .ms-MenuUILabelRtL, .ms-menuuilabelcompact, .ms-menuuilabelcompactRtl, div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILarge ul.ms-MenuUIUL div.ms-MenuUIULItem a.ms-MenuUIULLink, div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILargeRtL ul.ms-MenuUIUL div.ms-MenuUIULItem a.ms-MenuUIULLink, .s4-search input.ms-sbplain, .ms-sbplain, .s4-search input, .link-item, .link-item a, .link-item a:link, .ms-WPBody, .s4-ql ul.root > li > .menu-item, .s4-qlheader, .s4-qlheader:visited, .ms-menutoolbar td a, .ms-toolbar, .ms-listheaderlabel, .ms-viewselector, .ms-viewselectortext, .ms-viewselectorhover, .ms-vh2-nofilter, .ms-vh2-nofilter-notextalign, .ms-vh, .ms-vh2, .ms-vh-icon, .ms-vh-icon-empty, .ms-vhImage, .ms-gb, .ms-gb2, .ms-gbload, .ms-vb, .ms-vb2, .ms-vb-tall, .ms-vb-user, .ms-vh2-nograd, .ms-vh3-nograd, .ms-vh2-nograd-icon, .ms-vh2-nofilter-icon, .ms-pb, .ms-pb-selected, .ms-ph, td.ms-vb, a.ms-addnew, .ms-ltviewselectormenuheader .ms-viewselector a, .ms-ltviewselectormenuheader .ms-viewselectorhover a, th.ms-vh, td.ms-vb, .s4-titletable, .ms-dlgTitleText, .ms-descriptiontext, .ms-formtoolbar, select, .ms-input, .ms-long, .ms-dtinput, .ms-dttimeinput, .ms-inputuserfield, .ms-toolbarContainer, div.ms-formfieldlabelcontainer span.ms-formfieldlabel, .ms-formfieldlabelcontainer, .description, .ms-linksection-level1 h3, .ms-linksection-level1 ul li a, .ms-pageinformation h3.ms-standardheader, table.ms-pageinformation, table.ms-createpageinformation, .ms-pageinformation table td, .ms-createpageinformation table td, th .ms-vb, .ms-vh2-nofilter-icon, th.ms-vh2-nograd, th.ms-vh2-nograd-icon, .ms-formdescription, .ms-authoringcontrols, .ms-paging, .ms-listedit .ms-standardheader, .ms-listedit .ms-linksectionheader, .ms-listedit .ms-linksectionheader .ms-standardheader, .ms-linksectionheader, .ms-SPZoneLabel, .ms-SPButton, .ms-wpadder-categoryColumn, .ms-wpadder-categoryColumn td, .ms-wpadder-items, .ms-wpadder-upload input, .ms-wpadder-upload button, .ms-wpadder-tabTable th, .ms-wpadder-description, .ms-wpadder-zoneArea button, .ms-WPTitle, .level-item, .level-item a, .level-item a:link, .level-description, .headertitle, .ms-WPBody td, .medium, groupheader, .ms-rtelong, .ms-longer, .ms-rtelonger, .ms-radiotext, .ms-rtedropdown, .ms-lookuptypeintextbox, .ms-rtefield, table.ms-disc td, table tr td.ms-disc-bordered-noleft, .ms-gridCol {
+    font-size: 1em;
+}
+
+    .s4-title h2, .ms-socialNotif-text, .s4-search select.ms-sbscopes, .s4-search input.ms-sbplain, .article-content, .welcome-content, .s4-title .s4-pagedescription, .s4-title .s4uniqpermdescription, .ms-toolbar, .ms-listheaderlabel, .ms-gb .ms-standardheader, .ms-standardheader, .ms-gb, .ms-gb2, .ms-gbload, .ms-vb-tall, .ms-vb-user, .ms-pb, .ms-pb-selected td, .ms-vb, .ms-vb2, .ms-viewlsts-noitems > b, .s4-specialNavLinkList a:hover > span.ms-splinkbutton-text, .ms-vh2-nofilter, .ms-vh2-nofilter-notextalign, .ms-formlabel, .ms-descriptiontext, .ms-formtoolbar, .ms-toolbarContainer, .description, .link-item, .ms-sectionheader, .ms-linksection-level1 h3, .ms-pageinformation h3.ms-standardheader, .ms-linksectionheader .ms-standardheader, .ms-linksectionheader, .ms-pageinformation th, .ms-createpageinformation th, th .ms-vb, .ms-vh2-nofilter-icon, th.ms-vh2-nograd, th.ms-vh2-nograd-icon, .ms-vh, .ms-vh2, .ms-vh-icon-empty, .ms-vhImage, .ms-vh2-nograd, .ms-vh3-nograd, .ms-vh2-nograd-icon, .ms-vh2-nofilter-icon, .ms-ph, .ms-propertysheet, .ms-pageinformation table td, .ms-createpageinformation table td, .ms-bottompaging .ms-paging, .ms-paging, .ms-listedit .ms-standardheader, .ms-listedit .ms-linksectionheader, .ms-listedit .ms-linksectionheader .ms-standardheader, .ms-listedit .ms-gb .ms-vh2-nofilter, .ms-listedit .ms-gb .ms-vh2, .tmt-name, .ms-SPZoneTitle, .ms-SPZoneLabel, .ms-rteElement-P, .level-description, .headertitle, .medium, groupheader, .ms-rtefield, table.ms-disc td {
+        color: inherit;
+    }
+
+.ms-viewlsts th.ms-vh2-nofilter {
+    color: inherit!important;
+}
+
+.ms-cui-ribbon a:link, .ms-cui-ribbon a:visited, .ms-cui-ribbon a:hover, .ms-cui-ribbon a:active, .ms-cui-menu a:link, .ms-cui-menu a:visited, .ms-cui-menu a:hover, .ms-cui-menu a:active, .ms-siteactionsmenu > span > a, .ms-menutoolbar td a, .ms-menutoolbar td a:hover, .s4-specialNavLinkList a:hover > span.ms-splinkbutton-text, a.ms-socialNotif {
+    text-decoration: none;
+}
+
+/* html5 backwards-compatibility */
+section, article, header, footer, nav, aside, hgroup {
+    display: block;
+}
+
+/* document style */
+body {
+    background: #a6a9ab;
+    color: #333;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+a, a:link, a:visited {
+    color: #2f7799;
+    text-decoration: none;
+    -webkit-transition: color 0.3s ease;
+    -moz-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+    a:hover, a:active {
+        color: #115d90;
+    }
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 0.3em 0;
+    line-height: 1.1em;
+}
+
+h1 {
+    font-size: 3em;
+    color: #333;
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 2em !important;
+    color: #333;
+    font-weight: normal !important;
+}
+
+h3 {
+    font-size: 1.8em !important;
+    color: #333;
+    font-weight: normal !important;
+}
+
+h4 {
+    font-size: 1.25em !important;
+    font-weight: normal !important;
+    color: #333;
+}
+
+
+h5 {
+    font-size: 1.25em;
+    font-weight: normal !important;
+    color: #333;
+}
+
+h6 {
+    font-size: 1.1em;
+    color: #333;
+    font-weight: bold;
+}
+
+p {
+    line-height: 1.6em;
+}
+
+strong {
+    color: #333;
+}
+
+img {
+    border: 0;
+}
+
+/* layout */
+.v5-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1040px;
+    margin: 0px auto;
+    /*min-width: 800px;
+        background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-o-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	-o-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);*/
+}
+
+#v5-page {
+    background-color: #fff;
+    padding: 30px 0 50px 0;
+    float: left;
+    width: 100%;
+}
+
+#v5-page-column-sidebar {
+    width: 240px;
+    padding: 0 0 0 0px;
+    margin: 0 0 0px 0;
+    float: left;
+}
+
+#v5-page-column-main {
+    padding-right: 40px;
+    margin: 0 0 0px 280px;
+}
+
+/* header */
+#v5-header {
+    margin: 0 0 0px 0;
+    background-color: #142f5f;
+    float: left;
+    width: 100%;
+}
+
+    #v5-header hgroup {
+        padding: 20px 0;
+        float: left;
+        width: 100%;
+    }
+
+#v5-site-logo {
+    float: left;
+    margin: 0 20px 0 0;
+}
+
+#v5-site-title {
+    margin: 23px 0 0 0;
+    line-height: 1em;
+    float: right;
+    color: #fff;
+    font-size: 20px;
+}
+
+#v5-site-description {
+    color: #999;
+}
+
+#v5-site-title a {
+    color: #fff;
+}
+
+#v5-tools {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: none;
+}
+
+#v5-search {
+    float: left;
+}
+
+#v5-social {
+    float: left;
+    margin: 10px 20px 0 0;
+}
+
+/* navigation */
+.TopNav {
+    float: left;
+    width: auto;
+}
+
+#v5-global-nav {
+    clear: both;
+    padding-top: 5px;
+    float: left;
+    width: 100%;
+}
+
+#v5-global-nav {
+    line-height: 1em;
+    background: #115d90;
+    /*font-size: 17px; border-bottom: 7px solid #222;
+	background: -moz-linear-gradient(top, #444444 0%, #333333 75%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#444444), color-stop(75%,#333333));
+	background: -webkit-linear-gradient(top, #444444 0%,#333333 75%);
+	background: -o-linear-gradient(top, #444444 0%,#333333 75%);
+	background: -ms-linear-gradient(top, #444444 0%,#333333 75%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#333333',GradientType=0 );
+	background: linear-gradient(top, #444444 0%,#333333 75%);*/
+}
+
+.s4-tn li.static > .menu-item {
+    padding: 10px 10px 16px 10px;
+    color: #fff;
+    border: 0;
+}
+
+    .s4-tn li.static > .menu-item:hover {
+        background: #124f81;
+        color: #fff;
+    }
+
+.s4-tn li.static.selected > .menu-item {
+    background: #142f5f;
+    color: #fff;
+}
+
+.menu-horizontal a.dynamic-children span.additional-background, .menu-horizontal span.dynamic-children span.additional-background {
+    background-image: none;
+    padding-right: 0;
+}
+
+.s4-tn ul.dynamic {
+    background: #222;
+    border: 0;
+    padding: 20px 10px;
+    font-size: 12px;
+}
+
+.s4-tn li.dynamic > a.menu-item {
+    color: #bbb;
+    padding: 5px 10px;
+}
+
+    .s4-tn li.dynamic > a.menu-item:hover {
+        background: #2a2a2a;
+    }
+
+.s4-ql, .s4-specialNavLinkList {
+    margin: 0;
+}
+
+    .s4-ql ul.root ul.static {
+        margin: 0 0 10px 0;
+        width: auto !important;
+    }
+
+    .s4-ql li, .s4-specialNavLinkList li {
+        min-height: 0;
+    }
+
+    .s4-ql ul.root > li > .menu-item, .s4-qlheader, .s4-qlheader:visited {
+        padding: 10px;
+        font-weight: normal;
+        border: 0;
+        margin: 0 0 1px 0;
+        color: #333;
+    }
+
+    .s4-ql a.selected, .ms-viewlsts .ms-vb2 > a,
+    .ms-addnew a, .ms-selectorlink a,
+    .ms-selectorlink a:visited, .ms-navitem a:link {
+        color: #115d90 !important;
+    }
+
+        .s4-ql a.selected span {
+            color: #115d90 !important;
+        }
+
+    .s4-ql a.selected {
+        border: 0 !important;
+        background: none transparent;
+        font-weight: normal;
+    }
+
+    .s4-ql ul.root > li > a:hover {
+        background-color: #f7f7f7;
+    }
+
+    .s4-ql ul.root > li > a.selected {
+        background-color: #e4e4e4;
+    }
+
+    .s4-ql ul.root ul > li > a {
+        font-size: 12px;
+        padding: 0 0 0 10px;
+        border: 0;
+        margin: 0 0 4px 0;
+        color: #888;
+    }
+
+.s4-specialNavLinkList {
+    display: none;
+}
+
+.ms-blog-addnew {
+    font-size: 12px !important;
+    padding: 0 0 0 10px;
+    margin: 0;
+}
+
+.s4-trc-container-menu {
+    float: right;
+    margin: 0px;
+}
+
+.menu-vertical {
+    border-right: 1px solid #e4e4e4;
+}
+
+/* page area */
+#v5-page-content .ms-rtestate-field img,
+#v5-site-logo img {
+    max-width: 100% !important;
+}
+
+/* footer */
+#v5-footer {
+    clear: both;
+    font-size: 12px;
+    line-height: 25px;
+    color: #fff;
+    padding: 20px 0px;
+    float: left;
+    width: 100%;
+    /*border-top: 4px dotted #eee;
+	text-align: center;
+	-webkit-border-radius: 0 0 10px 10px;
+	-moz-border-radius: 0 0 10px 10px;
+	-o-border-radius: 0 0 10px 10px;
+	border-radius: 0 0 10px 10px;*/
+}
+
+    #v5-footer #FooterLogo {
+        float: right;
+        width: 175px;
+        height: auto;
+        margin-left: 20px;
+    }
+
+    #v5-footer #FooterNav {
+        float: right;
+        width: auto;
+    }
+
+    #v5-footer a {
+        color: #fff;
+    }
+
+        #v5-footer a:hover {
+            color: #142f5f;
+        }
+
+    #v5-footer span.divider {
+        padding: 0 5px;
+    }
+
+    #v5-footer p {
+        margin: 0;
+    }
+
+/* search */
+#v5-search .s4-wpTopTable {
+    width: auto !important;
+}
+
+.s4-search input.ms-sbplain {
+    height: auto;
+    width: 200px !important;
+    padding: 10px;
+    font-size: 15px;
+    color: #333;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.s4-search input.s4-searchbox-QueryPrompt {
+    color: #999;
+}
+
+.ms-sbgo .srch-gosearchimg {
+    display: none;
+}
+
+.ms-sbgo a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 0 0 0 10px;
+    background: url(i/search.png) 0 0 no-repeat;
+}
+
+    .ms-sbgo a:hover {
+        background-position: 0 -30px;
+    }
+
+/* web parts */
+.s4-wpTopTable {
+    margin: 0 0 20px 0;
+}
+
+.ms-PartSpacingVertical {
+    display: none;
+}
+
+.ms-wpTdSpace {
+    display: none;
+}
+
+.ms-WPHeader td, .ms-fakewptitle {
+    border-color: #2f7799;
+    background: #2f7799;
+}
+
+h3.ms-WPTitle {
+    color: #fff;
+    font-weight: bold;
+    font-size: 17px;
+    padding: 10px;
+    text-align: left !important;
+}
+
+    h3.ms-WPTitle a, .s4-wpActive .ms-WPTitle, .s4-wpActive .ms-WPTitle a {
+        color: #fff;
+    }
+
+    h3.ms-WPTitle nobr {
+        white-space: normal;
+    }
+
+.ms-WPBorder, .ms-WPBorderBorderOnly {
+    border: 1px solid #ddd;
+}
+
+.ms-WPBorder {
+    border-top: 0;
+}
+
+.ms-WPBorderBorderOnly {
+    background: #f5f5f5;
+}
+
+.ms-WPBody {
+    padding: 0px 0 0 0;
+}
+
+.ms-WPBorder .ms-WPBody, .ms-WPBorderBorderOnly .ms-WPBody {
+    padding: 15px;
+}
+
+.ms-wpContentDivSpace {
+    margin: 0;
+}
+
+/* item styles */
+.item, .level-item-pos, .level-header {
+    padding: 0;
+    margin: 0 0 0.5em 0;
+}
+
+.bullet, .level-bullet {
+    padding: 0 0 0 10px;
+}
+
+.level-description-padding {
+    padding: 0;
+}
+
+.headertitle, .headertitle a, .headertitle a:link {
+    font-size: inherit;
+}
+
+/* lists & libraries */
+.ms-listviewtable {
+    background: #fff;
+}
+
+/* dialogs */
+html.ms-dialog body {
+    background: #fff;
+}
+
+html.ms-dialog #v5-wrapper {
+    width: auto;
+    padding: 10px;
+    max-width: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+}
+
+html.ms-dialog #v5-page-column-main {
+    margin: 0;
+}
+
+/* pop-up menus */
+.ms-MenuUIPopupBody {
+    font-size: 12px;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.ms-MenuUIUL LI[text='My Settings'] {
+ DISPLAY: none
+}
+
+div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILarge ul.ms-MenuUIUL div.ms-MenuUIULItem a.ms-MenuUIULLink,
+div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILargeRtL ul.ms-MenuUIUL div.ms-MenuUIULItem a.ms-MenuUIULLink {
+    color: #2f7799 !important;
+}
+
+span.ms-menuitemdescription {
+    color: #999 !important;
+    font-size: 11px;
+}
+
+.ms-welcomeMenu {
+    padding: 10px 10px 16px 10px;
+    color: #fff;
+    margin: 0px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.s4-trc-container-menu div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILarge ul.ms-MenuUIUL {
+    background-image: none;
+    border: 0px;
+    padding: 2px 0 2px 2px;
+}
+
+.s4-trc-container-menu div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner ul.ms-MenuUIUL a span.ms-MenuUIIconLarge,
+.s4-trc-container-menu div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner ul.ms-MenuUIUL a span.ms-MenuUIIconLargeRtl {
+    display: none;
+}
+
+.s4-trc-container-menu .ms-siteactionsmenuhover,
+.s4-trc-container-menu .ms-welcomeMenu.ms-SpLinkButtonActive {
+    background-image: none;
+    background-color: #142f5f;
+    border: 0px;
+}
+
+.s4-trc-container-menu .ms-MenuUIPopupBody.ms-MenuUIPopupScreen,
+.s4-trc-container-menu .ms-MenuUIPopupInner {
+    border: 0px;
+    background-color: #142f5f;
+}
+
+.s4-trc-container-menu div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner ul.ms-MenuUIUL div.ms-MenuUISeparatorLarge {
+    display: none;
+}
+
+.s4-trc-container-menu div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILarge ul.ms-MenuUIUL div.ms-MenuUIULItem,
+.s4-trc-container-menu div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILargeRtL ul.ms-MenuUIUL div.ms-MenuUIULItem {
+    border: 0px;
+    padding: 5px 3%;
+    width: 94%;
+}
+
+.s4-trc-container-menu div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILarge ul.ms-MenuUIUL div.ms-MenuUIULItemHover,
+.s4-trc-container-menu div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILargeRtL ul.ms-MenuUIUL div.ms-MenuUIULItemHover {
+    background-image: none;
+    background-color: #115d90 !important;
+    border: 0px;
+    padding: 5px 3%;
+    width: 94%;
+}
+
+    .s4-trc-container-menu div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILarge ul.ms-MenuUIUL div.ms-MenuUIULItem a.ms-MenuUIULLink,
+    .s4-trc-container-menu div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILargeRtL ul.ms-MenuUIUL div.ms-MenuUIULItem a.ms-MenuUIULLink,
+    .s4-trc-container-menu div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILarge ul.ms-MenuUIUL div.ms-MenuUIULItemHover a.ms-MenuUIULLink,
+    .s4-trc-container-menu div.ms-MenuUIPopupScreen div.ms-MenuUIPopupInner div.ms-MenuUILargeRtL ul.ms-MenuUIUL div.ms-MenuUIULItemHover a.ms-MenuUIULLink {
+        color: #fff !important;
+        font-size: 14px;
+    }
+
+.s4-trc-container-menu span.ms-menuitemdescription {
+    color: #a0bed3 !important;
+}
+/* ribbon style */
+body #s4-ribbonrow {
+    font-size: 12px;
+    background-color: #333;
+}
+
+.ms-cui-topBar2 {
+    border-color: #333;
+}
+
+/* override sharepoint page layouts */
+div.article, div.welcome {
+    padding: 0;
+}
+
+table.splashLinkFrame {
+    border-collapse: collapse;
+}
+
+.article .article-header {
+    font-family: inherit;
+    font-size: 12px;
+    overflow: auto;
+    border: 0;
+    color: #999;
+    margin: 0 0 1em 0;
+}
+
+.captioned-image .caption {
+    font-family: inherit;
+    font-size: 12px;
+    color: #999;
+}
+
+.article-content, .welcome-content {
+    margin: 10px 0 0 0;
+}
+
+.article-left .captioned-image, .welcome .welcome-image {
+    margin-right: 2em;
+}
+
+.article-right .captioned-image, .article .related-links {
+    margin-left: 2em;
+}
+
+.article .captioned-image, .article .related-links, .welcome .welcome-image, .welcome .splash-image {
+    margin-bottom: 1em;
+}
+
+.article .related-links {
+    border: 0;
+}
+
+.ewiki-margin, .edit-mode-border {
+    padding: 0;
+    margin: 0;
+}
+
+.ewiki-margin {
+    font-size: 12px;
+    color: #999;
+    margin: 0 0 1em 0;
+}
+
+.right-wp-zone-col {
+    width: 195px;
+    border-color: #ddd;
+}
+
+.ewiki-slink {
+    margin-left: 15px;
+}
+
+.ms-redirectControl {
+    font-size: inherit;
+    font-family: inherit;
+    color: #999;
+}
+
+/* override default scrolling behavior */
+body.v4master {
+    overflow: visible;
+    height: inherit;
+    width: inherit;
+}
+
+body #s4-workspace {
+    overflow: visible !important;
+}
+
+body #s4-ribbonrow {
+    position: fixed;
+    z-index: 1000;
+    min-height: 0 !important;
+    height: auto !important;
+}
+
+#s4-ribbonrow .ms-MenuUIPopupBody, #s4-ribbonrow .ms-popoutMenu, .ms-cui-menu[id ^= "Ribbon."] {
+    position: fixed !important;
+}
+
+.ms-dlgOverlay {
+    width: 100% !important;
+}
+
+body #s4-bodyContainer {
+    min-width: 0;
+}
+
+.btn {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    padding: 4px 14px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 25px;
+    *line-height: 25px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #333;
+    background-color: #eee;
+}
+
+
+.btn-navbar {
+    float: left;
+    padding: 7px 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #fff;
+    background-color: transparent;
+    display: none;
+    margin-top: -27px;
+    position: relative;
+}
+
+    .btn-navbar:hover,
+    .btn-navbar:active,
+    .btn-navbar.active {
+        color: #fff;
+        background-color: #115d90;
+    }
+
+.icon-bar {
+    display: block;
+    width: 18px;
+    height: 2px;
+    margin-bottom: 2px;
+    background-color: #fff;
+}
+
+#MSOTlPn_MainTD {
+    width: 0px !Important;
+}
+
+.ms-ToolPaneOuter {
+    position: absolute !important;
+    top: 20% !important;
+    right: 0px !important;
+}
+
+#s4-statusbarcontainer {
+    margin-bottom: 20px;
+}
+
+body #pageStatusBar {
+    border: 0px !important;
+    background-image: none !important;
+}
+
+.s4-status-s3 {
+    background-image: none !important;
+    background-color: #fdf5ad !important;
+}
+/* Dash board page styling */
+.your-information, .note {
+    float: left;
+    width: 94%;
+    padding: 2% 3% 1% 3%;
+    background-color: #ecf2f5;
+}
+
+.note {
+    font-size: 12px;
+}
+
+.your-information h3 {
+    color: #115d90 !important;
+}
+
+.your-information p {
+    margin: 0 0 10px 0 !important;
+}
+
+table.appointments-list {
+    float: left;
+    width: 100%;
+    padding: 0px;
+    margin: 0px 0 20px 0;
+}
+
+    table.appointments-list th {
+        text-align: left;
+        padding: 5px 3%;
+        border: 1px solid #d8d8d8;
+        border-width: 1px 0px;
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    table.appointments-list td {
+        text-align: left;
+        padding: 10px 1% 10px 3%;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    table.appointments-list tr.row-alternating td {
+        background-color: #f7f7f7;
+    }
+
+.your-representatives,
+.qta-news {
+    float: left;
+    width: 90%;
+    padding: 5% 5% 2% 5%;
+    background-color: #f7f7f7;
+}
+
+    .your-representatives h4,
+    .qta-news h4,
+    .que-prob h4 {
+        font-size: 20px !important;
+        padding-bottom: 10px;
+        line-height: 26px;
+    }
+
+    .qta-news ul,
+    .qta-news ul li,
+    .qta-news ul li strong.title {
+        float: left;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        list-style-type: none;
+    }
+
+        .qta-news ul li strong.title,
+        .qta-news ul li span.time {
+            padding: 0 0 2px 0;
+        }
+
+        .qta-news ul li span.time {
+            font-size: 12px;
+            color: #666666;
+        }
+
+        .qta-news ul li p,
+        .your-representatives p,
+        .que-prob p {
+            margin: 0px;
+            padding: 0 0 12px 0;
+        }
+
+.que-prob {
+    float: left;
+    width: 100%;
+    background-color: #f7f7f7;
+}
+
+    .que-prob img.doctor-img {
+        float: left;
+        margin-bottom: 10px;
+        max-width: 100%;
+    }
+
+    .que-prob h4 {
+        margin: 0px 20px;
+        padding-bottom: 6px;
+        float: left;
+        width: auto;
+    }
+
+    .que-prob p {
+        margin: 0 20px;
+        float: left;
+        width: auto;
+    }
+/* form styles */
+.form-style {
+    background-color: #f7f7f7;
+    padding: 3% 3% 1% 3%;
+    width: 94%;
+}
+.form-style.no-bg
+{
+    background-color:transparent;
+    padding:0px; width:100%;
+    }
+    .form-style .control-group {
+        margin-bottom: 14px;
+    }
+
+    .form-style .control-label {
+        float: left;
+        width: 160px;
+        padding-top: 5px;
+        text-align: right;
+    }
+
+    .form-style .control-label2 {
+        *display: inline-block;
+        width: 500px;
+        padding-top: 5px;
+        text-align: left;
+        *padding-left: 20px;
+        margin-left: 180px;
+        *margin-left: 0;
+    }
+
+    .form-style .controls {
+        *display: inline-block;
+        *padding-left: 20px;
+        margin-left: 180px;
+        margin-left: 0;
+    }
+    
+    .form-style .label
+    {
+         display: inline-block;
+        padding-left: 80px;
+        margin-left: 200px;
+        margin-bottom:5px;
+        color:Red;
+    }
+    #lblError
+    {
+        display: inline-block;
+        margin-left: 90px;
+        margin-bottom:5px;
+        color:Red;
+        width:80%;
+        font-size:12px;
+    }
+    #lblExpired
+    {
+        display: inline-block;
+        margin-left: 90px;
+        margin-bottom:5px;
+        color:Red;
+    }
+        
+        
+    #lblMessage
+    {
+         display: inline-block;
+        margin-left: 90px;
+        margin-bottom:5px;
+        
+        
+        }
+        
+        #lblSuccess
+        {
+        font-size:12px;
+        display: inline-block;
+        margin-left: 90px;
+        margin-bottom:5px;
+     
+            
+            }
+
+    .form-style select,
+    .form-style textarea,
+    .form-style input[type="text"],
+    .form-style input[type="password"] {
+        display: inline-block;
+        height: 20px;
+        padding: 4px 6px;
+        font-size: 14px;
+        line-height: 20px;
+        color: #555555;
+        border: 1px solid #cccccc;
+        width:276px;
+    }
+
+    .form-style textarea,
+    .form-style input[type="text"],
+    .form-style input[type="password"] {
+        display: inline-block;
+        height: 20px;
+        padding: 4px 6px;
+        font-size: 14px;
+        line-height: 20px;
+        color: #555555;
+        border: 1px solid #cccccc;
+        width:262px;
+    }
+
+    .form-style select {
+         height: auto;
+    }
+
+    .form-style input,
+    .form-style textarea {
+        width: 268px;
+    }
+.form-style input.small-size
+{
+        width:90px;
+    }
+    .form-style textarea {
+        height: auto;
+    }
+
+   .form-style  input[type="submit"],
+    .form-style input[type="reset"],
+   .form-style  input[type="button"],
+   .modal-footer button  {
+        width: auto;
+        padding: 10px 20px;
+        border: 0px;
+        font-size: 14px; cursor:pointer;
+         color:#6a6a6a;
+            background-color:#d6d6d6;
+    }
+
+   .form-style  input[type="submit"].primary,
+    .form-style input[type="button"].primary,
+    .modal-footer button.primary  {
+        color: #fff;
+        background-color: #115d90;
+    }
+   
+.pull-right
+{
+    float:right;
+    }
+.forgotpass-help {
+    color: #999;
+}
+
+    .forgotpass-help a {
+        font-size: 12px;
+        color: #999999;
+    }
+
+        .forgotpass-help a:hover {
+            color: #115d90;
+        }
+        .error-message
+        {
+                font-size:12px; color:#ff3333;
+            }
+         .hint
+         {
+                color:#999; font-size:12px;
+             }   
+.info
+{
+        background-color:#dfe5f1; font-size:12px; padding:5px 2%;
+    }
+    
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000000;
+}
+
+.modal-backdrop.fade {
+  opacity: 0;
+}
+
+.modal-backdrop,
+.modal-backdrop.fade.in {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1050;
+  width: 560px;
+  margin: -250px 0 0 -280px;
+  overflow: auto;
+  background-color: #ffffff;
+  outline:none !Important;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  *border: 1px solid #999;
+  
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+     -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding-box;
+          background-clip: padding-box;
+}
+
+.modal.fade {
+  top: -35%;
+  -webkit-transition: opacity 0.3s linear, top 0.3s ease-out;
+     -moz-transition: opacity 0.3s linear, top 0.3s ease-out;
+       -o-transition: opacity 0.3s linear, top 0.3s ease-out;
+          transition: opacity 0.3s linear, top 0.3s ease-out;
+}
+
+.modal.fade.in {
+  top: 50%;
+}
+
+.modal-header {
+  padding: 9px 15px;
+  border-bottom: 1px solid #eee;
+  background-color: #f5f5f5;
+  *background-color: #e6e6e6;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+  background-repeat: repeat-x;
+}
+
+.modal-header .close {
+  margin-top: 2px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  line-height: 30px;
+  color:#333333;
+  font-size:22px !important;
+}
+
+.modal-body {
+  max-height:400px;
+  padding: 15px;
+  overflow-y: auto;
+}
+.modal-body h4
+{
+        color:#115d90; font-size:16px !important; margin:0px; padding:0px 0 5px 0;
+    }
+.modal-body p 
+{
+         font-size:14px !important; padding:0 0 15px 0; margin:0px; color:#333;
+    }    
+.modal-form {
+  margin-bottom: 0;
+}
+
+.modal-footer {
+  padding:8px 15px 8px;
+  margin-bottom: 0;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  *zoom: 1;
+  -webkit-box-shadow: inset 0 1px 0 #ffffff;
+     -moz-box-shadow: inset 0 1px 0 #ffffff;
+          box-shadow: inset 0 1px 0 #ffffff;
+}
+
+.close {
+  float: right;
+  font-weight: bold;
+  color:#fff;
+  border:0px !important;
+   opacity: 0.4;   
+  filter: alpha(opacity=40);
+  
+  line-height: 12px;
+padding: 3px;
+font-size: 22px !important;
+font:"Arial Rounded MT Bold";
+  
+  background-color:#565656 !important;
+    -webkit-border-radius:12px;
+     -moz-border-radius:12px;
+          border-radius:12px;
+}
+
+.close:hover {
+  text-decoration: none;
+  cursor: pointer;
+   opacity: 1;   
+  filter: alpha(opacity=100);
+}
+
+@media screen and (max-width:1050px) {
+    #v5-header hgroup {
+        padding: 20px 3%;
+        width: 94%;
+    }
+
+    #v5-global-nav .v5-wrapper,
+    #v5-page .v5-wrapper {
+        width: 98%;
+    }
+}
+
+/* layout - smaller screens */
+@media screen and (max-width:767px) {
+    body #s4-ribbonrow {
+        position: static;
+    }
+
+    .s4-widecontentarea {
+        padding: 0px !important;
+    }
+    /* switch to single-column layout */
+    #v5-wrapper {
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        -o-border-radius: 0;
+        border-radius: 0;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        -o-box-shadow: none;
+        box-shadow: none;
+    }
+
+    #v5-page-column-sidebar {
+        width: auto;
+        float: none;
+        margin: 10px;
+        padding: 0;
+    }
+
+    #v5-page-column-main {
+        margin: 10px;
+        padding: 0;
+    }
+
+    #v5-header {
+        margin: 0;
+        text-align: center;
+    }
+
+    .btn-navbar {
+        display: block;
+    }
+
+    #v5-site-title {
+        font-size: 28px;
+        float: none;
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    #v5-site-logo {
+        float: none;
+        margin: 0 0 0px 0;
+    }
+
+    #v5-tools {
+        position: static;
+        padding: 0 20px 20px 20px;
+    }
+
+    #v5-social, #v5-search {
+        margin-bottom: 20px;
+    }
+
+    #v5-footer {
+        padding: 20px 2%;
+        width: 96%;
+    }
+
+    .menu-vertical {
+        border-right: 0px solid #e4e4e4;
+    }
+    /* switch to vertical navigation */
+    #v5-global-nav .s4-trc-container-menu {
+        margin-right: 0%;
+    }
+
+    #v5-global-nav {
+        padding: 5px 0px 0 0;
+        font-size: 14px;
+    }
+
+        #v5-global-nav .v5-wrapper {
+            width: 98%;
+        }
+
+    #v5-page .v5-wrapper {
+        width: 96%;
+    }
+
+    .menu-horizontal li.static, .menu-horizontal a.static, .menu-horizontal span.static {
+        float: none;
+        text-align: left;
+    }
+
+    .menu-horizontal {
+        display: block;
+        padding: 0px;
+    }
+
+    .TopNav {
+        width: 100%;
+        display: none;
+    }
+
+    #v5-global-nav .TopNav {
+        margin-left: 0%;
+    }
+
+    .s4-tn li.static > .menu-item {
+        display: block;
+        font-weight: normal;
+        background: #124f81;
+        color: #fff;
+        padding: 10px 2%;
+        width: 96%;
+        margin: 0 0px 1px 0px;
+        /*-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-o-border-raduis: 5px;
+		border-radius: 5px;
+		-webkit-transition: none;
+		-moz-transition: none;
+		-o-transition: none;
+		transition: none;*/
+    }
+
+    .s4-tn li.static > a.menu-item:hover, .s4-tn li.static.selected > .menu-item {
+        background: #142f5f;
+        border: 0px;
+    }
+
+    #v5-page-content .ms-rtestate-field img,
+    #v5-site-logo img {
+        max-width: 100% !important;
+    }
+
+    #v5-page {
+        padding: 20px 0px;
+    }
+
+    .s4-trc-container-menu .ms-MenuUIPopupBody.ms-MenuUIPopupScreen,
+    .s4-trc-container-menu .ms-MenuUIPopupInner {
+        border: 0px;
+        background-color: #142f5f !important;
+    }
+
+    .RightSidebar,
+    .LeftSidebar,
+    .MainContent {
+        float: left !important;
+        width: 100% !important;
+        clear: left !important;
+        margin-bottom: 10px !important;
+    }
+
+    .your-representatives,
+    .qta-news {
+        float: left;
+        width: 96%;
+        padding: 2%;
+        background-color: #f7f7f7;
+    }
+    .modal {
+    position: fixed;
+    top: 20px !important;
+    right: 20px !important;
+    left: 20px !important;
+    width: auto;
+    margin: 0;
+    
+  }
+  .modal-body {
+  max-height:200px;
+}
+  .modal.fade.in {
+    top: auto;
+  }
+}
+
+@media screen and (max-width:600px) {
+    #v5-footer {
+        text-align: center;
+    }
+
+        #v5-footer #FooterLogo {
+            float: none;
+            margin: 10px 20px 0 20px;
+            clear: both;
+        }
+
+        #v5-footer #FooterNav {
+            float: none;
+            width: 100%;
+        }
+
+    .form-style .control-label {
+        float: none;
+        width: auto;
+        padding-top: 0;
+        text-align: left;
+    }
+
+    .form-style .controls {
+        margin-left: 0;
+    }
+
+    .form-style input,
+    .form-style textarea {
+        width: 95%;
+    }
+}
