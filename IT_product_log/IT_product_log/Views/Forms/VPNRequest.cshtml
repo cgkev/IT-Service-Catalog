@@ -6,15 +6,6 @@
 
 <hr />
 
-<script language="C#" runat="server">
-
-    void Selection_Change(Object sender, EventArgs e)
-    {
-       Label1.Text = "The selected date is " + Calendar1.SelectedDate.ToShortDateString();
-    }
-
-</script>
-
 
 <b>@Html.ValidationSummary("", new { @class = "text-danger" })</b>
 
@@ -30,12 +21,9 @@
                     <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_requestor) </td>
                 </tr>
                 <tr>
-                    <td><b>VPN First name</b></td>
-                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientFirst) </td>
-                </tr>
-                <tr>
-                    <td><b>VPN Last name </b></td>
-                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientLast) </td>
+                    <td><b>VPN Full Name</b></td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientFirst, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientFirst) }) 
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientLast, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientLast) }) </td>
                 </tr>
                 <tr>
                     <td><b>User Status Type</b></td>
@@ -61,15 +49,15 @@
                 </tr>
                 <tr>
                     <td><b>User Code</b></td>
-                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode) </td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { placeholder = Html.DisplayNameFor(n => n.VPN_userCode) }) </td>
                 </tr>
                 <tr>
                     <td><b>Work Phone</b></td>
-                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.Work_Phone) </td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.Work_Phone, new { placeholder = Html.DisplayNameFor(vpnrequest => vpnrequest.Work_Phone) }) </td>
                 </tr>
                 <tr>
                     <td><b>Recipent Email</b></td>
-                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientEmail) </td>
+                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientEmail, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientEmail) }) </td>
                 </tr>
                 <tr>
                     <td><b>Company Name</b></td>
@@ -106,12 +94,20 @@
                     </td>
                 </tr>
                 <tr>
+                    <td><b>VPN Start Date</b> </td>
+                    <td><input type="text" id="datepicker"></td>
+                </tr>
+                <tr>
+                    <td><b>VPN End Date</b> </td>
+                    <td><input type="text" id="datepicker"></td>
+                </tr>
+                <tr>
                     <td><b>Systems List</b></td>
-                    <td>@Html.TextAreaFor(vpnrequest => vpnrequest.Systems_List, 7, 30, null) </td>
+                    <td>@Html.TextAreaFor(vpnrequest => vpnrequest.Systems_List, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.Systems_List) }) </td>
                 </tr>
                 <tr>
                     <td><b>VPN Justification</b></td>
-                    <td> @Html.TextAreaFor(vpnrequest => vpnrequest.VPN_justification, 7, 30, null) </td>
+                    <td> @Html.TextAreaFor(vpnrequest => vpnrequest.VPN_justification, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.VPN_justification) }) </td>
                 </tr>
                 <tr>
                     <td><b>Manager</b></td>
@@ -120,7 +116,9 @@
                 <tr>
                     <td><input type="submit" value="Submit Form" /> </td>
                 </tr>
-          
+
+
+
             </table>
 
         }
