@@ -14,7 +14,6 @@ namespace IT_product_log.Controllers
         }
         // -------------Start of Portal Views-------------
 
-
         public ViewResult Service_Desk()
         {
             return View();
@@ -35,7 +34,7 @@ namespace IT_product_log.Controllers
             return View();
         }
 
-        // -------------End of Portal Views-------------
+        // -------------Thank You Page-------------
 
         public ViewResult ThankYou()
         {
@@ -48,12 +47,12 @@ namespace IT_product_log.Controllers
         {
             return View();
         }
-
-
-
+        // -----------------MyRequest-----------------
 
         public ViewResult MyRequest()
         {
+            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
+            ViewBag.list = storage;
             return View();
         }
 

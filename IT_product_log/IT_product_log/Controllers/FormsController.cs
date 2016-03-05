@@ -28,6 +28,12 @@ namespace IT_product_log.Controllers
         {
             //Too do need to add the form validation here.
             List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
+           
+            input.VPN_requestStatus = "Pending Manager Approval";
+            input.DateSubmitted = DateTime.Now.ToString("M/d/yyyy");
+            input.VPN_requestID = storage[storage.Count - 1].VPN_requestID + 1;
+
+
             storage.Add(input);
             //int var = storage.Count;//Just used this to see if the request was sent in
             return RedirectToAction("/ThankYou", "Portal");

@@ -19,6 +19,7 @@ namespace IT_product_log.Models
         public string VPN_requestor { get; set; }//
         public string VPN_requestStatus { get; set; }//whats this?
 
+        public string DateSubmitted { get; set; }
 
         // -----------FORM Fields-----------
         [Required]
