@@ -12,11 +12,6 @@
         </br>
 
 
-<script>
-    function setButtonType(status){
-        if()
-    }
-</script>
 
 <body>
     <table class="table">
@@ -40,7 +35,7 @@
                     <td><b>VPN Access</b></td>
                     <td>@item.DateSubmitted</td>
 
-                    <td><button id="requestStatus" type="button" class="btn btn-warning">@item.VPN_requestStatus</button></td>
+                    <td><button id="@item.VPN_requestID" type="button" class="btn btn-warning">@item.VPN_requestStatus</button></td>
                     <td>
                         <a href="#">
                             <button type="button" class="btn btn-info-outline">Info</button>
@@ -49,17 +44,18 @@
                 </tr>
 
                 <script>
-                    var request = @item.VPN_requestStatus;
-                    if(request === "Approved"){
-                        document.getElementById("requestStatus").className = "btn btn-success";
+                    window.alert("hi");
+
+                    var request = "@item.VPN_requestStatus";
+                    if(request == "Approved"){
+                        document.getElementById("@item.VPN_requestID").className = "btn btn-success";
+                        document.getElementsByTagName("button")
                     }
 
-                    else if(request === "Denied"){
-                        document.getElementById("requestStatus").className = "btn btn-danger";
+                    else if(request == "Denied"){
+                        document.getElementById("@item.VPN_requestID").className = "btn btn-danger";
                     }
-                    else{
-                    }
-
+                   
                 </script>
             }
 
