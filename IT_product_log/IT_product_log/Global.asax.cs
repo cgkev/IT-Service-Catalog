@@ -37,7 +37,10 @@ namespace IT_product_log
                 VPN_userCode = 123,
                 VPN_userDept = "123???String",
                 VPN_userStatus = "Nope",
-                VPN_requestor = "what goes here"
+                VPN_requestor = "what goes here",
+                Work_Phone = "323-343-1234"
+
+
 
             };
 
@@ -63,7 +66,8 @@ namespace IT_product_log
                 VPN_userCode = 123,
                 VPN_userDept = "123???String",
                 VPN_userStatus = "Nope",
-                VPN_requestor = "what goes here"
+                VPN_requestor = "what goes here",
+                Work_Phone = "323-343-1234"
 
             };
 
@@ -89,7 +93,8 @@ namespace IT_product_log
                 VPN_userCode = 3,
                 VPN_userDept = "123???String",
                 VPN_userStatus = "Nope",
-                VPN_requestor = "what goes here"
+                VPN_requestor = "what goes here",
+                Work_Phone = "323-343-1234"
 
             };
 

@@ -56,6 +56,14 @@ namespace IT_product_log.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ViewResult MyRequestView(int id)
+        {
+            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
+            ViewBag.id = id;
+            ViewBag.details = storage[id - 1];
+            return View();
+        }
 
         public ViewResult ViewInventory()
         {

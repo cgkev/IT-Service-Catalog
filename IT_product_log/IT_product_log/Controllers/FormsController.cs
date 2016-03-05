@@ -38,5 +38,7 @@ namespace IT_product_log.Controllers
             //int var = storage.Count;//Just used this to see if the request was sent in
             return RedirectToAction("/ThankYou", "Portal");
         }
+       
+
     }
 }

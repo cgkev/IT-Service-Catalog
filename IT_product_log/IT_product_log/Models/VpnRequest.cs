@@ -42,7 +42,7 @@ namespace IT_product_log.Models
 
         [Required]
         [Display(Name = "ex: (555) 555-5555")]
-        public PhoneAttribute Work_Phone { get; set; }//phone of course
+        public String Work_Phone { get; set; }//phone of course
 
         [Required]
         [Display(Name = "ex: user@qtcm.com")]
