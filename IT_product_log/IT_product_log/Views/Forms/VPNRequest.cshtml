@@ -9,11 +9,9 @@
 
 <b>@Html.ValidationSummary("", new { @class = "text-danger" })</b>
 
-
-<body>
     <div class="form-horizontal">
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "VPNForm" }))
         {
             <table cellpadding="12" cellspacing="0" style="text-align:left">
                 <tr>
@@ -95,11 +93,11 @@
                 </tr>
                 <tr>
                     <td><b>VPN Start Date</b> </td>
-                    <td><input type="text" id="datepicker"></td>
+                    <td>maybe this is the issue</td>
                 </tr>
                 <tr>
                     <td><b>VPN End Date</b> </td>
-                    <td><input type="text" id="datepicker"></td>
+                    <td>fill this one tooooo</td>
                 </tr>
                 <tr>
                     <td><b>Systems List</b></td>
@@ -124,7 +122,103 @@
         }
 
     </div>
-</body>
+
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+<script>
+    jQuery.validator.setDefaults({
+        debug: false,
+        success: "valid"
+    });
+
+    $( "#VPNForm" ).validate({
+        rules: {
+            VPN_requestor: {
+                required: true,
+                rangelength: [2, 16]
+            },
+            VPN_recipientFirst: {
+                required: true,
+                rangelength: [2, 16]
+            },
+            VPN_recipientLast: {
+                required: true,
+                rangelength: [2, 16]
+            },
+            VPN_recipientFirst: {
+                required: true,
+                rangelength: [2, 16]
+            },
+            VPN_userCode: {
+                required: true,
+                number: true,
+                rangelength: [3,3]
+            },
+            Work_Phone: {
+                required: true,
+                phoneUS: true
+            },
+            VPN_recipientEmail: {
+                required: true,
+                email: true
+            },
+            Systems_List: {
+                required: true,
+                rangelength: [20, 200]           
+            },
+            VPN_justification: {
+                required: true,
+                rangelength: [20, 200]           
+            },
+            Manager: {
+                required: true,
+                rangelength: [2, 16]
+            }
+        },
+
+        messages:{
+            VPN_requestor: {
+                required: "Please enter requestors what?? lol",
+                rangelength: "Length must be between 2 to 16 characters long."
+            },
+            VPN_recipientFirst: {
+                required: "Please enter a First name.",
+                rangelength: "Length must be between 2 to 16 characters long."
+            },
+            VPN_recipientLast: {
+                required: "Please enter a last name.",
+                rangelength: "Length must be between 2 to 16 characters long."
+            },
+            VPN_userCode: {
+                required: "Please enter a user code.",
+                number: "Please enter the correct user code.",
+                rangelength: "Length must 3 numbers long."
+            },
+            Work_Phone: {
+                required: "Please enter a phone number.",
+                phoneUS: "Please enter a valid phone number."
+            },
+            VPN_recipientEmail: {
+                required: "An email is required for the recipient.",
+                email: "Please enter a valid email address."
+
+            },
+            Systems_List: {
+                required: "Not sure what this is for kevin hellpp.",
+                rangelength: "Length must be between 2 to 16 characters long."
+            },
+            VPN_justification: {
+                required: "Justification must be provided.",
+                rangelength: "Justification must be between 20 to 200 characters."           
+            },
+            Manager: {
+                required: "Please enter a managers what?",
+                rangelength:  "Length must be between 2 to 16 characters long."
+            }
+        }
+    });
+</script>
+
 
 
 @Html.ActionLink("Back to List", "ViewInventory")
