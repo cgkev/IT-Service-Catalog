@@ -15,19 +15,55 @@
     {
         <table cellpadding="12" cellspacing="0" style="text-align:left">
             <tr>
-                <td><b>VPN Requestor</b></td>
-                <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_requestor) </td>
+                <td><b>VPN Requestor</b>
+                <br>
+                @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_requestor) </td>
             </tr>
             <tr>
-                <td><b>VPN Full Name</b></td>
                 <td>
+                    <b>VPN Recipients First Name</b>
+                    <br>
                     @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientFirst, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientFirst) })
+                </td>
+                <td>
+                    <b>VPN Recipients Last Name</b>
+                    <br>
                     @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientLast, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientLast) })
                 </td>
             </tr>
             <tr>
-                <td><b>User Status Type</b></td>
                 <td>
+                    <b>User Department</b>
+                    <br>
+                    <select name="category" id="dept">
+                        @foreach (var item in ViewBag.deptName)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userDept, new { style = "display: none;" })
+                </td>
+                <td>
+                    <b>Machine Owner</b>
+                    <br>
+                    <select name="category" id="owner">
+                        @foreach (var item in ViewBag.machineOwner)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.Machine_Owner, new { style = "display: none;" })
+
+                </td>
+            </tr>
+
+            <tr>
+                <td><b>User Code</b>
+                <br>
+                @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { placeholder = Html.DisplayNameFor(n => n.VPN_userCode) }) </td>
+                <td>
+                    <b>User Status Type</b>
+                    <br>
                     <select name="category" id="status">
                         @foreach (var item in ViewBag.vpnStatusType)
                         {
@@ -39,97 +75,85 @@
                 </td>
             </tr>
             <tr>
-                <td><b>User Department</b></td>
+                <td><b>Work Phone</b>
+                <br>
+                @Html.TextBoxFor(vpnrequest => vpnrequest.Work_Phone, new { placeholder = Html.DisplayNameFor(vpnrequest => vpnrequest.Work_Phone) }) </td>
+
+                <td><b>Recipent Email</b>
+                <br> 
+                @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientEmail, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientEmail) }) </td>
+            </tr>
+            <tr>
                 <td>
-                    <select name="category" id="dept">
-                        @foreach (var item in ViewBag.deptName)
-                        {
-                            <option value="@item">@item</option>
-                        }
-                    </select>
-                    @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userDept, new { style = "display: none;" })
-                </td>
-            </tr>
-            <tr>
-                <td><b>User Code</b></td>
-                <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { placeholder = Html.DisplayNameFor(n => n.VPN_userCode) }) </td>
-            </tr>
-            <tr>
-                <td><b>Work Phone</b></td>
-                <td> @Html.TextBoxFor(vpnrequest => vpnrequest.Work_Phone, new { placeholder = Html.DisplayNameFor(vpnrequest => vpnrequest.Work_Phone) }) </td>
-            </tr>
-            <tr>
-                <td><b>Recipent Email</b></td>
-                <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientEmail, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientEmail) }) </td>
-            </tr>
-            <tr>
-                <td><b>Company Name</b></td>
-                <td>
+                    <b>Company Name</b>
+                    <br>
                     <select name="category" id="comp">
                         @foreach (var item in ViewBag.companyName)
                         {
                             <option value="@item">@item</option>
                         }
                     </select>
+                </td>
+                <td>
                     <div id="compform" style="display: none;">
-                        <br><br>
+                        <b>Company Other</b>
+                        <br>
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Company_Other)
                     </div>
                 </td>
             </tr>
             <tr>
-                <td><b>Office Location</b></td>
-                <td>
+                <td><b>Office Location</b>
+                <br>
                     <select name="category" id="location">
                         @foreach (var item in ViewBag.officeLoc)
                         {
                             <option value="@item">@item</option>
                         }
                     </select>
-                    <br><br>
+                    
                     @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Location, new { style = "display: none;" })
-                    <select name="category" id="QTClocation" style="display: none;">
+                </td>
+                <td>
+                    <b>Office Address</b>
+                    <br>
+                    <select name="category" id="QTClocation" >
                         @foreach (var item in ViewBag.qtcOfficSelect)
                         {
                             <option value="@item">@item</option>
                         }
                     </select>
                     @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Address, new { style = "display: none;" })
+                
                 </td>
             </tr>
 
             <tr>
-                <td><b>Machine Owner</b></td>
-                <td>
-                    <select name="category" id="owner">
-                        @foreach (var item in ViewBag.machineOwner)
-                        {
-                            <option value="@item">@item</option>
-                        }
-                    </select>
-                    @Html.TextBoxFor(vpnrequest => vpnrequest.Machine_Owner, new { style = "display: none;" })
+                <td><b>VPN Start Date</b>
+                <br>
+                @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_accessStart)
+                </td>
 
+                <td><b>VPN End Date</b> 
+                <br>
+                @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_accessEnd)
                 </td>
             </tr>
             <tr>
-                <td><b>VPN Start Date</b> </td>
-                <td>@Html.TextBoxFor(vpnrequest => vpnrequest.VPN_accessStart)</td>
+                <td><b>Systems List</b>
+                <br>
+                @Html.TextAreaFor(vpnrequest => vpnrequest.Systems_List, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.Systems_List) })
+                </td>
+
+                <td><b>VPN Justification</b>
+                <br>
+                @Html.TextAreaFor(vpnrequest => vpnrequest.VPN_justification, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.VPN_justification) }) 
+                </td>
             </tr>
             <tr>
-                <td><b>VPN End Date</b> </td>
-                <td>@Html.TextBoxFor(vpnrequest => vpnrequest.VPN_accessEnd)</td>
-            </tr>
-            <tr>
-                <td><b>Systems List</b></td>
-                <td>@Html.TextAreaFor(vpnrequest => vpnrequest.Systems_List, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.Systems_List) }) </td>
-            </tr>
-            <tr>
-                <td><b>VPN Justification</b></td>
-                <td> @Html.TextAreaFor(vpnrequest => vpnrequest.VPN_justification, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.VPN_justification) }) </td>
-            </tr>
-            <tr>
-                <td><b>Manager</b></td>
-                <td> @Html.TextBoxFor(vpnrequest => vpnrequest.Manager) </td>
+                <td><b>Manager</b>
+                <br>
+                @Html.TextBoxFor(vpnrequest => vpnrequest.Manager) </td>
             </tr>
             <tr>
                 <td><input type="submit" value="Submit Form" /> </td>
@@ -148,7 +172,7 @@
 
 <script>
     jQuery.validator.setDefaults({
-        debug: false,
+        debug: true,
         success: "valid"
     });
 
