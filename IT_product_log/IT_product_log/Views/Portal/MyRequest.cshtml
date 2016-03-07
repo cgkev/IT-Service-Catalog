@@ -1,4 +1,5 @@
-﻿
+﻿@model IT_product_log.Models.VpnRequest
+
 @{
     ViewBag.Title = "MyRequest";
 }
@@ -9,6 +10,9 @@
     <meta name="viewport" content="width=device-width" />
 </head>
         </br>
+
+
+
 <body>
     <table class="table">
         <thead>
@@ -22,23 +26,46 @@
         </thead>
         <tbody>
 
-            <tr>
-                <td><b>72</b></td>
-                <td><b>VPN Access</b></td>
-                <td>02-20-2016</td>
-                <td><button type="button" class="btn btn-warning">Pending Manager Approval</button></td>
-                <td>
-                    <a href="#">
-                        <button type="button" class="btn btn-info-outline">Info</button>
-                    </a>
-                </td>
-            </tr>
+            @foreach (var item in ViewBag.list)
+            {
+
+
+                <tr>
+                    <td><b>@item.VPN_requestID</b></td>
+                    <td><b>VPN Access</b></td>
+                    <td>@item.DateSubmitted</td>
+
+                    <td><button id="@item.VPN_requestID" type="button" class="btn btn-warning">@item.VPN_requestStatus</button></td>
+                    <td>
+                        <a href="~/Portal/MyRequestView/@item.VPN_requestID">
+                            <button type="button" class="btn btn-info-outline">Info</button>
+                        </a>
+                    </td>
+                </tr>
+
+                <script>
+                    var request = "@item.VPN_requestStatus";
+                    if(request == "Approved"){
+                        document.getElementById("@item.VPN_requestID").className = "btn btn-success";
+                        document.getElementsByTagName("button")
+                    }
+
+                    else if(request == "Denied"){
+                        document.getElementById("@item.VPN_requestID").className = "btn btn-danger";
+                    }
+                   
+                </script>
+            }
+
+
+
+
 
             <tr>
                 <td><b>84</b></td>
                 <td><b>USB Storage Access</b></td>
                 <td>01-10-2016</td>
-                <td><button type="button" class="btn btn-success">Approved</button></td>
+                <td><button type="button" class="btn btn-warning">Pending Manager Approval</button></td>
                 <td>
                     <a href="#">
                         <button type="button" class="btn btn-info-outline">Info</button>
