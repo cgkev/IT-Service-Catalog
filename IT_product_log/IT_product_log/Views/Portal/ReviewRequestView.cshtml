@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "ReviewRequestView";
+}
+
+<h2>Review Request# @ViewBag.id</h2>
+
+<div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><b>Request ID:</b></td>
+                <td>@ViewBag.id</td>
+            </tr>
+            <tr>
+                <td><b>Date Submitted:</b></td>
+                <td>@ViewBag.details.DateSubmitted</td>
+            </tr>
+            <tr>
+                <td><b>VPN Requestor:</b></td>
+                <td>@ViewBag.details.VPN_requestor</td>
+            </tr>
+            <tr>
+                <td><b>Full Name: </b></td>
+                <td>@ViewBag.details.VPN_recipientFirst @ViewBag.details.VPN_recipientLast </td>
+            </tr>
+            <tr>
+                <td><b>User Status Type:</b></td>
+                <td>@ViewBag.details.VPN_userStatus</td>
+            </tr>
+            <tr>
+                <td><b>User Department:</b></td>
+                <td>@ViewBag.details.VPN_userDept</td>
+            </tr>
+            <tr>
+                <td><b>Work Phone:</b></td>
+                <td>@ViewBag.details.Work_Phone</td>
+            </tr>
+            <tr>
+                <td><b>Recipent Email:</b></td>
+                <td>@ViewBag.details.VPN_recipientEmail</td>
+            </tr>
+            <tr>
+                <td><b>Company Name:</b></td>
+                <td>@ViewBag.details.Company_Name</td>
+            </tr>
+            <tr>
+                <td><b>Company Other:</b></td>
+                <td>@ViewBag.details.Company_Other</td>
+            </tr>
+            <tr>
+                <td><b>Office Location:</b></td>
+                <td>@ViewBag.details.Office_Location</td>
+            </tr>
+            <tr>
+                <td><b>Office Address:</b></td>
+                <td>@ViewBag.details.Office_Address</td>
+            </tr>
+            <tr>
+                <td><b>Machine Owner:</b></td>
+                <td>@ViewBag.details.Machine_Owner</td>
+            </tr>
+            <tr>
+                <td><b>Systems List:</b></td>
+                <td>@ViewBag.details.Systems_List</td>
+            </tr>
+            <tr>
+                <td><b>VPN Justification:</b></td>
+                <td>@ViewBag.details.VPN_justification</td>
+            </tr>
+            <tr>
+                <td><b>VPN Start Date:</b></td>
+                <td>@ViewBag.details.VPN_accessStart</td>
+            </tr>
+            <tr>
+                <td><b>VPN End Date:</b></td>
+                <td>@ViewBag.details.VPN_accessEnd</td>
+            </tr>
+            <tr>
+                <td><b>Manager:</b></td>
+                <td>@ViewBag.details.Manager</td>
+            </tr>
+
+
+
+        </tbody>
+
+    </table>
+
+</div>
+
+@using (Html.BeginForm())
+            {
+    <tr>
+        <td>
+            <input class="btn btn-success" type="submit" value="Approve" />
+            <input class="btn btn-danger" type="submit" value="Deny" />
+            <input class="btn btn-warning" type="submit" value="More Information Needed" />
+        </td>
+    </tr>
+}
