@@ -64,6 +64,33 @@ namespace IT_product_log.Controllers
             ViewBag.details = storage[id - 1];
             return View();
         }
+        // -----------------Review Request (manager view)-------------
+        public ViewResult ReviewRequest()
+        {
+            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
+            ViewBag.list = storage;
+            return View();
+        }
+
+        [HttpGet]
+        public ViewResult ReviewRequestView(int id)
+        {
+            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
+            ViewBag.id = id;
+            ViewBag.details = storage[id - 1];
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ReviewRequestView(string status, int id)
+        {
+
+            return RedirectToAction("/ReviewRequest", "Portal");
+
+        }
+
+
+        // -----------------Old Code-------------------
 
         public ViewResult ViewInventory()
         {

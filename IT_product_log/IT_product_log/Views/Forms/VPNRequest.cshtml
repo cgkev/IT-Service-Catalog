@@ -11,147 +11,148 @@
 
 <div class="form-horizontal">
 
-        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "VPNForm" }))
-        {
-<table cellpadding="12" cellspacing="0" style="text-align:left">
-<tr>
-<td><b>VPN Requestor</b></td>
-<td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_requestor) </td>
-</tr>
-<tr>
-<td><b>VPN Full Name</b></td>
-<td>
- @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientFirst, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientFirst) })
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "VPNForm" }))
+    {
+        <table cellpadding="12" cellspacing="0" style="text-align:left">
+            <tr>
+                <td><b>VPN Requestor</b></td>
+                <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_requestor) </td>
+            </tr>
+            <tr>
+                <td><b>VPN Full Name</b></td>
+                <td>
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientFirst, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientFirst) })
                     @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientLast, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientLast) })
-</td>
-</tr>
-<tr>
-<td><b>User Status Type</b></td>
-<td>
-<select name="category" id="status">
-                            @foreach (var item in ViewBag.vpnStatusType)
-                            {
-<option value="@item">@item</option>
-                            }
-</select>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userStatus, new { style = "display: none;" })
+                </td>
+            </tr>
+            <tr>
+                <td><b>User Status Type</b></td>
+                <td>
+                    <select name="category" id="status">
+                        @foreach (var item in ViewBag.vpnStatusType)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userStatus, new { style = "display: none;" })
 
-</td>
-</tr>
-<tr>
-<td><b>User Department</b></td>
-<td>
-<select name="category" id="dept">
-                            @foreach (var item in ViewBag.deptName)
-                            {
-<option value="@item">@item</option>
-                            }
-</select>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userDept, new { style = "display: none;" })
-</td>
-</tr>
-<tr>
-<td><b>User Code</b></td>
-<td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { placeholder = Html.DisplayNameFor(n => n.VPN_userCode) }) </td>
-</tr>
-<tr>
-<td><b>Work Phone</b></td>
-<td> @Html.TextBoxFor(vpnrequest => vpnrequest.Work_Phone, new { placeholder = Html.DisplayNameFor(vpnrequest => vpnrequest.Work_Phone) }) </td>
-</tr>
-<tr>
-<td><b>Recipent Email</b></td>
-<td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientEmail, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientEmail) }) </td>
-</tr>
-<tr>
-<td><b>Company Name</b></td>
-<td>
-<select name="category" id="comp">
-                            @foreach (var item in ViewBag.companyName)
-                            {
-<option value="@item">@item</option>
-                            }
-</select>
-<div id="compform" style="display: none;">
-<br><br>
+                </td>
+            </tr>
+            <tr>
+                <td><b>User Department</b></td>
+                <td>
+                    <select name="category" id="dept">
+                        @foreach (var item in ViewBag.deptName)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userDept, new { style = "display: none;" })
+                </td>
+            </tr>
+            <tr>
+                <td><b>User Code</b></td>
+                <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { placeholder = Html.DisplayNameFor(n => n.VPN_userCode) }) </td>
+            </tr>
+            <tr>
+                <td><b>Work Phone</b></td>
+                <td> @Html.TextBoxFor(vpnrequest => vpnrequest.Work_Phone, new { placeholder = Html.DisplayNameFor(vpnrequest => vpnrequest.Work_Phone) }) </td>
+            </tr>
+            <tr>
+                <td><b>Recipent Email</b></td>
+                <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientEmail, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientEmail) }) </td>
+            </tr>
+            <tr>
+                <td><b>Company Name</b></td>
+                <td>
+                    <select name="category" id="comp">
+                        @foreach (var item in ViewBag.companyName)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    <div id="compform" style="display: none;">
+                        <br><br>
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Company_Other)
-</div>
-</td>
-</tr>
-<tr>
-<td><b>Office Location</b></td>
-<td>
-<select name="category" id="location">
-                            @foreach (var item in ViewBag.officeLoc)
-                            {
-<option value="@item">@item</option>
-                            }
-</select>
-<br><br>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Location, new { style = "display: none;" })
-<select name="category" id="QTClocation" style="display: none;">
-                            @foreach (var item in ViewBag.qtcOfficSelect)
-                            {
-<option value="@item">@item</option>
-                            }
-</select>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Address, new { style = "display: none;" })
-</td>
-</tr>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Office Location</b></td>
+                <td>
+                    <select name="category" id="location">
+                        @foreach (var item in ViewBag.officeLoc)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    <br><br>
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Location, new { style = "display: none;" })
+                    <select name="category" id="QTClocation" style="display: none;">
+                        @foreach (var item in ViewBag.qtcOfficSelect)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Address, new { style = "display: none;" })
+                </td>
+            </tr>
 
-<tr>
-<td><b>Machine Owner</b></td>
-<td>
-<select name="category" id="owner">
-                            @foreach (var item in ViewBag.machineOwner)
-                            {
-<option value="@item">@item</option>
-                            }
-</select>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.Machine_Owner, new { style = "display: none;" })
+            <tr>
+                <td><b>Machine Owner</b></td>
+                <td>
+                    <select name="category" id="owner">
+                        @foreach (var item in ViewBag.machineOwner)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.Machine_Owner, new { style = "display: none;" })
 
-</td>
-</tr>
-<tr>
-<td><b>VPN Start Date</b> </td>
-<td>maybe this is the issue</td>
-</tr>
-<tr>
-<td><b>VPN End Date</b> </td>
-<td>fill this one tooooo</td>
-</tr>
-<tr>
-<td><b>Systems List</b></td>
-<td>@Html.TextAreaFor(vpnrequest => vpnrequest.Systems_List, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.Systems_List) }) </td>
-</tr>
-<tr>
-<td><b>VPN Justification</b></td>
-<td> @Html.TextAreaFor(vpnrequest => vpnrequest.VPN_justification, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.VPN_justification) }) </td>
-</tr>
-<tr>
-<td><b>Manager</b></td>
-<td> @Html.TextBoxFor(vpnrequest => vpnrequest.Manager) </td>
-</tr>
-<tr>
-<td><input type="submit" value="Submit Form" /> </td>
-</tr>
+                </td>
+            </tr>
+            <tr>
+                <td><b>VPN Start Date</b> </td>
+                <td>maybe this is the issue</td>
+            </tr>
+            <tr>
+                <td><b>VPN End Date</b> </td>
+                <td>fill this one tooooo</td>
+            </tr>
+            <tr>
+                <td><b>Systems List</b></td>
+                <td>@Html.TextAreaFor(vpnrequest => vpnrequest.Systems_List, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.Systems_List) }) </td>
+            </tr>
+            <tr>
+                <td><b>VPN Justification</b></td>
+                <td> @Html.TextAreaFor(vpnrequest => vpnrequest.VPN_justification, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.VPN_justification) }) </td>
+            </tr>
+            <tr>
+                <td><b>Manager</b></td>
+                <td> @Html.TextBoxFor(vpnrequest => vpnrequest.Manager) </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Submit Form" /> </td>
+            </tr>
 
 
 
-</table>
+        </table>
 
-        }
+    }
 
 </div>
 
 <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+
 <script>
     jQuery.validator.setDefaults({
         debug: false,
         success: "valid"
     });
 
-    $( "#VPNForm" ).validate({
+    $("#VPNForm").validate({
         rules: {
             VPN_requestor: {
                 required: true,
@@ -172,7 +173,7 @@
             VPN_userCode: {
                 required: true,
                 number: true,
-                rangelength: [3,3]
+                rangelength: [3, 3]
             },
             Work_Phone: {
                 required: true,
@@ -184,7 +185,7 @@
             },
             Company_Other: {
                 required: true,
-            },    
+            },
             Systems_List: {
                 required: true,
                 rangelength: [20, 200]
@@ -199,7 +200,7 @@
             }
         },
 
-        messages:{
+        messages: {
             VPN_requestor: {
                 required: "Please enter requestors what?? Is this autofilled?",
                 rangelength: "Length must be between 2 to 16 characters long."
@@ -239,19 +240,19 @@
             },
             Manager: {
                 required: "Please enter a managers what?",
-                rangelength:  "Length must be between 2 to 16 characters long."
+                rangelength: "Length must be between 2 to 16 characters long."
             }
         }
     });
 
-    $(document).ready(function(){
-        $('#comp').on('change', function(){
-            if(this.value === 'Other'){
+    $(document).ready(function () {
+        $('#comp').on('change', function () {
+            if (this.value === 'Other') {
                 $('#Company_Other').val("");
                 $('#compform').show();
                 $('#Company_Other-error').show();
 
-            }else{
+            } else {
                 $('#Company_Other-error').hide();
                 $('#compform').hide();
                 $('#Company_Other').val(this.value);
@@ -259,17 +260,17 @@
             }
         }),
 
-        $("#status").on('change', function(){
-              $('#VPN_userStatus').val(this.value);
+        $("#status").on('change', function () {
+            $('#VPN_userStatus').val(this.value);
         }),
 
-        $("#location").on('change', function(){
-            if(this.value === 'QTC Admin'){
+        $("#location").on('change', function () {
+            if (this.value === 'QTC Admin') {
                 $('#Office_Location').val(this.value);
                 $('#QTClocation').show();
                 $('#Office_Address').hide();
                 $('#Office_Address').val('');
-            }else{
+            } else {
                 $('#Office_Location').val(this.value);
                 $('#QTClocation').hide();
                 $('#Office_Address').val('');
@@ -277,16 +278,16 @@
             }
         }),
 
-        $("#QTClocation").on('change', function(){
+        $("#QTClocation").on('change', function () {
             $('#Office_Address').val(this.value);
         }),
 
-        $("#owner").on('change', function(){
-              $('#Machine_Owner').val(this.value);
+        $("#owner").on('change', function () {
+            $('#Machine_Owner').val(this.value);
         }),
 
-        $("#dept").on('change', function(){
-              $('#VPN_userDept').val(this.value);
+        $("#dept").on('change', function () {
+            $('#VPN_userDept').val(this.value);
         })
 
     });
