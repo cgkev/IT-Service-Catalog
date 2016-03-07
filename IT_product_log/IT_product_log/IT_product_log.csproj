@@ -176,6 +176,8 @@
     <Content Include="Views\Portal\MyRequestView.cshtml" />
     <Content Include="Views\Portal\ReviewRequest.cshtml" />
     <Content Include="Views\Portal\ReviewRequestView.cshtml" />
+    <Content Include="Views\Forms\VPNRequest2.cshtml" />
+    <Content Include="Views\Forms\VPNRequest3.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -25,6 +25,38 @@ namespace IT_product_log.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ViewResult VPNRequest2()
+        {
+            //these are the values for the form 
+            ViewBag.vpnStatusType = new string[] { "", "QTC Regular Employee", "Temp Employee", "Contractor", "Consultant", "Transcriber", "QTC Provider", "LMCO Employee(Non-QTC)" };
+            ViewBag.deptName = new string[] { "", "CLS", "CRP", "IT", "STS", "VAS", "VHA" };
+            ViewBag.companyName = new string[] { "", "QTC", "LMCO", "Other" };
+            ViewBag.officeLoc = new string[] { "", "QTC Admin", "QTC Clinic", "Other" };
+            ViewBag.qtcOfficSelect = new string[] {"", "Diamond Bar, CA - 21700 Copley Dr. ",
+                "Diamond Bar, CA - 1440 Bridgegate Dr.", "San Antonio, TX - 4400 NW Loop 410",
+                "Philadelphia, PA - 1617 JFK. Blvd." };
+            ViewBag.machineOwner = new string[] { "", "QTC Owned PC", "Company", "Asset (Non-QTC)", "Personal PC" };
+
+            return View();
+        }
+
+        [HttpGet]
+        public ViewResult VPNRequest3()
+        {
+            //these are the values for the form 
+            ViewBag.vpnStatusType = new string[] { "", "QTC Regular Employee", "Temp Employee", "Contractor", "Consultant", "Transcriber", "QTC Provider", "LMCO Employee(Non-QTC)" };
+            ViewBag.deptName = new string[] { "", "CLS", "CRP", "IT", "STS", "VAS", "VHA" };
+            ViewBag.companyName = new string[] { "", "QTC", "LMCO", "Other" };
+            ViewBag.officeLoc = new string[] { "", "QTC Admin", "QTC Clinic", "Other" };
+            ViewBag.qtcOfficSelect = new string[] {"", "Diamond Bar, CA - 21700 Copley Dr. ",
+                "Diamond Bar, CA - 1440 Bridgegate Dr.", "San Antonio, TX - 4400 NW Loop 410",
+                "Philadelphia, PA - 1617 JFK. Blvd." };
+            ViewBag.machineOwner = new string[] { "", "QTC Owned PC", "Company", "Asset (Non-QTC)", "Personal PC" };
+
+            return View();
+        }
+
         [HttpPost]
         public ActionResult VPNRequest(VpnRequest input)
         {
