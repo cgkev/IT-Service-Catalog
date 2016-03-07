@@ -1,0 +1,55 @@
+﻿@model IT_product_log.Models.VpnRequest
+
+@{
+    ViewBag.Title = "ReviewRequest";
+}
+
+<h2>Review Request</h2>
+
+
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+        </br>
+
+
+
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scaope="col">Request ID</th>
+                <th scaope="col">Full Name</th>
+
+                <th scope="col">Request Type</th>
+                <th scope="col">Date Submitted</th>
+                <th scope="col">Status</th>
+                <th scope="col">Review Request</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in ViewBag.list)
+            {
+
+
+                <tr>
+                    <td><b>@item.VPN_requestID</b></td>
+                    <td><b>@item.VPN_recipientFirst @item.VPN_recipientFirst</b></td>
+                    <td><b>VPN Access</b></td>
+                    <td>@item.DateSubmitted</td>
+
+                    <td><button id="@item.VPN_requestID" type="button" class="btn btn-warning">Pending Manager Approval</button></td>
+                    <td>
+                        <a href="~/Portal/ReviewRequestView/@item.VPN_requestID">
+                            <button type="button" class="btn btn-info-outline">Review</button>
+                        </a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</body>

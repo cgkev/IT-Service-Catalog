@@ -22,8 +22,10 @@
                 </tr>
                 <tr>
                     <td><b>VPN Full Name</b></td>
-                    <td> @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientFirst, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientFirst) }) 
-                    @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientLast, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientLast) }) </td>
+                    <td>
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientFirst, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientFirst) })
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientLast, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientLast) })
+                    </td>
                 </tr>
                 <tr>
                     <td><b>User Status Type</b></td>
