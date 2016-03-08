@@ -166,8 +166,8 @@
     <Content Include="Views\Portal\AddCategory.cshtml" />
     <Content Include="Views\Portal\CategoryView.cshtml" />
     <Content Include="Views\Portal\Index.cshtml" />
-    <Content Include="Views\Portal\Service_Desk.cshtml" />
-    <Content Include="Views\Portal\System_Access.cshtml" />
+    <Content Include="Views\Portal\ServiceDesk.cshtml" />
+    <Content Include="Views\Portal\SystemAccess.cshtml" />
     <Content Include="Views\Portal\Management.cshtml" />
     <Content Include="Views\Portal\MyRequest.cshtml" />
     <Content Include="Views\Forms\VPNRequest.cshtml" />

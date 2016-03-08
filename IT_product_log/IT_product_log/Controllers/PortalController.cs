@@ -14,12 +14,12 @@ namespace IT_product_log.Controllers
         }
         // -------------Start of Portal Views-------------
 
-        public ViewResult Service_Desk()
+        public ViewResult ServiceDesk()
         {
             return View();
         }
 
-        public ViewResult System_Access()
+        public ViewResult SystemAccess()
         {
             return View();
         }
