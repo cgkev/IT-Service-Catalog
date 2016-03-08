@@ -169,13 +169,13 @@
     <Content Include="Views\Portal\ServiceDesk.cshtml" />
     <Content Include="Views\Portal\SystemAccess.cshtml" />
     <Content Include="Views\Portal\Management.cshtml" />
-    <Content Include="Views\Portal\MyRequest.cshtml" />
+    <Content Include="Views\Portal\MyRequests.cshtml" />
     <Content Include="Views\Forms\VPNRequest.cshtml" />
     <Content Include="Views\Portal\ThankYou.cshtml" />
     <Content Include="Views\Portal\VPNfaq.cshtml" />
-    <Content Include="Views\Portal\MyRequestView.cshtml" />
+    <Content Include="Views\Portal\MyRequest.cshtml" />
+    <Content Include="Views\Portal\ReviewRequests.cshtml" />
     <Content Include="Views\Portal\ReviewRequest.cshtml" />
-    <Content Include="Views\Portal\ReviewRequestView.cshtml" />
     <Content Include="Views\Forms\VPNRequest2.cshtml" />
     <Content Include="Views\Forms\VPNRequest3.cshtml" />
     <None Include="Web.Debug.config">
