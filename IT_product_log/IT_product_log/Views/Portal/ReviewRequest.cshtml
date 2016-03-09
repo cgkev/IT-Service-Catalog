@@ -90,25 +90,57 @@
 
 </div>
 
-@using (Html.BeginForm("/ReviewRequest", "Portal"))
+@using (Html.BeginForm("/ReviewRequest", "Portal", FormMethod.Post, new { id = "review" }))
 {
-    <input type="hidden" name="id" value="@ViewBag.id"/>
+    <input type="hidden" name="id" value="@ViewBag.id" />
 
     <table>
         <tr>
             <td>
                 <b>Comments: (Required if Deny)</b>
                 @Html.TextArea("comments")
-              
+
             </td>
         </tr>
         <tr>
             <td>
-                <input name="submit" class="btn btn-success" type="submit" value="Approve" />
-                <input name="submit" class="btn btn-danger" type="submit" value="Deny" />
+                <input name="submit" class="btn btn-success" id="approve" type="submit" value="Approve" />
+                <input name="submit" class="btn btn-danger" id="deny" type="submit" value="Deny" />
             </td>
 
         </tr>
     </table>
+    <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            var submit;
+
+            $('#approve').click(function () {
+                $('#comments').val('                            ');
+                $('#review').validate().form();
+            });
+        });
+        jQuery.validator.setDefaults({
+            debug: false,
+            success: "valid"
+        });
+
+        $("#review").validate({
+            rules: {
+                comments: {
+                    required: true,
+                    rangelength: [20,100]
+                }
+            },
+            messages: {
+                comments: {
+                    required: "If you deny this request please provide comments",
+                    rangelength: 'Please provide enough details of why it was denied'
+                }
+            }
+        });
+
+    </script>
 }
