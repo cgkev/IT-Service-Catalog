@@ -3,6 +3,15 @@
 @{
     ViewBag.Title = "Review Requests";
 }
+<script>
+$(function () {
+    $("a.req-status").each(function () {
+        if ($(this).text() == "Approved") $(this).addClass("btn-success");
+        else if ($(this).text() == "Denied") $(this).addClass("btn-danger");
+        else $(this).addClass("btn-warning");
+    });
+});
+</script>
 
 <h2>Review Requests</h2>
 
@@ -24,7 +33,7 @@
       <td>@item.VPN_requestID</td>
       <td>@item.VPN_recipientFirst @item.VPN_recipientFirst</td>
       <td>@item.DateSubmitted</td>
-      <td><a href="~/Portal/ReviewRequest/@item.VPN_requestID" class="btn btn-warning">Pending Manager Approval</td>
+      <td><a href="~/Portal/ReviewRequest/@item.VPN_requestID" class="btn req-status" >@item.VPN_requestStatus</a></td>
     </tr>
   }
   </tbody>

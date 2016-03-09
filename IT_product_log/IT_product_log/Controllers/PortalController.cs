@@ -78,15 +78,37 @@ namespace IT_product_log.Controllers
             List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
             ViewBag.id = id;
             ViewBag.details = storage[id - 1001];
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult ReviewRequestView(string status, int id)
+        public ActionResult ReviewRequest(int id, string submit, string comments)
         {
+            System.Diagnostics.Debug.WriteLine("param " + id + " " + submit + " " + comments);
+          
+               
 
-            return RedirectToAction("/ReviewRequest", "Portal");
 
+            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
+            int tt = 0;
+            for(int i = 0; i < storage.Count; i++)
+            {
+                if(storage[i].VPN_requestID == id)
+                {
+                    if(submit.Equals("Approve"))
+                    storage[i].VPN_requestStatus = "Approved";
+                    else
+                        storage[i].VPN_requestStatus = "Denied";
+
+                    System.Diagnostics.Debug.WriteLine("asdasd "+ storage[i].VPN_requestID + " " + storage[i].VPN_requestStatus);
+
+                }
+            }
+
+
+
+            return RedirectToAction("/ReviewRequests", "Portal");
         }
 
 
