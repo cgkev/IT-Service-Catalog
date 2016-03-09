@@ -1,55 +1,102 @@
-﻿@model IT_product_log.Models.VpnRequest
-
+﻿
 @{
-    ViewBag.Title = "ReviewRequest";
+    ViewBag.Title = "ReviewRequestView";
 }
 
-<h2>Review Request</h2>
+<h2>Review Request# @ViewBag.id</h2>
 
+<div>
 
-
-
-<head>
-    <meta name="viewport" content="width=device-width" />
-</head>
-        </br>
-
-
-
-<body>
     <table class="table">
-        <thead>
-            <tr>
-                <th scaope="col">Request ID</th>
-                <th scaope="col">Full Name</th>
-
-                <th scope="col">Request Type</th>
-                <th scope="col">Date Submitted</th>
-                <th scope="col">Status</th>
-                <th scope="col">Review Request</th>
-            </tr>
-        </thead>
         <tbody>
+            <tr>
+                <td><b>Request ID:</b></td>
+                <td>@ViewBag.id</td>
+            </tr>
+            <tr>
+                <td><b>Date Submitted:</b></td>
+                <td>@ViewBag.details.DateSubmitted</td>
+            </tr>
+            <tr>
+                <td><b>VPN Requestor:</b></td>
+                <td>@ViewBag.details.VPN_requestor</td>
+            </tr>
+            <tr>
+                <td><b>Full Name: </b></td>
+                <td>@ViewBag.details.VPN_recipientFirst @ViewBag.details.VPN_recipientLast </td>
+            </tr>
+            <tr>
+                <td><b>User Status Type:</b></td>
+                <td>@ViewBag.details.VPN_userStatus</td>
+            </tr>
+            <tr>
+                <td><b>User Department:</b></td>
+                <td>@ViewBag.details.VPN_userDept</td>
+            </tr>
+            <tr>
+                <td><b>Work Phone:</b></td>
+                <td>@ViewBag.details.Work_Phone</td>
+            </tr>
+            <tr>
+                <td><b>Recipent Email:</b></td>
+                <td>@ViewBag.details.VPN_recipientEmail</td>
+            </tr>
+            <tr>
+                <td><b>Company Name:</b></td>
+                <td>@ViewBag.details.Company_Name</td>
+            </tr>
+            <tr>
+                <td><b>Company Other:</b></td>
+                <td>@ViewBag.details.Company_Other</td>
+            </tr>
+            <tr>
+                <td><b>Office Location:</b></td>
+                <td>@ViewBag.details.Office_Location</td>
+            </tr>
+            <tr>
+                <td><b>Office Address:</b></td>
+                <td>@ViewBag.details.Office_Address</td>
+            </tr>
+            <tr>
+                <td><b>Machine Owner:</b></td>
+                <td>@ViewBag.details.Machine_Owner</td>
+            </tr>
+            <tr>
+                <td><b>Systems List:</b></td>
+                <td>@ViewBag.details.Systems_List</td>
+            </tr>
+            <tr>
+                <td><b>VPN Justification:</b></td>
+                <td>@ViewBag.details.VPN_justification</td>
+            </tr>
+            <tr>
+                <td><b>VPN Start Date:</b></td>
+                <td>@ViewBag.details.VPN_accessStart</td>
+            </tr>
+            <tr>
+                <td><b>VPN End Date:</b></td>
+                <td>@ViewBag.details.VPN_accessEnd</td>
+            </tr>
+            <tr>
+                <td><b>Manager:</b></td>
+                <td>@ViewBag.details.Manager</td>
+            </tr>
 
-            @foreach (var item in ViewBag.list)
-            {
 
 
-                <tr>
-                    <td><b>@item.VPN_requestID</b></td>
-                    <td><b>@item.VPN_recipientFirst @item.VPN_recipientFirst</b></td>
-                    <td><b>VPN Access</b></td>
-                    <td>@item.DateSubmitted</td>
-
-                    <td><button id="@item.VPN_requestID" type="button" class="btn btn-warning">Pending Manager Approval</button></td>
-                    <td>
-                        <a href="~/Portal/ReviewRequestView/@item.VPN_requestID">
-                            <button type="button" class="btn btn-info-outline">Review</button>
-                        </a>
-                    </td>
-                </tr>
-
-            }
         </tbody>
+
     </table>
-</body>
+
+</div>
+
+@using (Html.BeginForm())
+            {
+    <tr>
+        <td>
+            <input class="btn btn-success" type="submit" value="Approve" />
+            <input class="btn btn-danger" type="submit" value="Deny" />
+            <input class="btn btn-warning" type="submit" value="More Information Needed" />
+        </td>
+    </tr>
+}

@@ -14,12 +14,12 @@ namespace IT_product_log.Controllers
         }
         // -------------Start of Portal Views-------------
 
-        public ViewResult Service_Desk()
+        public ViewResult ServiceDesk()
         {
             return View();
         }
 
-        public ViewResult System_Access()
+        public ViewResult SystemAccess()
         {
             return View();
         }
@@ -49,7 +49,7 @@ namespace IT_product_log.Controllers
         }
         // -----------------MyRequest-----------------
 
-        public ViewResult MyRequest()
+        public ViewResult MyRequests()
         {
             List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
             ViewBag.list = storage;
@@ -57,15 +57,15 @@ namespace IT_product_log.Controllers
         }
 
         [HttpGet]
-        public ViewResult MyRequestView(int id)
+        public ViewResult MyRequest(int id)
         {
             List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
             ViewBag.id = id;
-            ViewBag.details = storage[id - 1];
+            ViewBag.details = storage[id - 1001];
             return View();
         }
         // -----------------Review Request (manager view)-------------
-        public ViewResult ReviewRequest()
+        public ViewResult ReviewRequests()
         {
             List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
             ViewBag.list = storage;
@@ -73,11 +73,11 @@ namespace IT_product_log.Controllers
         }
 
         [HttpGet]
-        public ViewResult ReviewRequestView(int id)
+        public ViewResult ReviewRequest(int id)
         {
             List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
             ViewBag.id = id;
-            ViewBag.details = storage[id - 1];
+            ViewBag.details = storage[id - 1001];
             return View();
         }
 
@@ -186,3 +186,4 @@ namespace IT_product_log.Controllers
 
     }
 }
+
