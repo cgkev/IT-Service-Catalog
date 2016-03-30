@@ -145,10 +145,10 @@
     <Compile Include="Context.cs" />
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
+    <Compile Include="Controllers\VPNController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\VpnRequest.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,22 +162,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Portal\AddItem.cshtml" />
-    <Content Include="Views\Portal\AddCategory.cshtml" />
-    <Content Include="Views\Portal\CategoryView.cshtml" />
     <Content Include="Views\Portal\Index.cshtml" />
     <Content Include="Views\Portal\ServiceDesk.cshtml" />
     <Content Include="Views\Portal\SystemAccess.cshtml" />
     <Content Include="Views\Portal\Management.cshtml" />
     <Content Include="Views\Portal\MyRequests.cshtml" />
-    <Content Include="Views\Forms\VPNRequest.cshtml" />
     <Content Include="Views\Portal\ThankYou.cshtml" />
     <Content Include="Views\Portal\VPNfaq.cshtml" />
     <Content Include="Views\Portal\MyRequest.cshtml" />
     <Content Include="Views\Portal\ReviewRequests.cshtml" />
     <Content Include="Views\Portal\ReviewRequest.cshtml" />
-    <Content Include="Views\Forms\VPNRequest2.cshtml" />
-    <Content Include="Views\Forms\VPNRequest3.cshtml" />
+    <Content Include="Views\Forms\VPNRequest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -187,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\VPN\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
