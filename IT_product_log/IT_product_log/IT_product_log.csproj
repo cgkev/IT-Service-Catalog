@@ -137,13 +137,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
-    <Content Include="Views\Portal\ViewInventory.cshtml" />
-    <Content Include="Views\Portal\ViewItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context.cs" />
-    <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\PortalController.cs" />
     <Compile Include="Controllers\VPNController.cs" />
     <Compile Include="Global.asax.cs">
@@ -168,11 +165,11 @@
     <Content Include="Views\Portal\Management.cshtml" />
     <Content Include="Views\Portal\MyRequests.cshtml" />
     <Content Include="Views\Portal\ThankYou.cshtml" />
-    <Content Include="Views\Portal\VPNfaq.cshtml" />
+    <Content Include="Views\VPN\VPNfaq.cshtml" />
     <Content Include="Views\Portal\MyRequest.cshtml" />
     <Content Include="Views\Portal\ReviewRequests.cshtml" />
     <Content Include="Views\Portal\ReviewRequest.cshtml" />
-    <Content Include="Views\Forms\VPNRequest.cshtml" />
+    <Content Include="Views\VPN\VPNRequest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -182,7 +179,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\VPN\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
