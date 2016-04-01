@@ -1,14 +1,12 @@
 
-
- 
 table{
-   border-bottom: 1px solid #ccc; 
+   border-bottom: 2px solid #ccc; 
    width: 90%;
 }
 
 input.error{
     font-weight: bold;
-    border: 2px solid #f23;
+    border: 1px solid #f23;
 }
 
 textarea.error{

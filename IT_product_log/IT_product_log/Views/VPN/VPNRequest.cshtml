@@ -5,7 +5,6 @@
 <h2>VPN Request</h2>
 <h6>Please fill out ALL *mandatory fields below. </h6>
 <h6>(***Note: INCOMPLETE or Insufficient forms WILL BE RETURNED or REJECTED ***)</h6>
-<hr />
 
 <b>@Html.ValidationSummary("", new { @class = "text-danger" })</b>
 <div class="form-horizontal">
@@ -18,7 +17,7 @@
                 </td>
             </tr>
             <tr>
-                <h4>Recipients Name</h4>
+                <h4><b>Recipients Name</b></h4>
                 <td>
                     <h5>First Name <span>*</span></h5>
                     @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientFirst, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientFirst) })
@@ -31,7 +30,7 @@
         </table>
         <table cellpadding="12" cellspacing="0" style="text-align:left">
             <tr>
-                <h4>Recipients Contact Information</h4>
+                <h4><b>Recipients Contact Information</b></h4>
                 <td>
                     <h5>Work Phone <span>*</span></h5>
                     @Html.TextBoxFor(vpnrequest => vpnrequest.Work_Phone, new { placeholder = Html.DisplayNameFor(vpnrequest => vpnrequest.Work_Phone) })
@@ -44,7 +43,7 @@
         </table>
         <table cellpadding="12" cellspacing="0" style="text-align:left">
             <tr>
-                <h4>VPN User Department Information</h4>
+                <h4><b>VPN User Department Information</b></h4>
                 <td>
                     <h5>User Department <span>*</span></h5>
                     <select name="category" id="dept">
@@ -80,98 +79,98 @@
 
             </tr>
         </table>
-            <table cellpadding="12" cellspacing="0" style="text-align:left">
+        <table cellpadding="12" cellspacing="0" style="text-align:left">
 
-                <tr>
-                    <h4>Company Information</h4>
-                    <td>
-                        <h5>Company Name <span>*</span></h5>
-                        <select name="category" id="comp">
-                            @foreach (var item in ViewBag.companyName)
-                            {
-                                <option value="@item">@item</option>
-                            }
-                        </select>
-                    </td>
-                    <td>
-                        <div id="compform" style="display: none;">
-                            <h5>Company Other <span>*</span></h5>
-                            @Html.TextBoxFor(vpnrequest => vpnrequest.Company_Other)
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h5>Office Location <span>*</span></h5>
-                        <select name="category" id="location">
-                            @foreach (var item in ViewBag.officeLoc)
-                            {
-                                <option value="@item">@item</option>
-                            }
-                        </select>
+            <tr>
+                <h4><b>Company Information</b></h4>
+                <td>
+                    <h5>Company Name <span>*</span></h5>
+                    <select name="category" id="comp">
+                        @foreach (var item in ViewBag.companyName)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    <div id="compform" style="display: none;">
+                        <h5>Company Other <span>*</span></h5>
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.Company_Other)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5>Office Location <span>*</span></h5>
+                    <select name="category" id="location">
+                        @foreach (var item in ViewBag.officeLoc)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
 
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Location, new { style = "display: none;" })
-                    </td>
-                    <td>
-                        <h5>Office Address <span>*</span></h5>
-                        <select name="category" id="QTClocation">
-                            @foreach (var item in ViewBag.qtcOfficSelect)
-                            {
-                                <option value="@item">@item</option>
-                            }
-                        </select>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Address, new { style = "display: none;" })
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Location, new { style = "display: none;" })
+                </td>
+                <td>
+                    <h5>Office Address <span>*</span></h5>
+                    <select name="category" id="QTClocation">
+                        @foreach (var item in ViewBag.qtcOfficSelect)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Address, new { style = "display: none;" })
 
-                    </td>
-                </tr>
-            </table>
-                <table cellpadding="12" cellspacing="0" style="text-align:left">
-                    <tr>
-                        <h4>VPN Machine Information</h4>
-                        <td>
-                            <h5>Machine Owner <span>*</span></h5>
-                            <select name="category" id="owner">
-                                @foreach (var item in ViewBag.machineOwner)
-                                {
-                                    <option value="@item">@item</option>
-                                }
-                            </select>
-                            @Html.TextBoxFor(vpnrequest => vpnrequest.Machine_Owner, new { style = "display: none;" })
-                        </td>
-                    </tr>
-                </table>
-                    <table cellpadding="12" cellspacing="0" style="text-align:left">
+                </td>
+            </tr>
+        </table>
+        <table cellpadding="12" cellspacing="0" style="text-align:left">
+            <tr>
+                <h4><b>VPN Machine Information</b></h4>
+                <td>
+                    <h5>Machine Owner <span>*</span></h5>
+                    <select name="category" id="owner">
+                        @foreach (var item in ViewBag.machineOwner)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.Machine_Owner, new { style = "display: none;" })
+                </td>
+            </tr>
+        </table>
+        <table cellpadding="12" cellspacing="0" style="text-align:left">
 
-                        <tr>
-                            <h4>VPN System Access and Approval Section</h4>
-                            <td>
-                                <h5>Systems List <span>*</span></h5>
-                                @Html.TextAreaFor(vpnrequest => vpnrequest.Systems_List, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.Systems_List) })
-                            </td>
-                            <td>
-                                <h5>VPN Justification <span>*</span></h5>
-                                @Html.TextAreaFor(vpnrequest => vpnrequest.VPN_justification, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.VPN_justification) })
-                            </td>
-                        </tr>
-                    </table>
-                    <table cellpadding="12" cellspacing="0" style="text-align:left">
+            <tr>
+                <h4><b>VPN System Access and Approval Section</b></h4>
+                <td>
+                    <h5>Systems List <span>*</span></h5>
+                    @Html.TextAreaFor(vpnrequest => vpnrequest.Systems_List, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.Systems_List) })
+                </td>
+                <td>
+                    <h5>VPN Justification <span>*</span></h5>
+                    @Html.TextAreaFor(vpnrequest => vpnrequest.VPN_justification, 7, 30, new { placeholder = Html.DisplayNameFor(n => n.VPN_justification) })
+                </td>
+            </tr>
+        </table>
+        <table cellpadding="12" cellspacing="0" style="text-align:left">
 
-                        <tr>
-                            <h4>Period for Requested Service Access</h4>
-                            <td>
-                                <h5>VPN Start Date <span>*</span></h5>
-                                @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_accessStart)
-                            </td>
-                            <td>
-                                <h5>VPN End Date <span>*</span></h5>
-                                @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_accessEnd)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="submit" value="Submit Form" /> </td>
-                            <td><a class="btn btn-default center" href="/Portal/Index/">Cancel</a></td>
-                        </tr>
-                    </table>
+            <tr>
+                <h4><b>Period for Requested Service Access</b></h4>
+                <td>
+                    <h5>VPN Start Date <span>*</span></h5>
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_accessStart)
+                </td>
+                <td>
+                    <h5>VPN End Date <span>*</span></h5>
+                    @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_accessEnd)
+                </td>
+            </tr>
+            <tr>
+                <td><input class="btn btn-default center" type="submit" value="Submit Form" /> <a class="btn btn-default center" href="/Portal/Index/">Cancel</a></td>
+                <td></td>
+            </tr>
+        </table>
 
 
     }
