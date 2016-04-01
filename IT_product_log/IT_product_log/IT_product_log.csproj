@@ -100,6 +100,7 @@
     <Content Include="CSS\jquery-ui.css" />
     <Content Include="CSS\QTC.css" />
     <Content Include="CSS\QTCStyle.css" />
+    <Content Include="CSS\formStyle.css" />
     <Content Include="CSS\style.css" />
     <Content Include="Portal_Assest\greenCheckMark.png" />
     <Content Include="Portal_Assest\Management\1-Management.png" />

@@ -1,0 +1,41 @@
+
+
+ 
+table{
+   border-bottom: 1px solid #ccc; 
+   width: 90%;
+}
+
+input.error{
+    font-weight: bold;
+    border: 2px solid #f23;
+}
+
+textarea.error{
+    font-weight: bold;
+    border: 2px solid #f23;
+}
+
+label.error{
+    color:#f23;
+    font-weight: bold;
+    display: block;
+}
+h4{
+    font-weight: bold;
+    
+}
+h6{
+    color:#f23;
+    font-weight: bold;
+    text-align: center
+}
+h2{
+    text-align:center;
+}
+
+h5 span {
+    color: #ff0000;
+    font-weight: bold;
+
+}
