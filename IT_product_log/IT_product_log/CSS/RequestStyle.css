@@ -10,3 +10,7 @@
     .hoverTable tr:hover {
         background-color: #ffff99;
     }
+
+tr.hover {
+    cursor: pointer;
+}

@@ -12,6 +12,12 @@
             else $(this).addClass("btn-warning btn-block");
         });
     });
+
+    jQuery(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.document.location = $(this).data("href");
+        });
+    });
 </script>
 <link rel="stylesheet" type="text/css" href="~/CSS/RequestStyle.css">
 
@@ -33,7 +39,7 @@
     <tbody>
         @foreach (var item in ViewBag.list)
         {
-            <tr>
+            <tr class='clickable-row' data-href="/Portal/MyRequest/@item.VPN_requestID">
                 <td>VPN Access</td>
                 <td>@item.VPN_requestID</td>
                 <td>@item.DateSubmitted</td>
