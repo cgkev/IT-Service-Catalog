@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.SharePoint.Client;
 using SPClient = Microsoft.SharePoint.Client;
+using System.Web.Mvc;
 
 namespace IT_product_log.Models
 {
@@ -14,25 +15,13 @@ namespace IT_product_log.Models
         string ListName = "VPN Request";
 
         //Title constants - fields with choice select
-        string vpnStatusType = "VPN Status Type";
-        string deptName = "Dept Name";
-        string companyName = "Company Name";
-        string qtcOfficeLocation = "QTC Office Location";
-        string qtcofficeSelect = "QTC Office Select";
-        string machineOwner = "Machine Owner";
-
-        //the rest of the title constants 
-        string vpnRecipientFirst = "VPN Recipient First";
-        string vpnRecipientLast = "VPN Recipient Last";
-        string workPhone = "Work Phone";
-        string email = "VPN Recipient Email";
-        string userCode = "VPN User Code";
-        string manager = "Manager";
-        string systemsList = "Systems List";
-        string vpnJustification = "VPN Justification";
-        string startDate = "VPN Access Start";
-        string endDate = "VPN Access End";
-        string companyOther = "Company Other";
+        //For some reason, I can't get the column retrival working with internal names, internal names commented to the right 
+        string vpnStatusType = "VPN Status Type";           //internalUserStatus
+        string deptName = "VPN User Department";            //internalUserDepart
+        string companyName = "Company Name";                //internalCompanyName
+        string qtcOfficeLocation = "QTC Office Location";   //internalOfficeLocation
+        string qtcofficeSelect = "QTC Office Select";       //internalOfficeAddress
+        string machineOwner = "Machine Owner";              //internalMachineOwner
 
         //internal names 
         string internalVpnRecipientFirst = "VPN_x0020_Recipient_x0020_First";
@@ -52,6 +41,7 @@ namespace IT_product_log.Models
         string internalOfficeAddress = "QTC_x0020_Office_x0020_Select";
         string internalMachineOwner = "NewColumn10";
         string internalUserStatus = "VPN_x0020_User_x0020_Status";
+        string internalCreatedBy = "Author";
 
 
         public SpConnectionVPN()
@@ -65,7 +55,7 @@ namespace IT_product_log.Models
             List spList = clientContext.Web.Lists.GetByTitle(ListName);
             clientContext.Load(spList);
 
-            FieldChoice choiceField = clientContext.CastTo<FieldChoice>(spList.Fields.GetByTitle(field));
+            FieldChoice choiceField = clientContext.CastTo<FieldChoice>(spList.Fields.GetByInternalNameOrTitle(field));
             clientContext.Load(choiceField);
             clientContext.ExecuteQuery();
 
@@ -119,6 +109,13 @@ namespace IT_product_log.Models
             var itemCreateInfo = new ListItemCreationInformation();
             var listItem = spList.AddItem(itemCreateInfo);
 
+            var user = clientContext.Web.CurrentUser;
+            clientContext.Load(user);
+            clientContext.ExecuteQuery();
+            FieldUserValue userValue = new FieldUserValue();
+            userValue.LookupId = user.Id;
+
+            listItem[internalCreatedBy] = userValue;
             listItem[internalVpnRecipientFirst] = input.VPN_recipientFirst;
             listItem[internalVpnRecipientLast] = input.VPN_recipientLast;
             listItem[internalWorkPhone] = input.Work_Phone;
