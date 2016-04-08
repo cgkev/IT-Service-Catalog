@@ -11,17 +11,17 @@ namespace IT_product_log.Models
     public class SpConnectionVPN
     {
         //server details
-        string SiteUrl = "http://win-4okri914r3c:47690/Raymond";
-        string ListName = "VPN Request";
+        string SiteUrl = "http://qtcserver:80/Zainab13";
+        string ListName = "VPN-Request-list";
 
         //Title constants - fields with choice select
         //For some reason, I can't get the column retrival working with internal names, internal names commented to the right 
-        string vpnStatusType = "VPN Status Type";           //internalUserStatus
-        string deptName = "VPN User Department";            //internalUserDepart
-        string companyName = "Company Name";                //internalCompanyName
-        string qtcOfficeLocation = "QTC Office Location";   //internalOfficeLocation
-        string qtcofficeSelect = "QTC Office Select";       //internalOfficeAddress
-        string machineOwner = "Machine Owner";              //internalMachineOwner
+        string vpnStatusType = "VPN User Status";           
+        string deptName = "VPN User Dept";            
+        string companyName = "Company Name";                
+        string qtcOfficeLocation = "Office Location";   
+        string qtcofficeSelect = "Office Address";       
+        string machineOwner = "Machine Owner";              
 
         //internal names 
         string internalVpnRecipientFirst = "VPN_x0020_Recipient_x0020_First";
@@ -34,12 +34,12 @@ namespace IT_product_log.Models
         string internalJustification = "VPN_x0020_Justification";
         string internalAccessStart = "VPN_x0020_Access_x0020_Start";
         string internalAccessEnd = "VPN_x0020_Access_x0020_End";
-        string internalUserDept = "VPN_x0020_User_x0020_Department";
-        string internalCompanyName = "NewColumn1";
-        string internalCompanyOther = "Company_x0020_Other";
-        string internalOfficeLocation = "QTC_x0020_Office_x0020_Location";
-        string internalOfficeAddress = "QTC_x0020_Office_x0020_Select";
-        string internalMachineOwner = "NewColumn10";
+        string internalUserDept = "VPN_x0020_User_x0020_Dept";
+        string internalCompanyName = "field3";
+        string internalCompanyOther = "Company_x0020_Name";
+        string internalOfficeLocation = "Office_x0020_Location";
+        string internalOfficeAddress = "QTC_x0020_Office";
+        string internalMachineOwner = "Machine_x0020_Owner";
         string internalUserStatus = "VPN_x0020_User_x0020_Status";
         string internalCreatedBy = "Author";
 
@@ -55,7 +55,7 @@ namespace IT_product_log.Models
             List spList = clientContext.Web.Lists.GetByTitle(ListName);
             clientContext.Load(spList);
 
-            FieldChoice choiceField = clientContext.CastTo<FieldChoice>(spList.Fields.GetByInternalNameOrTitle(field));
+            FieldChoice choiceField = clientContext.CastTo<FieldChoice>(spList.Fields.GetByTitle(field));
             clientContext.Load(choiceField);
             clientContext.ExecuteQuery();
 
@@ -115,24 +115,31 @@ namespace IT_product_log.Models
             FieldUserValue userValue = new FieldUserValue();
             userValue.LookupId = user.Id;
 
+            var manager = clientContext.Web.EnsureUser(input.Manager);
+            clientContext.Load(manager);
+            clientContext.ExecuteQuery();
+            FieldUserValue userValue2 = new FieldUserValue();
+            userValue2.LookupId = manager.Id;
+
+
             listItem[internalCreatedBy] = userValue;
             listItem[internalVpnRecipientFirst] = input.VPN_recipientFirst;
             listItem[internalVpnRecipientLast] = input.VPN_recipientLast;
             listItem[internalWorkPhone] = input.Work_Phone;
             listItem[internalEmail] = input.VPN_recipientEmail;
             listItem[internalUserCode] = input.VPN_userCode;
-            listItem[internalManager] = input.Manager;
+            listItem[internalManager] = userValue2;
+            listItem[internalUserDept] = input.VPN_userDept;
+            listItem[internalUserStatus] = input.VPN_userStatus;
             listItem[internalSystemsList] = input.Systems_List;
             listItem[internalJustification] = input.VPN_justification;
             listItem[internalAccessStart] = input.VPN_accessStart;
             listItem[internalAccessEnd] = input.VPN_accessEnd;
-            listItem[internalUserDept] = input.VPN_userDept;
             listItem[internalCompanyName] = input.Company_Name;
             listItem[internalCompanyOther] = input.Company_Other;
             listItem[internalOfficeLocation] = input.Office_Location;
             listItem[internalOfficeAddress] = input.Office_Address;
             listItem[internalMachineOwner] = input.Machine_Owner;
-            listItem[internalUserStatus] = input.VPN_userStatus;
 
             listItem.Update();
             clientContext.ExecuteQuery();
