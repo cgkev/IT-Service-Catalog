@@ -109,18 +109,19 @@ namespace IT_product_log.Models
             var itemCreateInfo = new ListItemCreationInformation();
             var listItem = spList.AddItem(itemCreateInfo);
 
-            var user = clientContext.Web.CurrentUser;
+            //pulling up the current user information - test
+            User user = clientContext.Web.EnsureUser(HttpContext.Current.User.Identity.Name);
             clientContext.Load(user);
             clientContext.ExecuteQuery();
             FieldUserValue userValue = new FieldUserValue();
             userValue.LookupId = user.Id;
 
+            //pulling up the manager information 
             var manager = clientContext.Web.EnsureUser(input.Manager);
             clientContext.Load(manager);
             clientContext.ExecuteQuery();
             FieldUserValue userValue2 = new FieldUserValue();
             userValue2.LookupId = manager.Id;
-
 
             listItem[internalCreatedBy] = userValue;
             listItem[internalVpnRecipientFirst] = input.VPN_recipientFirst;
