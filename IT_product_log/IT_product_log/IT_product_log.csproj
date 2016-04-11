@@ -114,9 +114,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\jquery-ui.css" />
+    <Content Include="CSS\jquery-ui33333.css" />
     <Content Include="CSS\QTC.css" />
     <Content Include="CSS\QTCStyle.css" />
     <Content Include="CSS\formStyle.css" />
+    <Content Include="CSS\RequestStyle.css" />
     <Content Include="CSS\style.css" />
     <Content Include="images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="images\ui-bg_diagonals-thick_20_666666_40x40.png" />

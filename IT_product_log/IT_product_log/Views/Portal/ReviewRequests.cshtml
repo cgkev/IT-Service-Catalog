@@ -6,16 +6,25 @@
 <script>
 $(function () {
     $("a.req-status").each(function () {
-        if ($(this).text() == "Approved") $(this).addClass("btn-success");
-        else if ($(this).text() == "Denied") $(this).addClass("btn-danger");
-        else $(this).addClass("btn-warning");
+        if ($(this).text() == "Approved") $(this).addClass("btn-success btn-block");
+        else if ($(this).text() == "Denied") $(this).addClass("btn-danger btn-block");
+        else $(this).addClass("btn-warning btn-block");
+    });
+});
+jQuery(document).ready(function ($) {
+    $(".clickable-row").click(function () {
+        window.document.location = $(this).data("href");
     });
 });
 </script>
 
+
+<link rel="stylesheet" type="text/css" href="~/CSS/RequestStyle.css">
+
+
 <h2>Review Requests</h2>
 
-<table class="table">
+<table class="table hoverTable">
   <thead>
     <tr>
       <th scope="col">Request Type</th>
@@ -28,12 +37,12 @@ $(function () {
   <tbody>
   @foreach (var item in ViewBag.list)
   {
-    <tr>
+    <tr class='clickable-row' data-href="/Portal/ReviewRequest/@item.VPN_requestID">
       <td>VPN Access</td>
       <td>@item.VPN_requestID</td>
       <td>@item.VPN_recipientFirst @item.VPN_recipientFirst</td>
       <td>@item.DateSubmitted</td>
-      <td><a href="~/Portal/ReviewRequest/@item.VPN_requestID" class="btn req-status" >@item.VPN_requestStatus</a></td>
+      <td width="20%"><a href="~/Portal/ReviewRequest/@item.VPN_requestID" class="btn req-status" >@item.VPN_requestStatus</a></td>
     </tr>
   }
   </tbody>
