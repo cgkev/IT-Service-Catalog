@@ -47,7 +47,8 @@ namespace IT_product_log.Controllers
 
         public ViewResult MyRequests()
         {
-            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
+            SpConnectionVPN spConnection = new SpConnectionVPN();
+            List<VpnRequest> storage = spConnection.getMyRequests();
             ViewBag.list = storage;
             return View();
         }
@@ -55,9 +56,20 @@ namespace IT_product_log.Controllers
         [HttpGet]
         public ViewResult MyRequest(int id)
         {
-            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
+            //Need to talk to Ignacio and Kevin about passing back ViewBag.list from before  
+            SpConnectionVPN spConnection = new SpConnectionVPN();
+            List<VpnRequest> storage = spConnection.getMyRequests();
             ViewBag.id = id;
-            ViewBag.details = storage[id - 1001];
+
+            //ViewBag.details = storage[id-1001];
+            //the id returned is the request id - the id used on our sharepoint site
+            foreach(VpnRequest current in storage)
+            {
+                if (current.VPN_requestID == id)
+                {
+                    ViewBag.details = current;
+                }
+            }
             return View();
         }
         // -----------------Review Request (manager view)-------------

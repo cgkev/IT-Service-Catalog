@@ -15,7 +15,7 @@ namespace IT_product_log.Models
         string ListName = "VPN-Request-list";
 
         //Title constants - fields with choice select
-        //For some reason, I can't get the column retrival working with internal names, internal names commented to the right 
+        //For some reason, I can't get the column retrival working with internal names (I will refactor if I have time) 
         string vpnStatusType = "VPN User Status";           
         string deptName = "VPN User Dept";            
         string companyName = "Company Name";                
@@ -42,6 +42,9 @@ namespace IT_product_log.Models
         string internalMachineOwner = "Machine_x0020_Owner";
         string internalUserStatus = "VPN_x0020_User_x0020_Status";
         string internalCreatedBy = "Author";
+        string internalID = "Request_x0020_ID";
+        string internalCreated = "Created";
+        string internalRequestStatus = "VPN_x0020_Request_x0020_Status";
 
 
         public SpConnectionVPN()
@@ -109,7 +112,7 @@ namespace IT_product_log.Models
             var itemCreateInfo = new ListItemCreationInformation();
             var listItem = spList.AddItem(itemCreateInfo);
 
-            //pulling up the current user information - test
+            //pulling up the current user information
             User user = clientContext.Web.EnsureUser(HttpContext.Current.User.Identity.Name);
             clientContext.Load(user);
             clientContext.ExecuteQuery();
@@ -144,6 +147,86 @@ namespace IT_product_log.Models
 
             listItem.Update();
             clientContext.ExecuteQuery();
+        }
+
+        public List<VpnRequest> getMyRequests()
+        {
+            ClientContext clientContext = new ClientContext(SiteUrl);
+            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            clientContext.Load(spList);
+
+            List<VpnRequest> currentRequests = new List<VpnRequest>();
+
+            //pulling the current user's name 
+            User user = clientContext.Web.EnsureUser(HttpContext.Current.User.Identity.Name);
+            clientContext.Load(user);
+            clientContext.ExecuteQuery();
+            FieldUserValue userValue = new FieldUserValue();
+            userValue.LookupId = user.Id;
+
+            //for now, simply for testing I will get all requests - testing
+            CamlQuery camlQuery = new CamlQuery();
+            ListItemCollection col = spList.GetItems(camlQuery);
+            clientContext.Load(col, items => items.IncludeWithDefaultProperties(
+                item => item[internalUserStatus],
+                item => item[internalMachineOwner],
+                item => item[internalOfficeAddress],
+                item => item[internalOfficeLocation],
+                item => item[internalCompanyOther],
+                item => item[internalCompanyName],
+                item => item[internalUserDept],
+                item => item[internalAccessStart],
+                item => item[internalAccessEnd],
+                item => item[internalJustification],
+                item => item[internalSystemsList],
+                item => item[internalManager],
+                item => item[internalUserCode],
+                item => item[internalEmail],
+                item => item[internalWorkPhone],
+                item => item[internalVpnRecipientFirst],
+                item => item[internalVpnRecipientFirst],
+                item => item[internalCreatedBy],
+                item => item[internalID],
+                item => item[internalCreated],
+                item => item[internalRequestStatus]));
+            clientContext.ExecuteQuery();
+
+            foreach (ListItem item in col)
+            {
+                clientContext.Load(item);
+                clientContext.ExecuteQuery();
+
+                //Filtering out all of the requests that don't belong to the current user 
+                FieldUserValue tempUserValue = (FieldUserValue)item[internalCreatedBy];
+                if (tempUserValue.LookupId.Equals(userValue.LookupId))
+                {
+                    VpnRequest temp = new VpnRequest();
+                    temp.VPN_requestID = Int32.Parse((string)item[internalID]);
+                    temp.DateSubmitted = ((DateTime)item[internalCreated]).ToString("MM/dd/yyyy");
+                    temp.VPN_requestStatus = (string)item[internalRequestStatus];
+                    temp.VPN_accessEnd = (DateTime)item[internalAccessEnd];
+                    temp.VPN_accessStart = (DateTime)item[internalAccessStart];
+                    temp.VPN_recipientFirst = (string)item[internalVpnRecipientFirst];
+                    temp.VPN_recipientLast = (string)item[internalVpnRecipientLast];
+                    temp.Work_Phone = (string)item[internalWorkPhone];
+                    temp.VPN_recipientEmail = (string)item[internalEmail];
+                    temp.VPN_userCode = Convert.ToInt32(((double)item[internalUserCode]));
+                    temp.Manager = ((FieldUserValue)item[internalManager]).LookupValue;
+                    temp.Systems_List = (string)item[internalSystemsList];
+                    temp.VPN_justification = (string)item[internalJustification];
+                    temp.VPN_userDept = (string)item[internalUserDept];
+                    temp.Company_Name = (string)item[internalCompanyName];
+                    temp.Company_Other = (string)item[internalCompanyOther];
+                    temp.Office_Location = (string)item[internalOfficeLocation];
+                    temp.Office_Address = (string)item[internalOfficeAddress];
+                    temp.Machine_Owner = (string)item[internalMachineOwner];
+                    temp.VPN_userStatus = (string)item[internalUserStatus];
+                    temp.VPN_requestor = ((FieldUserValue)item[internalCreatedBy]).LookupValue;
+
+                    currentRequests.Add(temp);
+                }
+            }
+            return currentRequests;
         }
     }
 }
