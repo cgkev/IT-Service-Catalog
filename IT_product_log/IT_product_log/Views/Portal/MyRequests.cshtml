@@ -5,47 +5,58 @@
 }
 
 <script>
-$(function () {
-    $("a.req-status").each(function () {
-        if ($(this).text() == "Approved") $(this).addClass("btn-success");
-        else if ($(this).text() == "Denied") $(this).addClass("btn-danger");
-        else $(this).addClass("btn-warning");
-    });     
-});
+    $(function () {
+        $("a.req-status").each(function () {
+            if ($(this).text() == "Approved") $(this).addClass("btn-success btn-block");
+            else if ($(this).text() == "Denied") $(this).addClass("btn-danger btn-block");
+            else $(this).addClass("btn-warning btn-block");
+        });
+    });
+
+    jQuery(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.document.location = $(this).data("href");
+        });
+    });
 </script>
+<link rel="stylesheet" type="text/css" href="~/CSS/RequestStyle.css">
+
+
+
+
 
 <h2>My Request</h2>
 
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">Request Type</th>
-    <th scope="col">Request ID</th>
-    <th scope="col">Date Submitted</th>
-    <th scope="col">Status</th>
-  </tr>
-  </thead>
-  <tbody>
-  @foreach (var item in ViewBag.list)
-  {
-    <tr>
-      <td>VPN Access</td>
-      <td>@item.VPN_requestID</td>
-      <td>@item.DateSubmitted</td>
-      <td><a href="~/Portal/MyRequest/@item.VPN_requestID" class="btn req-status">@item.VPN_requestStatus</a></td>
-    </tr>
-  }
-  <tr>
-    <td>USB Storage Access</td>
-    <td>1084</td>
-    <td>01-10-2016</td>
-    <td><a href="#" class="btn req-status">Pending Manager Approval</a></td>
-  </tr>
-  <tr>
-     <td>WebEx Account Request</td>
-    <td>1087</td>
-    <td>06-20-2015</td>
-    <td><a href="#" class="btn req-status">Denied</a></td>
-  </tr>
-  </tbody>
+<table class="table hoverTable">
+    <thead>
+        <tr>
+            <th scope="col">Request Type</th>
+            <th scope="col">Request ID</th>
+            <th scope="col">Date Submitted</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.list)
+        {
+            <tr class='clickable-row' data-href="/Portal/MyRequest/@item.VPN_requestID">
+                <td>VPN Access</td>
+                <td>@item.VPN_requestID</td>
+                <td>@item.DateSubmitted</td>
+                <td width="20%"><a href="~/Portal/MyRequest/@item.VPN_requestID" class="btn req-status">@item.VPN_requestStatus</a></td>
+            </tr>
+        }
+        <tr>
+            <td>USB Storage Access</td>
+            <td>1084</td>
+            <td>01-10-2016</td>
+            <td><a href="#" class="btn req-status">Pending Manager Approval</a></td>
+        </tr>
+        <tr>
+            <td>WebEx Account Request</td>
+            <td>1087</td>
+            <td>06-20-2015</td>
+            <td><a href="#" class="btn req-status">Denied</a></td>
+        </tr>
+    </tbody>
 </table>
