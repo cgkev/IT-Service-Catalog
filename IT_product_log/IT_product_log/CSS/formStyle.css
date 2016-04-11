@@ -1,7 +1,12 @@
 
 table{
-   border-bottom: 2px solid #ccc; 
-   width: 90%;
+    text-align:left; 
+    width:100%;
+}
+form{
+	border: 2px solid #781351;
+    width:70%;
+	margin: 0 auto;
 }
 
 input.error{
@@ -18,10 +23,12 @@ label.error{
     color:#f23;
     font-weight: bold;
     display: block;
+	margin-bottom:0px;
 }
 h4{
     font-weight: bold;
-    
+    padding-left: .2cm;
+
 }
 h6{
     color:#f23;
@@ -35,5 +42,50 @@ h2{
 h5 span {
     color: #ff0000;
     font-weight: bold;
+    padding-left: -.2cm;
+}
+
+
+td.form {
+	width: 50%;
+	text-align:left;
+    display:table-cell;
+    vertical-align:top;
+    min-height:78.44444px;
+	padding-left: .5cm;
+}
+
+td.formtext {
+	width: 50%;
+	text-align:left;
+    display:table-cell;
+    vertical-align:top;
+    min-height:177.6999px;
+	padding-left: .5cm;
+}
+
+td.buttons {
+	width: 50%;
+	text-align:right;
+    display:table-cell;
+    vertical-align:top;
+    min-height:50px;
+	padding-right: .5cm;
+}
+
+label,input {
+    display: block;
 
 }
+
+fieldset{
+	border: 1px solid #781351;
+	width:100%
+}
+
+legend.aws{
+	color: #fff;
+	background: #ffa20c;
+	border: 1px solid #781351;
+	margin-bottom: 0;
+} 

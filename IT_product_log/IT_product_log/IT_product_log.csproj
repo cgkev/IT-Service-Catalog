@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\jquery-ui.css" />
+    <Content Include="CSS\jquery-ui33333.css" />
     <Content Include="CSS\QTC.css" />
     <Content Include="CSS\QTCStyle.css" />
     <Content Include="CSS\formStyle.css" />
