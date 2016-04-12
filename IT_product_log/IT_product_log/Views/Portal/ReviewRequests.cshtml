@@ -19,12 +19,12 @@ jQuery(document).ready(function ($) {
 </script>
 
 
-<link rel="stylesheet" type="text/css" href="~/CSS/RequestStyle.css">
+<link rel="stylesheet" type="text/css" href="~/CSS/RequestsStyle.css">
 
 
-<h2>Review Requests</h2>
+<h1>Review Requests</h1>
 
-<table class="table hoverTable">
+<table class="table">
   <thead>
     <tr>
       <th scope="col">Request Type</th>
@@ -34,7 +34,7 @@ jQuery(document).ready(function ($) {
       <th scope="col">Status</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="hoverTable">
   @foreach (var item in ViewBag.list)
   {
     <tr class='clickable-row' data-href="/Portal/ReviewRequest/@item.VPN_requestID">
@@ -42,7 +42,7 @@ jQuery(document).ready(function ($) {
       <td>@item.VPN_requestID</td>
       <td>@item.VPN_recipientFirst @item.VPN_recipientFirst</td>
       <td>@item.DateSubmitted</td>
-      <td width="20%"><a href="~/Portal/ReviewRequest/@item.VPN_requestID" class="btn req-status" >@item.VPN_requestStatus</a></td>
+      <td width="25%"><a href="~/Portal/ReviewRequest/@item.VPN_requestID" class="btn bootstrap-button req-status" >@item.VPN_requestStatus</a></td>
     </tr>
   }
   </tbody>
