@@ -13,22 +13,22 @@
         });
     });
 
+
     jQuery(document).ready(function ($) {
         $(".clickable-row").click(function () {
             window.document.location = $(this).data("href");
         });
     });
 </script>
-<link rel="stylesheet" type="text/css" href="~/CSS/RequestStyle.css">
+<link rel="stylesheet" type="text/css" href="~/CSS/RequestsStyle.css">
 
 
 
 
+<h1>My Request</h1>
 
-<h2>My Request</h2>
-
-<table class="table hoverTable">
-    <thead>
+<table class="table">
+    <thead class="thead-inverse">
         <tr>
             <th scope="col">Request Type</th>
             <th scope="col">Request ID</th>
@@ -36,27 +36,16 @@
             <th scope="col">Status</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="hoverTable">
         @foreach (var item in ViewBag.list)
         {
-            <tr class='clickable-row' data-href="/Portal/MyRequest/@item.VPN_requestID">
+            <tr class="clickable-row" data-href="/Portal/MyRequest/@item.VPN_requestID">
                 <td>VPN Access</td>
                 <td>@item.VPN_requestID</td>
                 <td>@item.DateSubmitted</td>
-                <td width="20%"><a href="~/Portal/MyRequest/@item.VPN_requestID" class="btn req-status">@item.VPN_requestStatus</a></td>
+                <td width="25%"><a href="~/Portal/MyRequest/@item.VPN_requestID" class="btn bootstrap-button req-status">@item.VPN_requestStatus</a></td>
             </tr>
         }
-        <tr>
-            <td>USB Storage Access</td>
-            <td>1084</td>
-            <td>01-10-2016</td>
-            <td><a href="#" class="btn req-status">Pending Manager Approval</a></td>
-        </tr>
-        <tr>
-            <td>WebEx Account Request</td>
-            <td>1087</td>
-            <td>06-20-2015</td>
-            <td><a href="#" class="btn req-status">Denied</a></td>
-        </tr>
+
     </tbody>
 </table>

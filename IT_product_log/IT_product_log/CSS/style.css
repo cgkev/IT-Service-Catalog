@@ -1,5 +1,3 @@
-
-
 /* Image Box Style */
 #mainwrapper .box {
     float: left;
@@ -24,8 +22,10 @@
 
     /* Caption Common Style */
     #mainwrapper .box .caption {
+        font-weight: bold;
+        font-size: 110%;
         border-radius: 25px;
-        background-color: rgba(0,0,0,0.8);
+        background-color: rgba(0,0,0,.7);
         position: absolute;
         color: #fff;
         -webkit-transition: all 300ms ease-out;

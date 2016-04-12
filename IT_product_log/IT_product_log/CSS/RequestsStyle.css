@@ -1,5 +1,5 @@
 ﻿.hoverTable {
-    width: 50%;
+    width: 100%;
     border-collapse: collapse;
 }
 
@@ -11,19 +11,29 @@
         background-color: #ffff99;
     }
 
-table {
-    margin: 0 auto; /* or margin: 0 auto 0 auto */
+
+
+th {
+    background: #f8f8f8;
+    color: #7e7e7e;
+    font-size: 120%;
+    padding: 10px 15px;
+    position: relative;
 }
 
-
 tr {
+    font-size: 110%;
+}
+
+.bootstrap-button {
+    font-weight: bold;
     font-size: 110%;
 }
 
 h1 {
     font-family: "Times New Roman", Times, serif;
     color: #353535;
-     background-color: #d4d4d4;
+    background-color: #d4d4d4;
     border-radius: 10px;
     padding-left: 10px;
 }

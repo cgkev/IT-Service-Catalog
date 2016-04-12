@@ -5,10 +5,10 @@
 }
 <link rel="stylesheet" type="text/css" href="~/CSS/RequestStyle.css">
 
-<h2>VPN Request# @ViewBag.id</h2>
 
 
-<div>
+<div class="center">
+    <h1>VPN Request# @ViewBag.id</h1>
 
     <table class="table hoverTable">
         <tbody>
@@ -85,10 +85,14 @@
                 <td>@ViewBag.details.Manager</td>
             </tr>
 
-          
 
 
-          
+
+
         </tbody>
     </table>
+
+
+    <br />
+    <a href="~/Portal/MyRequests" class="btn btn-default center">Back</a>
 </div>

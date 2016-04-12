@@ -8,7 +8,16 @@ form{
     width:70%;
 	margin: 0 auto;
 }
+input[name="Manager"] {
+    width: 70%;
+}
+label,input[name="Manager"] {
+    display: inline;
 
+}
+input {
+    width: 100%;
+}
 input.error{
     font-weight: bold;
     border: 1px solid #f23;
@@ -68,9 +77,19 @@ td.buttons {
 	width: 50%;
 	text-align:right;
     display:table-cell;
-    vertical-align:top;
+    vertical-align:bottom;
     min-height:50px;
 	padding-right: .5cm;
+    padding-bottom: .4cm;
+}
+td.buttons {
+	width: 50%;
+	text-align:left;
+    display:table-cell;
+    vertical-align:bottom;
+    min-height:50px;
+	padding-left: .5cm;
+    padding-bottom: .4cm;
 }
 
 label,input {
@@ -88,4 +107,4 @@ legend.aws{
 	background: #ffa20c;
 	border: 1px solid #781351;
 	margin-bottom: 0;
-} 
+}  
