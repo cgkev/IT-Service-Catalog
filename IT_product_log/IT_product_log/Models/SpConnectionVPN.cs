@@ -13,17 +13,19 @@ namespace IT_product_log.Models
         //server details
         string SiteUrl = "http://qtcserver:80/Zainab13";
         string ListName = "VPN-Request-list";
+        string TaskListName = "Tasks";
+        string ApproversListName = "Approvers";
 
         //Title constants - fields with choice select
         //For some reason, I can't get the column retrival working with internal names (I will refactor if I have time) 
-        string vpnStatusType = "VPN User Status";           
-        string deptName = "VPN User Dept";            
-        string companyName = "Company Name";                
-        string qtcOfficeLocation = "Office Location";   
-        string qtcofficeSelect = "Office Address";       
-        string machineOwner = "Machine Owner";              
+        string vpnStatusType = "VPN User Status";
+        string deptName = "VPN User Dept";
+        string companyName = "Company Name";
+        string qtcOfficeLocation = "Office Location";
+        string qtcofficeSelect = "Office Address";
+        string machineOwner = "Machine Owner";
 
-        //internal names 
+        //internal names for the Request List 
         string internalVpnRecipientFirst = "VPN_x0020_Recipient_x0020_First";
         string internalVpnRecipientLast = "VPN_x0020_Recipient_x0020_Last";
         string internalWorkPhone = "Work_x0020_Phone";
@@ -46,10 +48,25 @@ namespace IT_product_log.Models
         string internalCreated = "Created";
         string internalRequestStatus = "VPN_x0020_Request_x0020_Status";
 
+        //internal names for the Tasks list
+        string internalTasksAssignedTo = "AssingedTo";
+        string internalTaskOutcome = "WorkflowOutcome";
+
+        //internal names for the Approvers List
+        string internalApproversUser = "User";
+        string internalApproversTitle = "Title";
+
+        //the possible values of Approvers List, Title column 
+        string spNameForSecurity = "Compliance Officer";
+        string spNameForITManager = "IT Manager";
+
+        //possible requests statuses 
+        string pendingSecurity = "Pending Security Manager Approval";
+        string pendingITManager = "Pending IT Manager Approval";
 
         public SpConnectionVPN()
         {
-           //left blank for now 
+            //left blank for now 
         }
 
         public string[] getFieldChoices(string field)
@@ -155,8 +172,6 @@ namespace IT_product_log.Models
             List spList = clientContext.Web.Lists.GetByTitle(ListName);
             clientContext.Load(spList);
 
-            List<VpnRequest> currentRequests = new List<VpnRequest>();
-
             //pulling the current user's name 
             User user = clientContext.Web.EnsureUser(HttpContext.Current.User.Identity.Name);
             clientContext.Load(user);
@@ -164,13 +179,49 @@ namespace IT_product_log.Models
             FieldUserValue userValue = new FieldUserValue();
             userValue.LookupId = user.Id;
 
-            //for now, simply for testing I will get all requests - testing
+            //querying all requests created by the user 
             CamlQuery camlQuery = new CamlQuery();
             camlQuery.ViewXml = "<View><Query><Where><Eq><FieldRef Name='Author' LookupId='True'/><Value Type='Lookup'>" + userValue.LookupId + "</Value></Eq></Where></Query></View>";
 
             ListItemCollection col = spList.GetItems(camlQuery);
             clientContext.Load(col);
             clientContext.ExecuteQuery();
+
+            //modeling the query data into Kevin's VpnRequest model 
+            List<VpnRequest> currentRequests = new List<VpnRequest>();
+            currentRequests = loadList(currentRequests,col);
+            return currentRequests;
+        }
+
+        public List<VpnRequest> getPendingRequests()
+        {
+            //loading up all 3 lists 
+            ClientContext clientContext = new ClientContext(SiteUrl);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
+            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
+            List approversList = clientContext.Web.Lists.GetByTitle(ApproversListName);
+            clientContext.Load(vpnRequestList);
+            clientContext.Load(taskList);
+            clientContext.Load(approversList);
+
+            List<VpnRequest> pendingRequests = new List<VpnRequest>();
+
+
+
+            return pendingRequests;
+           //In progress 
+        }
+
+
+        private List<VpnRequest> loadList(List<VpnRequest> currentRequests,ListItemCollection col)
+        {
+            //this method takes a ListItemCollection and converts it into a list of VpnRequest (A model Kevin created)
+            //if an ongoing list is passed in, requests are added
+            //if there is no ongoing list, pass in an empty List<VpnRequest>
+
+            ClientContext clientContext = new ClientContext(SiteUrl);
+            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            clientContext.Load(spList);
 
             foreach (ListItem item in col)
             {
@@ -202,6 +253,7 @@ namespace IT_product_log.Models
 
                 currentRequests.Add(temp);
             }
+
             return currentRequests;
         }
     }
