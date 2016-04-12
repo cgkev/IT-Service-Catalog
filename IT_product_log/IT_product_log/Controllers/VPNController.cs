@@ -27,6 +27,29 @@ namespace IT_product_log.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult GetManager()
+        {
+            var hell1o = Request.Params["id"];
+            Console.Write(hell1o);
+            
+            //this one contains users
+            var data = new
+            {
+                items = new[] {
+                new { key = 1, firstname = "Lex", lastname = "Luther", username = "LuLex" },
+                new { key = 2, firstname = "Bruce", lastname = "Wayne", username = "NotBatman"},
+                new { key = 2, firstname = "Johnny", lastname = "Bravo", username = "PretyBoy"},
+                new { key = 2, firstname = "Nicholas", lastname = "Cage", username = "NichCage"}
+            }};
+            String[] hello = new string[0];
+            //this should be an empty array in other words nothing found.
+            var data1 = new { items = hello };
+
+
+            //just change between the two values data1 or data to see the empty array sent in bellow
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public ActionResult VPNRequest(VpnRequest input)

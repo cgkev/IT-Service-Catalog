@@ -11,7 +11,7 @@
     @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "VPNForm" }))
     {
 
-                    @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_requestor, new { style = "display: none;" })
+        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_requestor, new { style = "display: none;" })
         <fieldset>
             <legend class="aws">
                 <h4><b>Recipients Name</b></h4>
@@ -31,7 +31,7 @@
         </fieldset>
         <fieldset>
             <legend class="aws">
-                    <h4><b>Recipients Contact Information</b></h4>
+                <h4><b>Recipients Contact Information</b></h4>
             </legend>
             <table>
                 <tr>
@@ -47,7 +47,7 @@
             </table>
         </fieldset>
         <fieldset>
-            <legend class="aws">    
+            <legend class="aws">
                 <h4><b>VPN User Department Information</b></h4>
             </legend>
             <table>
@@ -78,10 +78,6 @@
                         <h5>User Code <span>*</span></h5>
                         @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { placeholder = Html.DisplayNameFor(n => n.VPN_userCode) })
                     </td>
-                    <td class="form">
-                        <h5>Name of Manager/Supervisor for this VPN User <span>*</span></h5>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.Manager)
-                    </td>
                 </tr>
             </table>
         </fieldset>
@@ -102,7 +98,7 @@
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Company_Name, new { style = "display: none;" })
                     </td>
                     <td class="form">
-                        <div id="compform" >
+                        <div id="compform">
                             <h5>Company Other <span>*</span></h5>
                             @Html.TextBoxFor(vpnrequest => vpnrequest.Company_Other)
                         </div>
@@ -122,18 +118,18 @@
                     <td class="form">
                         <h5>Office Address <span>*</span></h5>
                         <div name="QTCLoc" id="QTCLoc">
-                        <select name="QTClocation" id="QTClocation">
-                            @foreach (var item in ViewBag.qtcOfficSelect)
-                            {
-                                <option value="@item">@item</option>
-                            }
-                        </select>
+                            <select name="QTClocation" id="QTClocation">
+                                @foreach (var item in ViewBag.qtcOfficSelect)
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            </select>
                         </div>
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Address, new { style = "display: none;" })
                     </td>
                 </tr>
-            </table> 
-        </fieldset>  
+            </table>
+        </fieldset>
         <fieldset>
             <legend class="aws">
                 <h4><b>VPN Machine Information</b></h4>
@@ -158,7 +154,7 @@
             <legend class="aws">
                 <h4><b>VPN System Access and Approval Section</b></h4>
             </legend>
-                <table>
+            <table>
                 <tr>
                     <td class="formtext">
                         <h5>Systems List <span>*</span></h5>
@@ -187,12 +183,29 @@
                     </td>
             </table>
         </fieldset>
+        <fieldset>
+            <legend class="aws">
+                <h4><b>Manager Information</b></h4>
+            </legend>
+            <table>
+                <tr>
+                    <td class="form">
+                        <h5>Manager/Supervisor of VPN User <span>*</span></h5>
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.Manager)
+                        <a class="btn btn-default center" href="#" id="get-data">Check</a>
+                    </td>
+                    <td class="form">
+                        <div id="show-data"></div>
+                    </td>
+            </table>
+        </fieldset>
         <table>
             <tr>
+                <td class="buttons2">
+                    <a class="btn btn-default center" href="/Portal/Index/">Cancel</a>
+                </td>
                 <td class="buttons">
-                <input class="btn btn-default center" type="submit" value="Submit Form" name="submit" id="submit"/> 
-
-                <a class="btn btn-default center" href="/Portal/Index/">Cancel</a>
+                    <input class="btn btn-default center" type="submit" value="Submit Form" name="submit" id="submit" />
                 </td>
             </tr>
         </table>
@@ -207,16 +220,16 @@
         success: "valid"
     });
 
-    jQuery.validator.addMethod("greaterThan", 
-        function(value, element, params) {
+    jQuery.validator.addMethod("greaterThan",
+        function (value, element, params) {
 
             if (!/Invalid|NaN/.test(new Date(value))) {
                 return new Date(value) > new Date($(params).val());
             }
 
-            return isNaN(value) && isNaN($(params).val()) 
-                || (Number(value) > Number($(params).val())); 
-    },'End date should be after start date.');
+            return isNaN(value) && isNaN($(params).val())
+                || (Number(value) > Number($(params).val()));
+        }, 'End date should be after start date.');
 
 
     $("#VPNForm").validate({
@@ -389,6 +402,43 @@
 
             }
         }),
+        $('#get-data').click(function () {
+
+            var showData = $('#show-data');
+            var inputField = $('#Manager').val();
+            console.log(inputField + "<--- is this correct????");
+            $.getJSON('GetManager?id=' + inputField, function (data) {
+                console.log(data);
+                var items = data.items.map(function (item) {
+                    return item.username + '\"> ' + item.firstname + ' ' + item.lastname;
+                });
+
+
+                showData.empty();
+                //console.log('date from item.length = ' + itmes.length );
+                if (items.length) {
+                    //<option value="multiple">multiple</option>
+                    var content = '<option value=\"\"></option><option value=\"' + items.join('</option><option value=\"') + '</option>';
+                    var list = $('<select name="managerSelect" id="managerSelect" />').html(content);
+                    showData.append('<h5>Select Manager from dropdown <span>*</span></h5>');
+                    showData.append(list);
+
+                } else {
+                    showData.empty();
+                    showData.append('<h5>No manager found</h5>').html();
+                }
+            });
+
+            showData.text('<h5>Searching for manager</h5>');
+        }),
+
+        $('#show-data').click(function () {
+            $('#managerSelect').on('change', function () {
+                //console.log('hellothere');
+                $('#Manager').val(this.value);
+                $('#show-data').empty();
+            });
+        });
 
         $("#status").on('change', function () {
             $('#VPN_userStatus').val(this.value);
@@ -429,8 +479,8 @@
         });
 
     });
-       
-    $("#submit").click(function() {
+
+    $("#submit").click(function () {
         $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
 </script>
