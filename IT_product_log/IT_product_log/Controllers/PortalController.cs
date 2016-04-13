@@ -61,12 +61,13 @@ namespace IT_product_log.Controllers
             List<VpnRequest> storage = spConnection.getMyRequests();
             ViewBag.id = id;
 
-            //the id returned is the request id - the id used on our sharepoint site
+            //the id in the parameter is the request id : the id used on our sharepoint site
             foreach(VpnRequest current in storage)
             {
                 if (current.VPN_requestID == id)
                 {
                     ViewBag.details = current;
+                    return View();
                 }
             }
             return View();
@@ -83,37 +84,30 @@ namespace IT_product_log.Controllers
         [HttpGet]
         public ViewResult ReviewRequest(int id)
         {
-            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
+            SpConnectionVPN spConnection = new SpConnectionVPN();
+            List<VpnRequest> storage = spConnection.getPendingRequests();
             ViewBag.id = id;
-            ViewBag.details = storage[id - 1001];
 
+            //the id in the parameter is the request id : the id used on our sharepoint site
+            foreach(VpnRequest current in storage)
+            {
+                if (current.VPN_requestID == id)
+                {
+                    ViewBag.details = current;
+                    return View();
+                }
+            }
             return View();
         }
 
         [HttpPost]
         public ActionResult ReviewRequest(int id, string submit, string comments)
         {
-            System.Diagnostics.Debug.WriteLine("param " + id + " " + submit + " " + comments);
-          
-               
+            //based on previous code, submit can be checked with submit.Equals("Approve") 
+            
+            //retriving the VPN Request from sharepoint 
 
-
-            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
-            for(int i = 0; i < storage.Count; i++)
-            {
-                if(storage[i].VPN_requestID == id)
-                {
-                    if(submit.Equals("Approve"))
-                    storage[i].VPN_requestStatus = "Approved";
-                    else
-                        storage[i].VPN_requestStatus = "Denied";
-
-                    System.Diagnostics.Debug.WriteLine("asdasd "+ storage[i].VPN_requestID + " " + storage[i].VPN_requestStatus);
-
-                }
-            }
-
-
+           
 
             return RedirectToAction("/ReviewRequests", "Portal");
         }

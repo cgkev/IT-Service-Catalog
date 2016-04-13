@@ -247,7 +247,6 @@ namespace IT_product_log.Models
             clientContext.Load(col);
             clientContext.ExecuteQuery();
 
-
             //Modeling data into Vpnrequest model
             pendingRequests = loadList(pendingRequests, col);
             return pendingRequests;
