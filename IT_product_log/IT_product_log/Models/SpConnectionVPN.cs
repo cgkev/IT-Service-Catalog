@@ -63,6 +63,7 @@ namespace IT_product_log.Models
         //possible requests statuses 
         string pendingSecurity = "Pending Security Manager Approval";
         string pendingITManager = "Pending IT Manager Approval";
+        string pendingManager = "Pending Manager Approval";
 
         public SpConnectionVPN()
         {
@@ -181,13 +182,23 @@ namespace IT_product_log.Models
 
             //querying all requests created by the user 
             CamlQuery camlQuery = new CamlQuery();
-            camlQuery.ViewXml = "<View><Query><Where><Eq><FieldRef Name='Author' LookupId='True'/><Value Type='Lookup'>" + userValue.LookupId + "</Value></Eq></Where></Query></View>";
+            camlQuery.ViewXml = @"
+                <View>
+                    <Query>
+                        <Where>
+                            <Eq>
+                                <FieldRef Name='Author' LookupId='True'/>
+                                <Value Type='Lookup'>" + userValue.LookupId + @"</Value>
+                            </Eq>
+                        </Where>
+                    </Query>
+                </View>";
 
             ListItemCollection col = spList.GetItems(camlQuery);
             clientContext.Load(col);
             clientContext.ExecuteQuery();
 
-            //modeling the query data into Kevin's VpnRequest model 
+            //modeling the query data into VpnRequest model 
             List<VpnRequest> currentRequests = new List<VpnRequest>();
             currentRequests = loadList(currentRequests,col);
             return currentRequests;
@@ -204,12 +215,42 @@ namespace IT_product_log.Models
             clientContext.Load(taskList);
             clientContext.Load(approversList);
 
+            //pulling the current user's name
+            User user = clientContext.Web.EnsureUser(HttpContext.Current.User.Identity.Name);
+            clientContext.Load(user);
+            clientContext.ExecuteQuery();
+            FieldUserValue userValue = new FieldUserValue();
+            userValue.LookupId = user.Id;
+
             List<VpnRequest> pendingRequests = new List<VpnRequest>();
 
+            //Querying all requests where Manager = Current User AND where Request Status = Pending Manager Approval
+            CamlQuery camlQuery = new CamlQuery();
+            camlQuery.ViewXml = @"
+                <View>
+                    <Query>
+                        <Where> 
+                            <And>
+                                <Eq>
+                                    <FieldRef Name='" + internalManager + @"' LookupId='True'/>
+                                    <Value Type='Lookup'>" + userValue.LookupId + @"</Value>
+                                </Eq>
+                                <Eq>
+                                    <FieldRef Name='" + internalRequestStatus + @"' LookupId ='True'/>
+                                    <Value Type = 'Text'>" + pendingManager + @"</Value>
+                                </Eq>
+                            </And>
+                        </Where>
+                    </Query>
+                </View>";
+            ListItemCollection col = vpnRequestList.GetItems(camlQuery);
+            clientContext.Load(col);
+            clientContext.ExecuteQuery();
 
 
+            //Modeling data into Vpnrequest model
+            pendingRequests = loadList(pendingRequests, col);
             return pendingRequests;
-           //In progress 
         }
 
 
