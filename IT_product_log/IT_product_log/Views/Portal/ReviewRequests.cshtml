@@ -4,13 +4,7 @@
     ViewBag.Title = "Review Requests";
 }
 <script>
-$(function () {
-    $("a.req-status").each(function () {
-        if ($(this).text() == "Approved") $(this).addClass("btn-success btn-block");
-        else if ($(this).text() == "Denied") $(this).addClass("btn-danger btn-block");
-        else $(this).addClass("btn-warning btn-block");
-    });
-});
+
 jQuery(document).ready(function ($) {
     $(".clickable-row").click(function () {
         window.document.location = $(this).data("href");
@@ -31,7 +25,6 @@ jQuery(document).ready(function ($) {
       <th scaope="col">Request ID</th>
       <th scaope="col">Requester</th>
       <th scope="col">Date Submitted</th>
-      <th scope="col">Status</th>
     </tr>
   </thead>
   <tbody class="hoverTable">
@@ -42,7 +35,6 @@ jQuery(document).ready(function ($) {
       <td>@item.VPN_requestID</td>
       <td>@item.VPN_recipientFirst @item.VPN_recipientFirst</td>
       <td>@item.DateSubmitted</td>
-      <td width="25%"><a href="~/Portal/ReviewRequest/@item.VPN_requestID" class="btn bootstrap-button req-status" >@item.VPN_requestStatus</a></td>
     </tr>
   }
   </tbody>
