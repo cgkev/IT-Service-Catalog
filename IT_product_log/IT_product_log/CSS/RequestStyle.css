@@ -1,5 +1,4 @@
 ﻿.hoverTable {
-    width: 50%;
     border-collapse: collapse;
 }
 
@@ -15,6 +14,12 @@ table {
     margin: 0 auto; /* or margin: 0 auto 0 auto */
 }
 
+.fiftyPercent{
+    width: 50%;
+    margin: 0 auto; 
+    align-content: center;
+}
+
 
 tr {
     font-size: 110%;
@@ -23,7 +28,7 @@ tr {
 h1 {
     font-family: "Times New Roman", Times, serif;
     color: #353535;
-     background-color: #d4d4d4;
+    background-color: #FFCC00;
     border-radius: 10px;
     padding-left: 10px;
 }

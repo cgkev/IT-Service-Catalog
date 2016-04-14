@@ -4,13 +4,21 @@
     ViewBag.Title = "VPNRequestView";
 }
 <link rel="stylesheet" type="text/css" href="~/CSS/RequestStyle.css">
+<script>
+    $(function () {
+        $("a.req-status").each(function () {
+            if ($(this).text() == "Approved") $(this).addClass("btn-success btn-block");
+            else if ($(this).text() == "Denied") $(this).addClass("btn-danger btn-block");
+            else $(this).addClass("btn-warning btn-block");
+        });
+    });
+</script>
 
 
-
-<div class="center">
+<div class="center fiftyPercent" >
     <h1>VPN Request# @ViewBag.id</h1>
-
-    <table  class="table hoverTable">
+    <a href="#" class="btn bootstrap-button req-status">@ViewBag.details.VPN_requestStatus</a>
+    <table class="table hoverTable">
         <tbody>
             <tr>
                 <td><b>Request ID:</b></td>
@@ -84,11 +92,8 @@
                 <td><b>Manager:</b></td>
                 <td>@ViewBag.details.Manager</td>
             </tr>
+            
 
-          
-
-
-          
         </tbody>
     </table>
 
