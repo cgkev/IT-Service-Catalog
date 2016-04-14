@@ -3,10 +3,16 @@ table{
     text-align:left; 
     width:100%;
 }
-form{
-	border: 2px solid #781351;
+form[id ="VPNForm"]{
+	border: 2px solid #333;
     width:70%;
 	margin: 0 auto;
+    box-sizing: border-box;
+    line-height: 1.4285;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+        
 }
 input[name="Manager"] {
     width: 70%;
@@ -20,7 +26,12 @@ input {
 }
 input.error{
     font-weight: bold;
-    border: 1px solid #f23;
+    border: 2px solid #f23;
+}
+
+select.error{
+    font-weight: bold;
+    border: 2px solid #f23;
 }
 
 textarea.error{
@@ -82,6 +93,7 @@ td.buttons {
 	padding-right: .5cm;
     padding-bottom: .4cm;
 }
+
 td.buttons {
 	width: 50%;
 	text-align:left;
@@ -104,7 +116,24 @@ fieldset{
 
 legend.aws{
 	color: #fff;
-	background: #ffa20c;
+	background: #999999;
 	border: 1px solid #781351;
 	margin-bottom: 0;
-} 
+}
+
+.btn[id="get-data"]{
+    padding:1px 11px;
+    margin-bottom: 7px;
+}
+
+.btn[id="cancel"]{
+    padding:1px 11px;
+    margin-bottom: 7px;
+    margin-left: 20px;
+}
+
+.btn[id="submit"]{
+    padding:1px 11px;
+    margin-bottom: 7px;
+    margin-right: 20px;
+}
