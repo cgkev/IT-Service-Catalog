@@ -6,145 +6,230 @@
 
 
 <div class="center fiftyPercent">
-    <h1>Review Request# @ViewBag.id</h1>
+    <h1>Review Request - @ViewBag.id</h1>
 
-    <table class="table hoverTable">
+    <table>
         <tbody>
-            <tr>
-                <td><b>Request ID:</b></td>
-                <td>@ViewBag.id</td>
-            </tr>
-            <tr>
-                <td><b>Date Submitted:</b></td>
-                <td>@ViewBag.details.DateSubmitted</td>
-            </tr>
-            <tr>
-                <td><b>VPN Requestor:</b></td>
-                <td>@ViewBag.details.VPN_requestor</td>
-            </tr>
-            <tr>
-                <td><b>Full Name: </b></td>
-                <td>@ViewBag.details.VPN_recipientFirst @ViewBag.details.VPN_recipientLast </td>
-            </tr>
-            <tr>
-                <td><b>User Status Type:</b></td>
-                <td>@ViewBag.details.VPN_userStatus</td>
-            </tr>
-            <tr>
-                <td><b>User Department:</b></td>
-                <td>@ViewBag.details.VPN_userDept</td>
-            </tr>
-            <tr>
-                <td><b>Work Phone:</b></td>
-                <td>@ViewBag.details.Work_Phone</td>
-            </tr>
-            <tr>
-                <td><b>Recipent Email:</b></td>
-                <td>@ViewBag.details.VPN_recipientEmail</td>
-            </tr>
-            <tr>
-                <td><b>Company Name:</b></td>
-                <td>@ViewBag.details.Company_Name</td>
-            </tr>
-            <tr>
-                <td><b>Company Other:</b></td>
-                <td>@ViewBag.details.Company_Other</td>
-            </tr>
-            <tr>
-                <td><b>Office Location:</b></td>
-                <td>@ViewBag.details.Office_Location</td>
-            </tr>
-            <tr>
-                <td><b>Office Address:</b></td>
-                <td>@ViewBag.details.Office_Address</td>
-            </tr>
-            <tr>
-                <td><b>Machine Owner:</b></td>
-                <td>@ViewBag.details.Machine_Owner</td>
-            </tr>
-            <tr>
-                <td><b>Systems List:</b></td>
-                <td>@ViewBag.details.Systems_List</td>
-            </tr>
-            <tr>
-                <td><b>VPN Justification:</b></td>
-                <td>@ViewBag.details.VPN_justification</td>
-            </tr>
-            <tr>
-                <td><b>VPN Start Date:</b></td>
-                <td>@ViewBag.details.VPN_accessStart</td>
-            </tr>
-            <tr>
-                <td><b>VPN End Date:</b></td>
-                <td>@ViewBag.details.VPN_accessEnd</td>
-            </tr>
-            <tr>
-                <td><b>Manager:</b></td>
-                <td>@ViewBag.details.Manager</td>
-            </tr>
+            <fieldset>
+                <legend class="aws">
+                    <h4><b>Recipients Name</b></h4>
+                </legend>
+                <table>
+                    <tr>
+                        <td class="form">
+                            <h5>First Name</h5>
+                            <input type="text" value="@ViewBag.details.VPN_recipientFirst" readonly />
+                        </td>
+                        <td class="form">
+                            <h5>Last Name</h5>
+                            <input type="text" value="@ViewBag.details.VPN_recipientLast" readonly />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend class="aws">
+                    <h4><b>Recipients Contact Information</b></h4>
+                </legend>
+                <table>
+                    <tr>
+                        <td class="form">
+                            <h5>Work Phone</h5>
+                            <input type="text" value="@ViewBag.details.Work_Phone" readonly />
+                        </td>
+                        <td class="form">
+                            <h5>Recipent Email</h5>
+                            <input type="text" value="@ViewBag.details.VPN_recipientEmail" readonly />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend class="aws">
+                    <h4><b>VPN User Department Information</b></h4>
+                </legend>
+                <table>
+                    <tr>
+                        <td class="form">
+                            <h5>User Department</h5>
+                            <input type="text" value="@ViewBag.details.VPN_userDept" readonly />
+                        </td>
+                        <td class="form">
+                            <h5>User Status Type</h5>
+                            <input type="text" value="@ViewBag.details.VPN_userStatus" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form">
+                            <h5>User Code <span>*</span></h5>
+                            <input type="text" value="@ViewBag.details.VPN_userCode" readonly />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend class="aws">
+                    <h4><b>Company Information</b></h4>
+                </legend>
+                <table>
+                    <tr>
+                        <td class="form">
+                            <h5>Company Name</h5>
+                            <input type="text" value="@ViewBag.details.Company_Name" readonly />
+                        </td>
+                        <td class="form">
+                            <div id="compform">
+                                <h5>Company Other</h5>
+                                <input type="text" value="@ViewBag.details.Company_Other" readonly />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form">
+                            <h5>Office Location</h5>
+                            <input type="text" value="@ViewBag.details.Office_Location" readonly />
+                        </td>
+                        <td class="form">
+                            <h5>Office Address</h5>
+                            <input type="text" value="@ViewBag.details.Office_Address" readonly />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend class="aws">
+                    <h4><b>VPN Machine Information</b></h4>
+                </legend>
+                <table>
 
+                    <tr>
+                        <td class="form">
+                            <h5>Machine Owner</h5>
+                            <input type="text" value="@ViewBag.details.Machine_Owner" readonly />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend class="aws">
+                    <h4><b>VPN System Access and Approval Section</b></h4>
+                </legend>
+                <table>
+                    <tr>
+                        <td class="formtext">
+                            <h5>Systems List</h5>
+                            <textarea id = "nonform" readonly>@ViewBag.details.Systems_List</textarea>
+                        </td>
+                        <td class="formtext">
+                            <h5>VPN Justification</h5>
+                            <textarea id = "nonform"readonly> @ViewBag.details.VPN_justification</textarea>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend class="aws">
+                    <h4><b>Period for Requested Service Access</b></h4>
+                </legend>
+                <table>
+                    <tr>
+                        <td class="form">
+                            <h5>VPN Start Date</h5>
+                            <input type="text" value="@ViewBag.details.VPN_accessStart" readonly />
+                        </td>
+                        <td class="form">
+                            <h5>VPN End Date <span>*</span></h5>
+                            <input type="text" value="@ViewBag.details.VPN_accessEnd" readonly />
+                        </td>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend class="aws">
+                    <h4><b>Manager Information</b></h4>
 
-
+                </legend>
+                <table>
+                    <tr>
+                        <td class="form">
+                            <h5>Manager/Supervisor of VPN User</h5>
+                            <input type="text" value="@ViewBag.details.Manager" readonly />
+                        </td>
+                        <td class="form">
+                            <h5>Date Submited</h5>
+                            <input type="text" value="@ViewBag.details.DateSubmitted" readonly />
+                        </td>
+                </table>
+            </fieldset>
         </tbody>
 
     </table>
 
-
     @using (Html.BeginForm("/ReviewRequest", "Portal", FormMethod.Post, new { id = "review" }))
     {
         <input type="hidden" name="id" value="@ViewBag.id" />
+        <fieldset>
+            <legend class="aws">
+                <h4><b>Manager Review</b></h4>
 
-        <table>
-            <tr>
-                <td>
-                    <b>Comments: (Required if Deny)</b>
-                    @Html.TextArea("comments")
+            </legend>
+            <table>
+                <tr>
+                    <td id="commentsBox">
+                        @Html.TextArea("comments")
+                    </td>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input name="submit" class="btn btn-success" id="approve" type="submit" value="Approve" />
-                    <input name="submit" class="btn btn-danger" id="deny" type="submit" value="Deny" />
-                </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="buttons">
+                        <a href="~/Portal/ReviewRequests" class="btn btn-default center">Back</a>
+                    </td>
+                    <td class="buttons">
+                        <input name="submit" class="btn btn-success" id="approve" type="submit" value="Approve" />
+                    </td>
+                    <td class="buttons">
+                        <input name="submit" class="btn btn-danger" id="deny" type="submit" value="Deny" />
+                    </td>
 
-            </tr>
-        </table>
-        <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-        <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+                </tr>
+            </table>
+        </fieldset>
+                <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+                <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 
-        <script>
-            $(document).ready(function () {
-                var submit;
+                <script>
+                    $(document).ready(function () {
+                        var submit;
 
-                $('#approve').click(function () {
-                    $('#comments').val('                            ');
-                    $('#review').validate().form();
-                });
-            });
-            jQuery.validator.setDefaults({
-                debug: false,
-                success: "valid"
-            });
+                        $('#approve').click(function () {
+                            $('#comments').val('                            ');
+                            $('#review').validate().form();
+                        });
+                    });
+                    jQuery.validator.setDefaults({
+                        debug: false,
+                        success: "valid"
+                    });
 
-            $("#review").validate({
-                rules: {
-                    comments: {
-                        required: true,
-                        rangelength: [20, 100]
-                    }
-                },
-                messages: {
-                    comments: {
-                        required: "If you deny this request please provide comments",
-                        rangelength: 'Please provide enough details of why it was denied'
-                    }
-                }
-            });
+                    $("#review").validate({
+                        rules: {
+                            comments: {
+                                required: true,
+                                rangelength: [20, 100]
+                            }
+                        },
+                        messages: {
+                            comments: {
+                                required: "If you deny this request please provide comments",
+                                rangelength: 'Please provide enough details of why it was denied'
+                            }
+                        }
+                    });
 
-        </script>
+                </script>
     }
-    
-    <br/>
-    <a href="~/Portal/ReviewRequests" class="btn btn-default center">Back</a>
+
+    <br />
+   
 </div>

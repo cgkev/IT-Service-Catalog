@@ -8,10 +8,10 @@
 
 <b>@Html.ValidationSummary("", new { @class = "text-danger" })</b>
 <div class="form-horizontal">
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "VPNForm" }))
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "VPNForm" }))
     {
 
-        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_requestor, new { style = "display: none;" })
+        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_requestor, new { @style = "display: none;", @class = "VPNForm" })
         <fieldset>
             <legend class="aws">
                 <h4><b>Recipients Name</b></h4>
@@ -193,6 +193,7 @@
                         <h5>Manager/Supervisor of VPN User <span>*</span></h5>
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Manager)
                         <a class="btn btn-default center" href="#" id="get-data">Check</a>
+                        <label class="error" id="Manager-error" for="Manager" style="display: none;">Please enter a managers name.</label>
                     </td>
                     <td class="form">
                         <div id="show-data"></div>
@@ -202,7 +203,7 @@
         <table>
             <tr>
                 <td class="buttons2">
-                    <a class="btn btn-default center" href="/Portal/Index/">Cancel</a>
+                    <a class="btn btn-default center" href="/Portal/Index/" id="cancel">Cancel</a>
                 </td>
                 <td class="buttons">
                     <input class="btn btn-default center" type="submit" value="Submit Form" name="submit" id="submit" />
@@ -471,12 +472,14 @@
         })
 
         $(function () {
-            $("#VPN_accessStart").datepicker();
+            $("#VPN_accessStart").datepicker({
+                minDate: 0,
+                onSelect: function (dateText, inst) {
+                    $("#VPN_accessEnd").datepicker("option", "minDate", $("#VPN_accessStart").datepicker("getDate"));
+                }
+            });
         });
-
-        $(function () {
-            $("#VPN_accessEnd").datepicker();
-        });
+        $("#VPN_accessEnd").datepicker();
 
     });
 
