@@ -2,12 +2,14 @@
 @{
     ViewBag.Title = "VPNRequest";
 }
-<h2>VPN Request Form</h2>
-<h6>Please fill out ALL * mandatory fields below. </h6>
-<h6>(*** Note: INCOMPLETE or Insufficient Forms WILL BE RETURNED or REJECTED ***)</h6>
+</br>
+<h1 class="title">VPN Request Form</h1>
+<h6>*All fields are required</h6>
 
 <b>@Html.ValidationSummary("", new { @class = "text-danger" })</b>
 <div class="form-horizontal">
+    
+
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "VPNForm" }))
     {
 
