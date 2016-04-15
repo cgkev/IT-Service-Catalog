@@ -15,7 +15,7 @@
 
 th {
     background: #f8f8f8;
-    color: #7e7e7e;
+    color: #000;
     font-size: 120%;
     padding: 10px 15px;
     position: relative;
@@ -31,9 +31,9 @@ tr {
 }
 
 h1 {
-    font-family: "Times New Roman", Times, serif;
+     font-family: "Times New Roman", Times, serif;
     color: #353535;
-    background-color: #d4d4d4;
+    background-color: #FFCC00;
     border-radius: 10px;
     padding-left: 10px;
 }

@@ -13,7 +13,7 @@
         });
     });
 
-
+   
     jQuery(document).ready(function ($) {
         $(".clickable-row").click(function () {
             window.document.location = $(this).data("href");
@@ -27,7 +27,7 @@
 
 <h1>My Request</h1>
 
-<table class="table">
+<table class="table" >
     <thead class="thead-inverse">
         <tr>
             <th scope="col">Request Type</th>
@@ -36,7 +36,7 @@
             <th scope="col">Status</th>
         </tr>
     </thead>
-    <tbody class="hoverTable">
+    <tbody  class="hoverTable">
         @foreach (var item in ViewBag.list)
         {
             <tr class="clickable-row" data-href="/Portal/MyRequest/@item.VPN_requestID">
@@ -46,6 +46,6 @@
                 <td width="25%"><a href="~/Portal/MyRequest/@item.VPN_requestID" class="btn bootstrap-button req-status">@item.VPN_requestStatus</a></td>
             </tr>
         }
-
+       
     </tbody>
 </table>
