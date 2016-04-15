@@ -5,6 +5,8 @@ using System.Web;
 using Microsoft.SharePoint.Client;
 using SPClient = Microsoft.SharePoint.Client;
 using System.Web.Mvc;
+using Microsoft.SharePoint.Workflow;
+using Microsoft.SharePoint;
 
 namespace IT_product_log.Models
 {
@@ -51,6 +53,10 @@ namespace IT_product_log.Models
         //internal names for the Tasks list
         string internalTasksAssignedTo = "AssingedTo";
         string internalTaskOutcome = "WorkflowOutcome";
+        string internalTaskVpnRequestID = "VPN_x0020_Request_x0020_ID";
+        string internalTaskComments = "Comments";
+        string internalTaskStatus = "Status";
+        string internalTasksApproverComments = "_ModerationComments";
 
         //internal names for the Approvers List
         string internalApproversUser = "User";
@@ -246,12 +252,140 @@ namespace IT_product_log.Models
             ListItemCollection col = vpnRequestList.GetItems(camlQuery);
             clientContext.Load(col);
             clientContext.ExecuteQuery();
-
-            //Modeling data into Vpnrequest model
             pendingRequests = loadList(pendingRequests, col);
+
+            //Querying the approver list to see if the current user is either an IT Manager or Security Manager 
+            bool isSecurity = false;
+            bool isItManager = false;
+            camlQuery = new CamlQuery();
+            camlQuery.ViewXml = @"
+            <View> 
+                <Query>
+                    <Where>
+                        <Eq>
+                            <FieldRef Name = 'User' LookupId ='True'/>
+                            <Value Type ='Lookup'>" + userValue.LookupId + @"</Value>
+                        </Eq>
+                    </Where>
+                </Query>
+            </View>";
+            col = approversList.GetItems(camlQuery);
+            clientContext.Load(col);
+            clientContext.ExecuteQuery();
+
+            foreach (ListItem current in col)
+            {
+                if (current[internalApproversTitle].Equals(spNameForITManager))
+                {
+                    isItManager = true;
+                }
+
+                if (current[internalApproversTitle].Equals(spNameForSecurity))
+                {
+                    isSecurity = true;
+                }
+            }
+
+            if (isSecurity == true)
+            {
+                camlQuery = new CamlQuery();
+                camlQuery.ViewXml = @"
+               <View>
+                    <Query>
+                        <Where> 
+                            <Eq>
+                                <FieldRef Name='" + internalRequestStatus + @"' LookupId ='True'/>
+                                <Value Type = 'Text'>" + pendingSecurity + @"</Value>
+                            </Eq>
+                        </Where>
+                    </Query>
+                </View>";
+                col = vpnRequestList.GetItems(camlQuery);
+                clientContext.Load(col);
+                clientContext.ExecuteQuery();
+
+                pendingRequests = loadList(pendingRequests, col);
+            }
+                
+            if (isItManager == true)
+            {
+                camlQuery = new CamlQuery();
+                camlQuery.ViewXml = @"
+               <View>
+                    <Query>
+                        <Where> 
+                            <Eq>
+                                <FieldRef Name='" + internalRequestStatus + @"' LookupId ='True'/>
+                                <Value Type = 'Text'>" + pendingITManager + @"</Value>
+                            </Eq>
+                        </Where>
+                    </Query>
+                </View>";
+                col = vpnRequestList.GetItems(camlQuery);
+                clientContext.Load(col);
+                clientContext.ExecuteQuery();
+
+                pendingRequests = loadList(pendingRequests, col);
+            }        
+
             return pendingRequests;
         }
 
+        public void ReviewRequest(int id, string submit, string comments)
+        {
+            //work in progress 
+
+            //based on previous code, submit can be checked with submit.Equals("Approve") 
+
+            //this is the request id we need to match up to
+            string requestId = id.ToString();
+
+            //loading up the task list items where status is Not Started or In Progress
+            ClientContext clientContext = new ClientContext(SiteUrl);
+            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
+            clientContext.Load(taskList);
+
+            CamlQuery camlQuery = new CamlQuery();
+            camlQuery.ViewXml = @"
+                <View>
+                    <Query>
+                        <Where> 
+                            <Or>
+                                <Eq>
+                                    <FieldRef Name='" + internalTaskStatus + @"' LookupId='True'/>
+                                    <Value Type='Lookup'>In Progress</Value>
+                                </Eq>
+                                <Eq>
+                                    <FieldRef Name='" + internalTaskStatus + @"' LookupId='True'/>
+                                    <Value Type='Lookup'>Not Started</Value>
+                                </Eq>
+                            </Or>
+                        </Where>
+                    </Query>
+                </View>";
+            ListItemCollection col = taskList.GetItems(camlQuery);
+            clientContext.Load(col);
+            clientContext.ExecuteQuery();
+
+            //traversing ListItemCollection to find which one is assosciated with param. id
+            foreach (ListItem current in col)
+            {
+                if (current[internalTasksApproverComments].Equals(requestId))
+                {
+                    if (submit.Equals("Approve"))
+                    {
+                        current[internalTaskOutcome] = "Approved";
+                    }
+                    else
+                    {
+                        current[internalTaskOutcome] = "Rejected";
+                    }
+                    current[internalTaskComments] = comments;
+                    current.Update();
+                    clientContext.ExecuteQuery();
+                }
+            }
+        }
 
         private List<VpnRequest> loadList(List<VpnRequest> currentRequests,ListItemCollection col)
         {

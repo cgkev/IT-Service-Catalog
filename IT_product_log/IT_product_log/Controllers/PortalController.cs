@@ -61,7 +61,7 @@ namespace IT_product_log.Controllers
             List<VpnRequest> storage = spConnection.getMyRequests();
             ViewBag.id = id;
 
-            //the id in the parameter is the request id : the id used on our sharepoint site
+            //the id in the parameter is the request id : the id used on our sharepoint site, to get true id, subtract 1000 
             foreach(VpnRequest current in storage)
             {
                 if (current.VPN_requestID == id)
@@ -104,18 +104,13 @@ namespace IT_product_log.Controllers
         public ActionResult ReviewRequest(int id, string submit, string comments)
         {
             //based on previous code, submit can be checked with submit.Equals("Approve") 
-            
-            //retriving the VPN Request from sharepoint 
 
-           
+            //implementation of this will be in spConnection, just to stay consistent
+            SpConnectionVPN spConnection = new SpConnectionVPN();
+            spConnection.ReviewRequest(id, submit, comments);
 
             return RedirectToAction("/ReviewRequests", "Portal");
         }
-
-
-       
-
-
     }
 }
 
