@@ -14,6 +14,17 @@ form[id ="VPNForm"]{
     -moz-box-sizing: border-box;
         
 }
+textarea[id = "comments"]{
+    width: 100%;
+    height: 10em;
+    max-width: 100%;
+}
+
+textarea[id = "nonform"]{
+    width: 100%;
+    height: 10em;
+    max-width: 100%;
+}
 input[name="Manager"] {
     width: 70%;
 }
@@ -73,6 +84,14 @@ td.form {
     vertical-align:top;
     min-height:78.44444px;
 	padding-left: .5cm;
+}
+
+td[id = "commentsBox"] {
+	width: 100%;
+	text-align:center;
+    display:table-cell;
+    vertical-align:top;
+    min-height:177.6999px;
 }
 
 td.formtext {

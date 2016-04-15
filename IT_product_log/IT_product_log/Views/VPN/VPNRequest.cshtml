@@ -8,10 +8,10 @@
 
 <b>@Html.ValidationSummary("", new { @class = "text-danger" })</b>
 <div class="form-horizontal">
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "VPNForm"}))
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "VPNForm" }))
     {
 
-        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_requestor, new { @style = "display: none;",@class = "VPNForm" })
+        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_requestor, new { @style = "display: none;", @class = "VPNForm" })
         <fieldset>
             <legend class="aws">
                 <h4><b>Recipients Name</b></h4>
@@ -193,7 +193,7 @@
                         <h5>Manager/Supervisor of VPN User <span>*</span></h5>
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Manager)
                         <a class="btn btn-default center" href="#" id="get-data">Check</a>
-                        <label class="error" id="Manager-error" for="Manager" style = "display: none;">Please enter a managers name.</label>
+                        <label class="error" id="Manager-error" for="Manager" style="display: none;">Please enter a managers name.</label>
                     </td>
                     <td class="form">
                         <div id="show-data"></div>
