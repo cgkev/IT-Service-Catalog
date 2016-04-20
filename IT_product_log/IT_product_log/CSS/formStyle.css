@@ -138,7 +138,7 @@ fieldset {
 
 legend.aws {
     color: #fff;
-    background: #0d64aa;
+    background: rgba(13, 100, 170, 0.59);
     border: 1px solid;
     margin-bottom: 0;
     border-radius: 10px;

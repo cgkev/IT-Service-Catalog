@@ -31,9 +31,9 @@ tr {
 }
 
 h1 {
-     font-family: "Times New Roman", Times, serif;
-    color: #353535;
-    background-color: #FFCC00;
+    font-family:  Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    color: #ffffff;
+    background-color: #0d64aa;
     border-radius: 10px;
-    padding-left: 10px;
+    padding-left: 10px
 }
