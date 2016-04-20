@@ -71,6 +71,9 @@ namespace IT_product_log.Models
         string pendingITManager = "Pending IT Manager Approval";
         string pendingManager = "Pending Manager Approval";
 
+        //built in field for all types
+        string internalWflowInstanceID = "WorkflowInstanceID";
+
         public SpConnectionVPN()
         {
             //left blank for now 
@@ -333,58 +336,22 @@ namespace IT_product_log.Models
 
         public void ReviewRequest(int id, string submit, string comments)
         {
-            //work in progress 
-
-            //based on previous code, submit can be checked with submit.Equals("Approve") 
-
-            //this is the request id we need to match up to
-            string requestId = id.ToString();
-
-            //loading up the task list items where status is Not Started or In Progress
             ClientContext clientContext = new ClientContext(SiteUrl);
-            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
-            clientContext.Load(taskList);
 
-            CamlQuery camlQuery = new CamlQuery();
-            camlQuery.ViewXml = @"
-                <View>
-                    <Query>
-                        <Where> 
-                            <Or>
-                                <Eq>
-                                    <FieldRef Name='" + internalTaskStatus + @"' LookupId='True'/>
-                                    <Value Type='Lookup'>In Progress</Value>
-                                </Eq>
-                                <Eq>
-                                    <FieldRef Name='" + internalTaskStatus + @"' LookupId='True'/>
-                                    <Value Type='Lookup'>Not Started</Value>
-                                </Eq>
-                            </Or>
-                        </Where>
-                    </Query>
-                </View>";
-            ListItemCollection col = taskList.GetItems(camlQuery);
-            clientContext.Load(col);
+            ListItem taskItem = null;
+            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
+            clientContext.Load(taskList);
+            clientContext.Load(vpnRequestList);
             clientContext.ExecuteQuery();
 
-            //traversing ListItemCollection to find which one is assosciated with param. id
-            foreach (ListItem current in col)
-            {
-                if (current[internalTasksApproverComments].Equals(requestId))
-                {
-                    if (submit.Equals("Approve"))
-                    {
-                        current[internalTaskOutcome] = "Approved";
-                    }
-                    else
-                    {
-                        current[internalTaskOutcome] = "Rejected";
-                    }
-                    current[internalTaskComments] = comments;
-                    current.Update();
-                    clientContext.ExecuteQuery();
-                }
-            }
+            //getting the vpnReuqests workflowid
+            ListItem currentVpnRequest = vpnRequestList.GetItemById(id.ToString());
+            clientContext.Load(currentVpnRequest);
+            clientContext.ExecuteQuery();
+            Guid vpnRequestGuid = (Guid)currentVpnRequest[internalWflowInstanceID];
+           
+            
         }
 
         private List<VpnRequest> loadList(List<VpnRequest> currentRequests,ListItemCollection col)
