@@ -1,15 +1,26 @@
 ﻿using IT_product_log.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web;
+using Microsoft.SharePoint.Client;
+using System.Security.Principal;
+using System.DirectoryServices.AccountManagement;
+using System;
+using System.Linq;
+using SPClient = Microsoft.SharePoint.Client;
+using Microsoft.SharePoint.Workflow;
+using Microsoft.SharePoint;
 namespace IT_product_log.Controllers
 
 {
 
     public class PortalController : Controller
     {
-
         public ViewResult Index()
         {
+            string name = System.Web.HttpContext.Current.User.Identity.Name;
+            Session["CurrentUserName"] = name;
+
             return View();
         }
 

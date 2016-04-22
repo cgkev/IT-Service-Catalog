@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IT_product_log.Models;
-
+using System.DirectoryServices;
+using System.DirectoryServices.AccountManagement;
 
 namespace IT_product_log.Controllers
 {
@@ -55,23 +56,43 @@ namespace IT_product_log.Controllers
             return View();
         }
 
-        //for testing 
+        //for testing - still a work in progress, not ready yet 
         [HttpGet]
         public ActionResult GetManager()
         {
-            var hell1o = Request.Params["id"];
-            Console.Write(hell1o);
+            //This came from Ignacio's code, I am assumign it is the name the user has given as a search tool 
+            var search = Request.Params["id"];
 
-            //this one contains users
+            PrincipalContext prinCon = new PrincipalContext(ContextType.Domain);
+
+            UserPrincipal query = new UserPrincipal(prinCon);
+            query.GivenName = search.Split(' ')[0];
+            //query.Surname = search.Split(' ')[1];
+
+            PrincipalSearcher searcher = new PrincipalSearcher(query);
+            List<String> firstName = new List<String>();
+            List<String> lastName = new List<String>();
+            List<String> userName = new List<String>();
+
+            foreach (UserPrincipal result in searcher.FindAll())
+            {
+                firstName.Add(result.GivenName);
+                lastName.Add(result.Surname);
+                userName.Add(result.UserPrincipalName);
+            };
+
+
+            //data contains an array of result users
             var data = new
             {
                 items = new[] {
-                new { key = 1, firstname = "Lex", lastname = "Luther", username = "LuLex" },
-                new { key = 2, firstname = "Bruce", lastname = "Wayne", username = "NotBatman"},
-                new { key = 2, firstname = "Johnny", lastname = "Bravo", username = "PretyBoy"},
-                new { key = 2, firstname = "Nicholas", lastname = "Cage", username = "NichCage"}
+                new { key = 1, firstname = firstName[0], lastname = lastName[0], username = userName[0] },
+                new { key = 2,  firstname = firstName[1], lastname = lastName[1], username = userName[1]},
+                new { key = 3,  firstname = firstName[2], lastname = lastName[2], username = userName[2]}
             }
             };
+
+
             String[] hello = new string[0];
             //this should be an empty array in other words nothing found.
             var data1 = new { items = hello };
@@ -79,8 +100,7 @@ namespace IT_product_log.Controllers
 
             //just change between the two values data1 or data to see the empty array sent in bellow
             return Json(data, JsonRequestBehavior.AllowGet);
+        
         }
-
-
     }
 }

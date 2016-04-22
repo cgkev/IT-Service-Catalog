@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Microsoft.SharePoint.Client;
 
 namespace IT_product_log
 {
@@ -12,6 +13,7 @@ namespace IT_product_log
     {
         protected void Application_Start()
         {
+
             //VPN request model loaded :D
             List<VpnRequest> vpnRequests = new List<VpnRequest>();
 
@@ -39,8 +41,6 @@ namespace IT_product_log
                 VPN_userStatus = "Nope",
                 VPN_requestor = "what goes here",
                 Work_Phone = "323-343-1234"
-
-
 
             };
 
@@ -106,6 +106,8 @@ namespace IT_product_log
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+
         }
     }
 }
