@@ -181,24 +181,25 @@
 
                 </tr>
             </table>
-            <table>
-                <tr>
-                    
-                    <td class="buttons">
-                        <input name="submit" class="btn btn-success" id="approve" type="submit" value="Approve" />
-                    </td>
-                    <td class="buttons">
-                        <input name="submit" class="btn btn-danger" id="deny" type="submit" value="Deny" />
-                    </td>
-
-                </tr>
-            </table>
+        
         </fieldset>
+        <table>
+            <tr>
 
+                <td class="leftButtons"  style="width:50%;">
+                    <input name="submit"  style="font-weight:bold; font-size: 110%;" class="btn btn-success buttonStyle" id="approve" type="submit" value="Approve" />
+                </td>
+                <td class="rightButtons"  style="width:50%;">
+                    <input name="submit" style="font-weight:bold; font-size: 110%;" class="btn btn-danger buttonStyle" id="deny" type="submit" value="Deny" />
+                </td>
+
+            </tr>
+        </table>
+        <br/>
         <a href="~/Portal/ReviewRequests" class="btn btn-default center">Back</a>
 
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-                <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+        <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 
                 <script>
                     $(document).ready(function () {

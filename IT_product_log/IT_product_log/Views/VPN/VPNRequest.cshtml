@@ -202,16 +202,18 @@
                     </td>
             </table>
         </fieldset>
-        <table>
+       
+         <table>
             <tr>
-                <td class="buttons2">
-                    <a class="btn btn-default center" href="/Portal/Index/" id="cancel">Cancel</a>
+                <td class="leftButtons">
+                    <a class="btn btn-default buttonStyle" href="/Portal/Index/" id="cancel">Cancel</a>
                 </td>
-                <td class="buttons">
-                    <input class="btn btn-default center" type="submit" value="Submit Form" name="submit" id="submit" />
+                <td class="rightButtons">
+                    <input class="btn btn-primary buttonStyle" type="submit" value="Submit" name="submit" id="submit" />
                 </td>
             </tr>
         </table>
+        @Html.ActionLink("Back to Portal", "../Portal/SystemAccess")
 
     }
 </div>
@@ -490,4 +492,3 @@
     });
 </script>
 
-@Html.ActionLink("Back to Portal", "../Portal/SystemAccess")
