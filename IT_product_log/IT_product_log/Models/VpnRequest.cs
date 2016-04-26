@@ -37,7 +37,7 @@ namespace IT_product_log.Models
         public string VPN_userDept { get; set; }// okay this is a 3 digit code.
 
         [Required]
-        [Display(Name = "ex: 001-999")]
+        [Display(Name = "ex: 999")]
         public int VPN_userCode { get; set; }//how do we grab this or what are the values?
 
         [Required]
