@@ -63,11 +63,17 @@ namespace IT_product_log.Controllers
             //This came from Ignacio's code, I am assumign it is the name the user has given as a search tool 
             var search = Request.Params["id"];
 
+            System.Diagnostics.Debug.WriteLine(search.Split(' ')[0]);
+            System.Diagnostics.Debug.WriteLine(search.Split(' ')[1]);
+
             PrincipalContext prinCon = new PrincipalContext(ContextType.Domain);
 
             UserPrincipal query = new UserPrincipal(prinCon);
             query.GivenName = search.Split(' ')[0];
-            //query.Surname = search.Split(' ')[1];
+            query.Surname = search.Split(' ')[1];
+
+            System.Diagnostics.Debug.WriteLine(query.GivenName);
+            System.Diagnostics.Debug.WriteLine(query.Surname);
 
             PrincipalSearcher searcher = new PrincipalSearcher(query);
             List<String> firstName = new List<String>();
@@ -89,8 +95,10 @@ namespace IT_product_log.Controllers
                 new { key = 1, firstname = firstName[0], lastname = lastName[0], username = userName[0] },
                 new { key = 2,  firstname = firstName[1], lastname = lastName[1], username = userName[1]},
                 new { key = 3,  firstname = firstName[2], lastname = lastName[2], username = userName[2]}
-            }
+             }
             };
+
+            
 
 
             String[] hello = new string[0];

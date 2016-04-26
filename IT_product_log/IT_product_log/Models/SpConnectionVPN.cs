@@ -336,6 +336,10 @@ namespace IT_product_log.Models
 
         public void ReviewRequest(int id, string submit, string comments)
         {
+            //work in progress 
+            //current idea is a work around - storing the related Request's ID in Task comments 
+
+            
             ClientContext clientContext = new ClientContext(SiteUrl);
 
             ListItem taskItem = null;
@@ -346,10 +350,34 @@ namespace IT_product_log.Models
             clientContext.ExecuteQuery();
 
             //getting the vpnReuqests workflowid
-            ListItem currentVpnRequest = vpnRequestList.GetItemById(id.ToString());
-            clientContext.Load(currentVpnRequest);
+            //ListItem currentVpnRequest = vpnRequestList.GetItemById((id - 1000).ToString());
+            //clientContext.Load(currentVpnRequest);
+            //clientContext.ExecuteQuery();
+
+            CamlQuery camlQuery = new CamlQuery();
+            camlQuery.ViewXml = @"
+            <View> 
+                <Query>
+                    <Where> 
+                        <Eq> 
+                            <FieldRef Name = '_ModerationComments' LookupId = 'True' />
+                            <Value Type = 'Text'> " + id.ToString() + @" </Value>
+                        </Eq>
+                    </Where>
+                </Query> 
+           </View>";
+
+            ListItemCollection col = taskList.GetItems(camlQuery);
+            clientContext.Load(col);
             clientContext.ExecuteQuery();
-            Guid vpnRequestGuid = (Guid)currentVpnRequest[internalWflowInstanceID];
+           
+
+            foreach (ListItem current in col)
+            {
+                System.Diagnostics.Debug.WriteLine("Entry: ");
+                System.Diagnostics.Debug.WriteLine(current["ID"]);
+            }
+            
            
             
         }

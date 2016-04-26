@@ -72,13 +72,13 @@
                                 <option value="@item">@item</option>
                             }
                         </select>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userStatus, new { style = "display: none;" })
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userStatus, new { style = "display: none;", maxlength = "" })
                     </td>
                 </tr>
                 <tr>
                     <td class="form">
-                        <h5>User Code <span>*</span></h5>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { placeholder = Html.DisplayNameFor(n => n.VPN_userCode) })
+                        <h5>Dept Code <span>*</span></h5>
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { @placeholder = Html.DisplayNameFor(n => n.VPN_userCode), maxlength = 3})
                     </td>
                 </tr>
             </table>
@@ -202,16 +202,18 @@
                     </td>
             </table>
         </fieldset>
-        <table>
+       
+         <table>
             <tr>
-                <td class="buttons2">
-                    <a class="btn btn-default center" href="/Portal/Index/" id="cancel">Cancel</a>
+                <td class="leftButtons">
+                    <a class="btn btn-default buttonStyle" href="/Portal/Index/" id="cancel">Cancel</a>
                 </td>
-                <td class="buttons">
-                    <input class="btn btn-default center" type="submit" value="Submit Form" name="submit" id="submit" />
+                <td class="rightButtons">
+                    <input class="btn btn-primary buttonStyle" type="submit" value="Submit" name="submit" id="submit" />
                 </td>
             </tr>
         </table>
+        @Html.ActionLink("Back to Portal", "../Portal/SystemAccess")
 
     }
 </div>
@@ -490,4 +492,3 @@
     });
 </script>
 
-@Html.ActionLink("Back to Portal", "../Portal/SystemAccess")

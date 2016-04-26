@@ -8,10 +8,9 @@ h1.title {
     width: 70%;
     margin: 0 auto;
     font-family: "Times New Roman", Times, serif;
-    color: #353535;
-    background-color: #FFCC00;
+    color: #ffffff;
+    background-color: #0d64aa;
     border-radius: 10px;
-
     padding-left: 10px;
 }
 
@@ -46,10 +45,6 @@ label, input[name="Manager"] {
     display: inline;
 }
 
-input {
-    width: 100%;
-    font-style: italic;
-}
 
     input.error {
         font-weight: bold;
@@ -123,13 +118,22 @@ td.formtext {
     padding-left: .5cm;
 }
 
-td.buttons {
+td.rightButtons {
+    padding-left: 5px;
+    width: auto;
+    text-align: left;
 }
 
-
-label, input {
-    display: block;
+td.leftButtons {
+    padding-right: 5px;
+    width: auto;
+    text-align: right;
 }
+
+.buttonStyle{
+    width: 60%;
+}
+
 
 fieldset {
     border: 1px solid #781351;
