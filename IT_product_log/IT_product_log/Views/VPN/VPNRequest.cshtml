@@ -72,13 +72,13 @@
                                 <option value="@item">@item</option>
                             }
                         </select>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userStatus, new { style = "display: none;" })
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userStatus, new { style = "display: none;", maxlength = "" })
                     </td>
                 </tr>
                 <tr>
                     <td class="form">
-                        <h5>User Code <span>*</span></h5>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { placeholder = Html.DisplayNameFor(n => n.VPN_userCode) })
+                        <h5>Dept Code <span>*</span></h5>
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { @placeholder = Html.DisplayNameFor(n => n.VPN_userCode), maxlength = 3})
                     </td>
                 </tr>
             </table>
