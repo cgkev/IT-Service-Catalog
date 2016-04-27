@@ -4,7 +4,7 @@
 }
 </br>
 <h1 class="title">VPN Request Form</h1>
-<h6>*All fields are required</h6>
+<h6>* Required</h6>
 
 <b>@Html.ValidationSummary("", new { @class = "text-danger" })</b>
 <div class="form-horizontal">
@@ -37,16 +37,17 @@
             </legend>
             <table>
                 <tr>
-                    <td class="form">
+                    <td class="form" style="padding-bottom: 15px">
                         <h5>Work Phone <span>*</span></h5>
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Work_Phone, new { placeholder = Html.DisplayNameFor(vpnrequest => vpnrequest.Work_Phone) })
+
+                        <h5>Ext:</h5>
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.Ext_code, new { placeholder = Html.DisplayNameFor(vpnrequest => vpnrequest.Ext_code), maxlength = 3, style = "width:60px" })
+
                     </td>
+
                     <!-- I wasnt able to make it pretty maybe you have better luck then I did -->
                     <!-- this is the start of Ext code here -->
-                    <td class="form">
-                        <h5>Ext:</h5>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.Ext_code, new { placeholder = Html.DisplayNameFor(vpnrequest => vpnrequest.Ext_code) })
-                    </td>
                     <!-- this is where it ends -->
                     <td class="form">
                         <h5>Recipent Email <span>*</span></h5>
@@ -81,13 +82,13 @@
                             }
                         </select>
                         <!-- VPN_userstatus is hidden because the dropdown above submits its values here -->
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userStatus, new { style = "display: none;", maxlength = "" })
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userStatus, new { style = "display: none", maxlength = "" })
                     </td>
                 </tr>
                 <tr>
                     <td class="form">
                         <h5>Dept Code <span>*</span></h5>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { @placeholder = Html.DisplayNameFor(n => n.VPN_userCode), maxlength = 3 })
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { @placeholder = Html.DisplayNameFor(n => n.VPN_userCode), maxlength = 3, style = "width:60px" })
                     </td>
                     <!-- its inside that table because thats what makes it all hide -->
                     <!-- this is the start Agency code here -->
@@ -117,14 +118,6 @@
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Company_Name, new { style = "display: none;" })
                     </td>
                     <td class="form">
-                        <div id="compform">
-                            <h5>Company Other <span>*</span></h5>
-                            @Html.TextBoxFor(vpnrequest => vpnrequest.Company_Other)
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form">
                         <h5>Office Location <span>*</span></h5>
                         <select name="location" id="location">
                             @foreach (var item in ViewBag.officeLoc)
@@ -135,6 +128,15 @@
                         <!-- Office_Location is hidden because the dropdown above submits its values here -->
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Location, new { style = "display: none;" })
                     </td>
+                </tr>
+                <tr>
+                    <td class="form">
+                        <div id="compform">
+                            <h5>Company Other <span>*</span></h5>
+                            @Html.TextBoxFor(vpnrequest => vpnrequest.Company_Other)
+                        </div>
+                    </td>
+
                     <td class="form">
                         <h5>Office Address <span>*</span></h5>
                         <div name="QTCLoc" id="QTCLoc">
@@ -146,7 +148,8 @@
                             </select>
                         </div>
                         <!-- Office_Address is hidden because the dropdown above submits its values here -->
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Address, new { style = "display: none;" })
+                        @Html.TextAreaFor(vpnrequest => vpnrequest.Office_Address, 3, 25, new { style = "display: none; padding-bottom: 15px;" })
+
                     </td>
                 </tr>
             </table>
@@ -225,17 +228,21 @@
         </fieldset>
         <fieldset>
             <legend class="aws">
-                <h4><b>.............</b></h4>
+                <h4><b>Employee's Security Achknowledgement of Responsibility</b></h4>
             </legend>
             <table>
                 <tr>
                     <td class="form">
-                        <h5>...................... <span>*</span></h5>
-                        <input type="checkbox" id="checkers" name="verified" value="verified">
+                        <h5>
+                           <span> By checking the box below, I acknowledge that I have read, fully understand and agree to comply with the foregoing QTC Services Use Policy for access of the Virtual Private Network (VPN) connection.
+                            I understand that my use of the company network constitutes full acceptance of the terms of this policy and consent to monitoring.  I understand that, if I do not comply with the QTC Services Use Policy, I may be subject to discipline, including loss of access to QTC’s facilities and discharge from employment.  I may also be subject to legal action against me for damage or indemnification.</span>
+                        </h5>
+                        <b>I have read the statement above: </b><input type="checkbox" id="checkers" name="verified" value="verified">
+
+                        <br/>
+                        <br />
                     </td>
-                    <td class="form">
-                        <div id="show-data"></div>
-                    </td>
+                    
             </table>
         </fieldset>
         <table>
@@ -264,7 +271,7 @@
         var error = 0;
         if (!($('#checkers').is(':checked'))) {
             error = 1
-            alert("Please Tick the Agree to Terms of Use");
+            alert("Please Read the \"Employee's Security Achknowledgement of Responsibility\" section and agree to the statement");
         }
 
         if (error) {
