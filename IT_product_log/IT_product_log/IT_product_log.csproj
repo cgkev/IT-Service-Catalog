@@ -187,6 +187,7 @@
     <Content Include="Views\Portal\ReviewRequests.cshtml" />
     <Content Include="Views\Portal\ReviewRequest.cshtml" />
     <Content Include="Views\VPN\VPNRequest.cshtml" />
+    <Content Include="Views\Portal\ReviewRequestIT.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

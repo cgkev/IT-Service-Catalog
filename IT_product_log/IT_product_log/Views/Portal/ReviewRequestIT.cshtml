@@ -129,22 +129,6 @@
             </fieldset>
             <fieldset>
                 <legend class="aws">
-                    <h4><b>Period for Requested Service Access</b></h4>
-                </legend>
-                <table>
-                    <tr>
-                        <td class="form">
-                            <h5>VPN Start Date</h5>
-                            <input type="text" value="@ViewBag.details.VPN_accessStart" disabled />
-                        </td>
-                        <td class="form">
-                            <h5>VPN End Date</h5>
-                            <input type="text" value="@ViewBag.details.VPN_accessEnd" disabled />
-                        </td>
-                </table>
-            </fieldset>
-            <fieldset>
-                <legend class="aws">
                     <h4><b>Manager Information</b></h4>
 
                 </legend>
@@ -164,14 +148,53 @@
 
     </table>
 
-    @using (Html.BeginForm("/ReviewRequest", "Portal", FormMethod.Post, new { id = "review" }))
+    @using (Html.BeginForm("/ReviewRequestIT", "Portal", FormMethod.Post, new { id = "review" }))
     {
         <input type="hidden" name="id" value="@ViewBag.id" />
         <fieldset>
             <legend class="aws">
-                <h4><b>Manager Review</b></h4>
+                <h4><b>IT Manager Review</b></h4>
 
             </legend>
+            <table>
+                <tr>
+                    <td class="form">
+                        <h5>VPN Profile</h5>
+                        <select id="VPN_Radius" name="VPN_Radius">
+                            @foreach (var item in ViewBag.radiusSelector)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </td>
+                    <td class="form">
+                        <div id="VPNDiv">
+                            <h5>Other</h5>
+                            <input type="text" name="VPN_Other" id="VPN_Other" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form">
+                        <h5>VPN Start Date</h5>
+                        <input type="text" id="VPN_accessStart" value="@ViewBag.details.VPN_accessStart" />
+                    </td>
+                    <td class="form">
+                        <h5>VPN Profile Select</h5>
+                        <input type="checkbox" name="checkboxes[]" id='QTC' value="QTC"> QTC
+                        <input type="checkbox" name="checkboxes[]" id='Transcriber' value="Transcriber"> Transcriber
+                        <label class="error" id="checkboxes[]-error" for="checkboxes[]"style = "display: none;"></label>
+                        <!-- The label above is a place holder for the error message -->
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form">
+                        <h5>VPN End Date</h5>
+                        <input type="text" id="VPN_accessEnd" value="@ViewBag.details.VPN_accessEnd" />
+                    </td>
+                </tr>
+            </table>
             <table>
                 <tr>
                     <h5>Please provide reason for approving or rejecting. </h5>
@@ -181,40 +204,67 @@
 
                 </tr>
             </table>
-        
+
         </fieldset>
         <table>
             <tr>
 
-                <td class="leftButtons"  style="width:50%;">
-                    <input name="submit"  style="font-weight:bold; font-size: 110%;" class="btn btn-success buttonStyle" id="approve" type="submit" value="Approve" />
+                <td class="leftButtons" style="width:50%;">
+                    <input name="submit" style="font-weight:bold; font-size: 110%;" class="btn btn-success buttonStyle" id="approve" type="submit" value="Approve" />
                 </td>
-                <td class="rightButtons"  style="width:50%;">
+                <td class="rightButtons" style="width:50%;">
                     <input name="submit" style="font-weight:bold; font-size: 110%;" class="btn btn-danger buttonStyle" id="deny" type="submit" value="Deny" />
                 </td>
 
             </tr>
         </table>
-        <br/>
+        <br />
         <a href="~/Portal/ReviewRequests" class="btn btn-default center">Back</a>
 
         <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 
-                <script>
-                    $(document).ready(function () {
-                        var submit;
+        <script>
+            $(document).ready(function () {
+                var submit;
 
-                        $('#approve').click(function () {
-                            $('#comments').val('                            ');
-                            $('#review').validate().form();
-                        });
-                    });
-                    jQuery.validator.setDefaults({
-                        debug: false,
-                        success: "valid"
-                    });
+                $('#approve').click(function () {
+                    $('#VPN_Radius').removeClass('error');
+                    $('#VPN_Other').removeClass('error');
+                    $('#comments').removeClass('error');
+                    $('#review').removeData('validator');
+                    $("#review").validate({
+                        rules: {
+                            VPN_Other: {
+                                required: true
+                            },
+                            VPN_Radius: {
+                                required: true
+                            },
+                            'checkboxes[]': {
+                                required: true
+                            }
+                        },
+                        messages: {
+                            VPN_Other: {
+                                required: "Please provide this field"
+                            },
+                            VPN_Radius: {
+                                required: "Please select a VPN Profile"
+                            },
+                            checkboxes: {
+                                required: "Select atleast one please"
+                            }
+                        }
 
+                    });
+                });
+
+                $('#deny').click(function () {
+                    $('#VPN_Radius').removeClass('error');
+                    $('#VPN_Other').removeClass('error');
+                    $('#comments').removeClass('error');
+                    $('#review').removeData('validator');
                     $("#review").validate({
                         rules: {
                             comments: {
@@ -228,9 +278,39 @@
                                 rangelength: 'Please provide enough details of why it was denied'
                             }
                         }
-                    });
 
-                </script>
+                    });
+                });
+
+                $("#VPN_Radius").on('change', function () {
+                    if (this.value === 'Other') {
+                        $('#VPN_Other').val('');
+                        $('#VPNDiv').show();
+                    } else {
+                        $('#VPNDiv').hide();
+                        $('#VPN_Other').val(this.value);
+                    };
+                });
+
+                $(function () {
+                    $("#VPN_accessStart").datepicker({
+                        minDate: 0,
+                        onSelect: function (dateText, inst) {
+                            $("#VPN_accessEnd").datepicker("option", "minDate", $("#VPN_accessStart").datepicker("getDate"));
+                        }
+                    });
+                });
+
+                $("#VPN_accessEnd").datepicker();
+            });
+            jQuery.validator.setDefaults({
+                debug: false,
+                success: "valid"
+            });
+
+
+
+        </script>
     }
 
     <br />
