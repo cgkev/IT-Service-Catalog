@@ -41,8 +41,7 @@ namespace IT_product_log
                 Work_Phone = "323-343-1234"
 
 
-
-            };
+        };
 
             VpnRequest denied = new VpnRequest
             {

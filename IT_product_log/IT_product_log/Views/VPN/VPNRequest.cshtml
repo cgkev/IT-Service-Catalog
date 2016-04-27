@@ -92,7 +92,7 @@
                     </td>
                     <!-- its inside that table because thats what makes it all hide -->
                     <!-- this is the start Agency code here -->
-                    <td class="form" id="agency" style=" display none;">
+                    <td class="form" id="agency" style="display: none;">
                         <h5>Please provide agency<span>*</span></h5>
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Agency, new { @placeholder = Html.DisplayNameFor(n => n.Agency), maxlength = 3 })
                     </td>
@@ -131,15 +131,16 @@
                 </tr>
                 <tr>
                     <td class="form">
-                        <div id="compform">
+                        <div id="compform" style="display: none;">
                             <h5>Company Other <span>*</span></h5>
                             @Html.TextBoxFor(vpnrequest => vpnrequest.Company_Other)
                         </div>
                     </td>
 
                     <td class="form">
-                        <h5>Office Address <span>*</span></h5>
-                        <div name="QTCLoc" id="QTCLoc">
+                        
+                        <div name="QTCLoc" id="QTCLoc" style="display: none;">
+                            <h5>Office Address <span>*</span></h5>
                             <select name="QTClocation" id="QTClocation">
                                 @foreach (var item in ViewBag.qtcOfficSelect)
                                 {

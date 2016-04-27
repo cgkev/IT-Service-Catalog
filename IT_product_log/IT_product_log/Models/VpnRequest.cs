@@ -74,11 +74,11 @@ namespace IT_product_log.Models
 
         [Required]
         [Display(Name = "Start Date")]
-        public DateTime VPN_accessEnd { get; set; }// date on this one
+        public string VPN_accessEnd { get; set; }// this used to be DateTime I hope nothing breaks
 
         [Required]
         [Display(Name = "End Date")]
-        public DateTime VPN_accessStart { get; set; }// same as the one above
+        public string VPN_accessStart { get; set; }// this used to be DateTime I hope nothing breaks
 
         [Required]
         public string Manager { get; set; }// okay this uses LDAP?

@@ -168,7 +168,17 @@
                         </select>
                     </td>
                     <td class="form">
-                        <div id="VPNDiv">
+                        <h5>VPN Profile Select</h5>
+                        <input type="checkbox" name="checkboxes[]" id='QTC' value="QTC"> QTC
+                        <input type="checkbox" name="checkboxes[]" id='Transcriber' value="Transcriber"> Transcriber
+                        <label class="error" id="checkboxes[]-error" for="checkboxes[]" style="display: none;"></label>
+                        <!-- The label above is a place holder for the error message -->
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form">
+                        <div id="VPNDiv" style="display: none;">
                             <h5>Other</h5>
                             <input type="text" name="VPN_Other" id="VPN_Other" />
                         </div>
@@ -179,16 +189,6 @@
                         <h5>VPN Start Date</h5>
                         <input type="text" id="VPN_accessStart" value="@ViewBag.details.VPN_accessStart" />
                     </td>
-                    <td class="form">
-                        <h5>VPN Profile Select</h5>
-                        <input type="checkbox" name="checkboxes[]" id='QTC' value="QTC"> QTC
-                        <input type="checkbox" name="checkboxes[]" id='Transcriber' value="Transcriber"> Transcriber
-                        <label class="error" id="checkboxes[]-error" for="checkboxes[]"style = "display: none;"></label>
-                        <!-- The label above is a place holder for the error message -->
-
-                    </td>
-                </tr>
-                <tr>
                     <td class="form">
                         <h5>VPN End Date</h5>
                         <input type="text" id="VPN_accessEnd" value="@ViewBag.details.VPN_accessEnd" />
@@ -247,13 +247,13 @@
                         },
                         messages: {
                             VPN_Other: {
-                                required: "Please provide this field"
+                                required: "If Other is selected in VPN Profile, please provide //somethingsomething"
                             },
                             VPN_Radius: {
                                 required: "Please select a VPN Profile"
                             },
-                            checkboxes: {
-                                required: "Select atleast one please"
+                            'checkboxes[]': {
+                                required: "Please select atleast one"
                             }
                         }
 
