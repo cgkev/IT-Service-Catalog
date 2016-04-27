@@ -8,7 +8,7 @@
 
 <b>@Html.ValidationSummary("", new { @class = "text-danger" })</b>
 <div class="form-horizontal">
-    
+
 
     @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "VPNForm" }))
     {
@@ -41,6 +41,13 @@
                         <h5>Work Phone <span>*</span></h5>
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Work_Phone, new { placeholder = Html.DisplayNameFor(vpnrequest => vpnrequest.Work_Phone) })
                     </td>
+                    <!-- I wasnt able to make it pretty maybe you have better luck then I did -->
+                    <!-- this is the start of Ext code here -->
+                    <td class="form">
+                        <h5>Ext:</h5>
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.Ext_code, new { placeholder = Html.DisplayNameFor(vpnrequest => vpnrequest.Ext_code) })
+                    </td>
+                    <!-- this is where it ends -->
                     <td class="form">
                         <h5>Recipent Email <span>*</span></h5>
                         @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_recipientEmail, new { placeholder = Html.DisplayNameFor(n => n.VPN_recipientEmail) })
@@ -62,6 +69,7 @@
                                 <option value="@item">@item</option>
                             }
                         </select>
+                        <!-- VPN_userDept is hidden because the dropdown above submits its values here -->
                         @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userDept, new { style = "display: none;" })
                     </td>
                     <td class="form">
@@ -72,14 +80,22 @@
                                 <option value="@item">@item</option>
                             }
                         </select>
+                        <!-- VPN_userstatus is hidden because the dropdown above submits its values here -->
                         @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userStatus, new { style = "display: none;", maxlength = "" })
                     </td>
                 </tr>
                 <tr>
                     <td class="form">
                         <h5>Dept Code <span>*</span></h5>
-                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { @placeholder = Html.DisplayNameFor(n => n.VPN_userCode), maxlength = 3})
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.VPN_userCode, new { @placeholder = Html.DisplayNameFor(n => n.VPN_userCode), maxlength = 3 })
                     </td>
+                    <!-- its inside that table because thats what makes it all hide -->
+                    <!-- this is the start Agency code here -->
+                    <td class="form" id="agency" style=" display none;">
+                        <h5>Please provide agency<span>*</span></h5>
+                        @Html.TextBoxFor(vpnrequest => vpnrequest.Agency, new { @placeholder = Html.DisplayNameFor(n => n.Agency), maxlength = 3 })
+                    </td>
+                    <!-- this is the end of Agency  -->
                 </tr>
             </table>
         </fieldset>
@@ -97,6 +113,7 @@
                                 <option value="@item">@item</option>
                             }
                         </select>
+                        <!-- Company_Name is hidden because the dropdown above submits its values here -->
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Company_Name, new { style = "display: none;" })
                     </td>
                     <td class="form">
@@ -115,6 +132,7 @@
                                 <option value="@item">@item</option>
                             }
                         </select>
+                        <!-- Office_Location is hidden because the dropdown above submits its values here -->
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Location, new { style = "display: none;" })
                     </td>
                     <td class="form">
@@ -127,6 +145,7 @@
                                 }
                             </select>
                         </div>
+                        <!-- Office_Address is hidden because the dropdown above submits its values here -->
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Office_Address, new { style = "display: none;" })
                     </td>
                 </tr>
@@ -147,6 +166,7 @@
                                 <option value="@item">@item</option>
                             }
                         </select>
+                        <!-- Machine_Owner is hidden because the dropdown above submits its values here -->
                         @Html.TextBoxFor(vpnrequest => vpnrequest.Machine_Owner, new { style = "display: none;" })
                     </td>
                 </tr>
@@ -198,12 +218,27 @@
                         <label class="error" id="Manager-error" for="Manager" style="display: none;">Please enter a managers name.</label>
                     </td>
                     <td class="form">
+                        <!-- This div gets genrated by Jquery when check is clicked -->
                         <div id="show-data"></div>
                     </td>
             </table>
         </fieldset>
-       
-         <table>
+        <fieldset>
+            <legend class="aws">
+                <h4><b>.............</b></h4>
+            </legend>
+            <table>
+                <tr>
+                    <td class="form">
+                        <h5>...................... <span>*</span></h5>
+                        <input type="checkbox" id="checkers" name="verified" value="verified">
+                    </td>
+                    <td class="form">
+                        <div id="show-data"></div>
+                    </td>
+            </table>
+        </fieldset>
+        <table>
             <tr>
                 <td class="leftButtons">
                     <a class="btn btn-default buttonStyle" href="/Portal/Index/" id="cancel">Cancel</a>
@@ -223,6 +258,21 @@
     jQuery.validator.setDefaults({
         debug: false,
         success: "valid"
+    });
+
+    $('#VPNForm').submit(function () {
+        var error = 0;
+        if (!($('#checkers').is(':checked'))) {
+            error = 1
+            alert("Please Tick the Agree to Terms of Use");
+        }
+
+        if (error) {
+            return false;
+        } else {
+            return true;
+        }
+
     });
 
     jQuery.validator.addMethod("greaterThan",
@@ -280,6 +330,9 @@
                 required: true,
                 rangelength: [50, 200]
             },
+            checkers: {
+                required: true
+            },
             Manager: {
                 required: true,
                 rangelength: [2, 16]
@@ -314,6 +367,10 @@
             },
             QTClocation: {
                 required: true
+            },
+            Agency: {
+                required: true,
+                rangelength: [2, 16]
             }
         },
 
@@ -388,6 +445,10 @@
             },
             QTClocation: {
                 required: "Please select an office."
+            },
+            Agency: {
+                required: "Please provide agency",
+                rangelength: "Length must be between 2 to 16 characters."
             }
         }
     });
@@ -471,9 +532,21 @@
             $('#Machine_Owner').val(this.value);
         }),
 
+        $("#status").on('change', function () {
+
+            if (!(this.value === 'Temp Employee' || this.value === 'Contractor' || this.value === 'Consultant')) {
+                $('#agency').hide();
+                $('#Agency').val(this.value);
+            } else {
+                $('#Agency').val('');
+                $('#agency').show();
+
+            }
+        }),
+
         $("#dept").on('change', function () {
             $('#VPN_userDept').val(this.value);
-        })
+        }),
 
         $(function () {
             $("#VPN_accessStart").datepicker({
@@ -487,8 +560,8 @@
 
     });
 
-    $("#submit").click(function () {
-        $('html, body').animate({ scrollTop: 0 }, 'slow');
-    });
+    //$("#submit").click(function () {
+    //    $('html, body').animate({ scrollTop: 0 }, 'slow');
+    //});
 </script>
 
