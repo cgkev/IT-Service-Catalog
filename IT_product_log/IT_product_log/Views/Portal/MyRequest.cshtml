@@ -17,7 +17,7 @@ a
 
 <div class="center fiftyPercent">
     <h1>Review Request - @ViewBag.id</h1>
-    <a href="#" class="btn bootstrap-button req-status">@ViewBag.details.VPN_requestStatus</a>
+    <a href="#" class="btn bootstrap-button req-status">@ViewBag.details.VPN_requestStatus </a>
     <table>
         <tbody>
             <fieldset>
@@ -28,11 +28,11 @@ a
                     <tr>
                         <td class="form">
                             <h5>First Name</h5>
-                            <input type="text" value="@ViewBag.details.VPN_recipientFirst" disabled />
+                            <div class="requestText"> @ViewBag.details.VPN_recipientFirst </div>
                         </td>
                         <td class="form">
                             <h5>Last Name</h5>
-                            <input type="text" value="@ViewBag.details.VPN_recipientLast" disabled />
+                            <div class="requestText"> @ViewBag.details.VPN_recipientLast </div>
                         </td>
                     </tr>
                 </table>
@@ -45,11 +45,11 @@ a
                     <tr>
                         <td class="form">
                             <h5>Work Phone</h5>
-                            <input type="text" value="@ViewBag.details.Work_Phone" disabled />
+                            <div class="requestText"> @ViewBag.details.Work_Phone </div>
                         </td>
                         <td class="form">
                             <h5>Recipent Email</h5>
-                            <input type="text" value="@ViewBag.details.VPN_recipientEmail" disabled />
+                            <div class="requestText"> @ViewBag.details.VPN_recipientEmail </div>
                         </td>
                     </tr>
                 </table>
@@ -62,17 +62,17 @@ a
                     <tr>
                         <td class="form">
                             <h5>User Department</h5>
-                            <input type="text" value="@ViewBag.details.VPN_userDept" disabled />
+                            <div class="requestText"> @ViewBag.details.VPN_userDept </div>
                         </td>
                         <td class="form">
                             <h5>User Status Type</h5>
-                            <input type="text" value="@ViewBag.details.VPN_userStatus" disabled />
+                            <div class="requestText"> @ViewBag.details.VPN_userStatus </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="form">
                             <h5>User Code</h5>
-                            <input type="text" value="@ViewBag.details.VPN_userCode" disabled />
+                            <div class="requestText"> @ViewBag.details.VPN_userCode </div>
                         </td>
                     </tr>
                 </table>
@@ -85,23 +85,23 @@ a
                     <tr>
                         <td class="form">
                             <h5>Company Name</h5>
-                            <input type="text" value="@ViewBag.details.Company_Name" disabled />
+                            <div class="requestText"> @ViewBag.details.Company_Name </div>
                         </td>
                         <td class="form">
                             <div id="compform">
                                 <h5>Company Other</h5>
-                                <input type="text" value="@ViewBag.details.Company_Other" disabled />
+                                <div class="requestText"> @ViewBag.details.Company_Other </div>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="form">
                             <h5>Office Location</h5>
-                            <input type="text" value="@ViewBag.details.Office_Location" disabled />
+                            <div class="requestText"> @ViewBag.details.Office_Location </div>
                         </td>
                         <td class="form">
                             <h5>Office Address</h5>
-                            <input type="text" value="@ViewBag.details.Office_Address" disabled />
+                            <div class="requestText"> @ViewBag.details.Office_Address </div>
                         </td>
                     </tr>
                 </table>
@@ -115,7 +115,7 @@ a
                     <tr>
                         <td class="form">
                             <h5>Machine Owner</h5>
-                            <input type="text" value="@ViewBag.details.Machine_Owner" disabled />
+                            <div class="requestText"> @ViewBag.details.Machine_Owner </div>
                         </td>
                     </tr>
                 </table>
@@ -145,11 +145,11 @@ a
                     <tr>
                         <td class="form">
                             <h5>VPN Start Date</h5>
-                            <input type="text" value="@ViewBag.details.VPN_accessStart" disabled />
+                            <div class="requestText"> @ViewBag.details.VPN_accessStart </div>
                         </td>
                         <td class="form">
                             <h5>VPN End Date</h5>
-                            <input type="text" value="@ViewBag.details.VPN_accessEnd" disabled />
+                            <div class="requestText"> @ViewBag.details.VPN_accessEnd </div>
                         </td>
                 </table>
             </fieldset>
@@ -162,11 +162,11 @@ a
                     <tr>
                         <td class="form">
                             <h5>Manager/Supervisor of VPN User</h5>
-                            <input type="text" value="@ViewBag.details.Manager" disabled />
+                            <div class="requestText"> @ViewBag.details.Manager </div>
                         </td>
                         <td class="form">
                             <h5>Date Submited</h5>
-                            <input type="text" value="@ViewBag.details.DateSubmitted" disabled />
+                            <div class="requestText"> @ViewBag.details.DateSubmitted </div>
                         </td>
                 </table>
             </fieldset>
