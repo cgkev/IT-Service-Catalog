@@ -5,11 +5,11 @@
 }
 <script>
 
-jQuery(document).ready(function ($) {
-    $(".clickable-row").click(function () {
-        window.document.location = $(this).data("href");
+    jQuery(document).ready(function ($) {
+        $(".clickable-row").click(function () {
+            window.document.location = $(this).data("href");
+        });
     });
-});
 </script>
 
 
@@ -19,23 +19,27 @@ jQuery(document).ready(function ($) {
 <h1>Review Requests</h1>
 
 <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Request Type</th>
-      <th scaope="col">Request ID</th>
-      <th scaope="col">Requester</th>
-      <th scope="col">Date Submitted</th>
-    </tr>
-  </thead>
-  <tbody class="hoverTable">
-  @foreach (var item in ViewBag.list)
-  {
-    <tr class='clickable-row' data-href="/Portal/ReviewRequest/@item.VPN_requestID">
-      <td>VPN Access</td>
-      <td>@item.VPN_requestID</td>
-      <td>@item.VPN_recipientFirst @item.VPN_recipientLast</td>
-      <td>@item.DateSubmitted</td>
-    </tr>
-  }
-  </tbody>
+    <thead>
+        <tr>
+            <th scope="col">Request Type</th>
+            <th scaope="col">Request ID</th>
+            <th scaope="col">Requester</th>
+            <th scope="col">Date Submitted</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody class="hoverTable">
+        @foreach (var item in ViewBag.list)
+        {
+            <tr class='clickable-row' data-href="/Portal/ReviewRequest/@item.VPN_requestID">
+                <td>VPN Access</td>
+                <td>@item.VPN_requestID</td>
+                <td>@item.VPN_recipientFirst @item.VPN_recipientLast</td>
+                <td>@item.DateSubmitted</td>
+                <td>
+                    <a class="btn btn-primary" href="/Portal/ReviewRequest/@item.VPN_requestID" role="button">Link</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
