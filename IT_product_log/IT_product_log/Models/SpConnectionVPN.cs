@@ -13,8 +13,9 @@ namespace IT_product_log.Models
     public class SpConnectionVPN
     {
         //server details
-        string SiteUrl = "http://qtcserver:80/Zainab13";
-        string ListName = "VPN-Request-list";
+        string SiteUrl = "http://qtcserver:80/Final";
+
+        string ListName = "VPN Request List";
         string TaskListName = "Tasks";
         string ApproversListName = "Approvers";
 
@@ -209,7 +210,17 @@ namespace IT_product_log.Models
 
             //modeling the query data into VpnRequest model 
             List<VpnRequest> currentRequests = new List<VpnRequest>();
-            currentRequests = loadList(currentRequests,col);
+            try
+            {
+                currentRequests = loadList(currentRequests, col);
+            }
+            catch (System.ArgumentNullException e)
+            {
+                //sleep for 5 seconds then refresh page
+                System.Threading.Thread.Sleep(5000);
+                getMyRequests();
+            }
+
             return currentRequests;
         }
 
@@ -266,7 +277,7 @@ namespace IT_product_log.Models
                 <Query>
                     <Where>
                         <Eq>
-                            <FieldRef Name = 'User' LookupId ='True'/>
+                            <FieldRef Name = 'Users' LookupId ='True'/>
                             <Value Type ='Lookup'>" + userValue.LookupId + @"</Value>
                         </Eq>
                     </Where>
@@ -309,7 +320,7 @@ namespace IT_product_log.Models
 
                 pendingRequests = loadList(pendingRequests, col);
             }
-                
+
             if (isItManager == true)
             {
                 camlQuery = new CamlQuery();
@@ -329,7 +340,7 @@ namespace IT_product_log.Models
                 clientContext.ExecuteQuery();
 
                 pendingRequests = loadList(pendingRequests, col);
-            }        
+            }
 
             return pendingRequests;
         }
@@ -339,7 +350,7 @@ namespace IT_product_log.Models
             //work in progress 
             //current idea is a work around - storing the related Request's ID in Task comments 
 
-            
+
             ClientContext clientContext = new ClientContext(SiteUrl);
 
             ListItem taskItem = null;
@@ -370,28 +381,26 @@ namespace IT_product_log.Models
             ListItemCollection col = taskList.GetItems(camlQuery);
             clientContext.Load(col);
             clientContext.ExecuteQuery();
-           
+
 
             foreach (ListItem current in col)
             {
                 System.Diagnostics.Debug.WriteLine("Entry: ");
                 System.Diagnostics.Debug.WriteLine(current["ID"]);
             }
-            
-           
-            
+
+
+
         }
 
-        private List<VpnRequest> loadList(List<VpnRequest> currentRequests,ListItemCollection col)
+        private List<VpnRequest> loadList(List<VpnRequest> currentRequests, ListItemCollection col)
         {
             //this method takes a ListItemCollection and converts it into a list of VpnRequest (A model Kevin created)
             //if an ongoing list is passed in, requests are added
             //if there is no ongoing list, pass in an empty List<VpnRequest>
-
             ClientContext clientContext = new ClientContext(SiteUrl);
             List spList = clientContext.Web.Lists.GetByTitle(ListName);
             clientContext.Load(spList);
-
             foreach (ListItem item in col)
             {
                 clientContext.Load(item);
@@ -422,8 +431,8 @@ namespace IT_product_log.Models
 
                 currentRequests.Add(temp);
             }
-
             return currentRequests;
         }
+
     }
 }
