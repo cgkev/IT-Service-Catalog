@@ -47,17 +47,14 @@ label, input[name="Manager"] {
 
 
     input.error {
-        font-weight: bold;
         border: 2px solid #f23;
     }
 
 select.error {
-    font-weight: bold;
     border: 2px solid #f23;
 }
 
 textarea.error {
-    font-weight: bold;
     border: 2px solid #f23;
 }
 
