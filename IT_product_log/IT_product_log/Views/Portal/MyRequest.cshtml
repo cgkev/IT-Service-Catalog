@@ -4,6 +4,7 @@
     ViewBag.Title = "VPNRequestView";
 }
 <link rel="stylesheet" type="text/css" href="~/CSS/RequestStyle.css">
+
 <script>
     $(function () {
         $("a.req-status").each(function () {
@@ -13,11 +14,11 @@
         });
     });
 </script>
-a
 
 <div class="center fiftyPercent">
-    <h1>Review Request - @ViewBag.id</h1>
-    <a href="#" class="btn bootstrap-button req-status">@ViewBag.details.VPN_requestStatus </a>
+    <h1>My Request - @ViewBag.id</h1>
+    <a href="#" style="font-size:medium;" class="btn bootstrap-button req-status">@ViewBag.details.VPN_requestStatus</a>
+    <br/>
     <table>
         <tbody>
             <fieldset>

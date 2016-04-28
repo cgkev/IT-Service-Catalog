@@ -15,9 +15,8 @@ table {
 }
 
 .fiftyPercent{
-    width: 50%;
+    width: 71%;
     margin: 0 auto; 
-    align-content: center;
 }
 
 
@@ -34,3 +33,7 @@ h1 {
 }
 
 
+h5 {
+    font-weight: bold;
+    font-size: medium;
+}
