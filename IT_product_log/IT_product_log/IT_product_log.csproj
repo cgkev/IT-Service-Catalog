@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\reqListTab.css" />
     <Content Include="CSS\jquery-ui.css" />
     <Content Include="CSS\jquery-ui33333.css" />
     <Content Include="CSS\QTC.css" />

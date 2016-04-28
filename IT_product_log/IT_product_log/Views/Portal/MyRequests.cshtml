@@ -1,51 +1,152 @@
 ﻿@model IT_product_log.Models.VpnRequest
-
 @{
     ViewBag.Title = "My Requests";
 }
-
 <script>
-    $(function () {
-        $("a.req-status").each(function () {
-            if ($(this).text() == "Approved") $(this).addClass("btn-success btn-block");
-            else if ($(this).text() == "Denied") $(this).addClass("btn-danger btn-block");
-            else $(this).addClass("btn-warning btn-block");
+    $(document).ready(function () {
+        $(function () {
+            $("a.req-status").each(function () {
+                if ($(this).text() == "Approved") $(this).addClass("btn-success btn-block");
+                else if ($(this).text() == "Denied") $(this).addClass("btn-danger btn-block");
+                else $(this).addClass("btn-warning btn-block");
+            });
         });
+
+        $(document).ready(function ($) {
+            $(".clickable-row").click(function () {
+                window.document.location = $(this).data("href");
+            });
+        });
+
+        //displays the requested table.......
+        $('li').click(function () {
+            var newid = $('#selectedField').attr('name');
+            var selectedid = $('#' + this.id).attr('name');
+            if (!(newid === selectedid) && selectedid != '') {
+                $('#selectedField').attr('id', 'req' + newid);
+                $('section:visible').slideUp();
+                $('#content' + selectedid).slideDown();
+                this.id = 'selectedField';
+            }
+        });
+
     });
 
-   
-    jQuery(document).ready(function ($) {
-        $(".clickable-row").click(function () {
-            window.document.location = $(this).data("href");
-        });
-    });
 </script>
 <link rel="stylesheet" type="text/css" href="~/CSS/RequestsStyle.css">
 
-
-
-
-<h1>My Requests</h1>
-
-<table class="table" >
-    <thead class="thead-inverse">
-        <tr>
-            <th scope="col">Request Type</th>
-            <th scope="col">Request ID</th>
-            <th scope="col">Date Submitted</th>
-            <th scope="col">Status</th>
-        </tr>
-    </thead>
-    <tbody  class="hoverTable">
-        @foreach (var item in ViewBag.list)
-        {
-            <tr class="clickable-row" data-href="/Portal/MyRequest/@item.VPN_requestID">
-                <td>VPN Access</td>
-                <td>@item.VPN_requestID</td>
-                <td>@item.DateSubmitted</td>
-                <td width="30%"><a href="~/Portal/MyRequest/@item.VPN_requestID" class="btn bootstrap-button req-status">@item.VPN_requestStatus</a></td>
+<header>
+    <h1>My Requests</h1>
+    <nav>
+        <ul>
+            <li id="selectedField" name="Pending"><a href="Javascript:void(0)">Pending</a></li>
+            <li id="reqApproved" name="Approved"><a href="Javascript:void(0)">Approved</a></li>
+            <li id="reqRejected" name="Rejected"><a href="Javascript:void(0)">Rejected</a></li>
+            <li id="reqAll" name="All"><a href="Javascript:void(0)">All Requests</a></li>
+        </ul>
+    </nav>
+</header>
+<section id="contentPending">
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th scope="col">Request Type</th>
+                <th scope="col">Request ID</th>
+                <th scope="col">Date Submitted</th>
+                <th scope="col">Status</th>
             </tr>
-        }
-       
-    </tbody>
-</table>
+        </thead>
+        <tbody class="hoverTable">
+            <!-- Change the viewbag here to pending requests -->
+            @foreach (var item in ViewBag.list)
+            {
+                <tr class="clickable-row" data-href="/Portal/MyRequest/@item.VPN_requestID">
+                    <td>VPN Access</td>
+                    <td>@item.VPN_requestID</td>
+                    <td>@item.DateSubmitted</td>
+                    <td width="30%"><a href="~/Portal/MyRequest/@item.VPN_requestID" class="btn bootstrap-button req-status">@item.VPN_requestStatus</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    Pending should show --- remove after lists are implemented
+</section>
+<section id="contentApproved" style="display: none;">
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th scope="col">Request Type</th>
+                <th scope="col">Request ID</th>
+                <th scope="col">Date Submitted</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody class="hoverTable">
+            <!-- Change the viewbag here to approved requests -->
+            @foreach (var item in ViewBag.list)
+            {
+                <tr class="clickable-row" data-href="/Portal/MyRequest/@item.VPN_requestID">
+                    <td>VPN Access</td>
+                    <td>@item.VPN_requestID</td>
+                    <td>@item.DateSubmitted</td>
+                    <td width="30%"><a href="~/Portal/MyRequest/@item.VPN_requestID" class="btn bootstrap-button req-status">@item.VPN_requestStatus</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    Approved should show --- remove after lists are implemented
+</section>
+<section id="contentRejected" style="display: none;">
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th scope="col">Request Type</th>
+                <th scope="col">Request ID</th>
+                <th scope="col">Date Submitted</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody class="hoverTable">
+            <!-- Change the viewbag here to Rejected requests -->
+            @foreach (var item in ViewBag.list)
+            {
+                <tr class="clickable-row" data-href="/Portal/MyRequest/@item.VPN_requestID">
+                    <td>VPN Access</td>
+                    <td>@item.VPN_requestID</td>
+                    <td>@item.DateSubmitted</td>
+                    <td width="30%"><a href="~/Portal/MyRequest/@item.VPN_requestID" class="btn bootstrap-button req-status">@item.VPN_requestStatus</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    Rejected should show --- remove after lists are implemented
+</section>
+<section id="contentAll" style="display: none;">
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th scope="col">Request Type</th>
+                <th scope="col">Request ID</th>
+                <th scope="col">Date Submitted</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody class="hoverTable">
+            <!-- Change the viewbag here to all requests -->
+            @foreach (var item in ViewBag.list)
+            {
+                <tr class="clickable-row" data-href="/Portal/MyRequest/@item.VPN_requestID">
+                    <td>VPN Access</td>
+                    <td>@item.VPN_requestID</td>
+                    <td>@item.DateSubmitted</td>
+                    <td width="30%"><a href="~/Portal/MyRequest/@item.VPN_requestID" class="btn bootstrap-button req-status">@item.VPN_requestStatus</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    All should show --- remove after lists are implemented
+</section>
