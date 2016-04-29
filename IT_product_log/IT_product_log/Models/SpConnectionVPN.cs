@@ -180,7 +180,7 @@ namespace IT_product_log.Models
             clientContext.ExecuteQuery();
         }
 
-        public List<VpnRequest> getMyRequests()
+        public List<VpnRequest> getAllMyRequests()
         {
             ClientContext clientContext = new ClientContext(SiteUrl);
             List spList = clientContext.Web.Lists.GetByTitle(ListName);
@@ -221,11 +221,173 @@ namespace IT_product_log.Models
             {
                 //sleep for 5 seconds then refresh page
                 System.Threading.Thread.Sleep(5000);
-                getMyRequests();
+                getAllMyRequests();
             }
 
             return currentRequests;
         }
+
+        public List<VpnRequest> getRejectedMyRequests()
+        {
+            ClientContext clientContext = new ClientContext(SiteUrl);
+            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            clientContext.Load(spList);
+
+            //pulling the current user's name 
+            User user = clientContext.Web.EnsureUser(HttpContext.Current.User.Identity.Name);
+            clientContext.Load(user);
+            clientContext.ExecuteQuery();
+            FieldUserValue userValue = new FieldUserValue();
+            userValue.LookupId = user.Id;
+
+            //querying all requests created by the user 
+            CamlQuery camlQuery = new CamlQuery();
+            camlQuery.ViewXml = @"
+                <View>
+                    <Query>
+                        <Where>
+                            <And>
+                                <Eq>
+                                    <FieldRef Name='Author' LookupId='True'/>
+                                    <Value Type='Lookup'>" + userValue.LookupId + @"</Value>
+                                </Eq>
+                                <BeginsWith>
+                                    <FieldRef Name = '" + internalRequestStatus + @"' LookupId = 'True'/>
+                                    <Value Type = 'Text'>Rejected by</Value>
+                                </BeginsWith>
+                            </And>
+                        </Where>
+                    </Query>
+                </View>";
+
+            ListItemCollection col = spList.GetItems(camlQuery);
+            clientContext.Load(col);
+            clientContext.ExecuteQuery();
+
+            //modeling the query data into VpnRequest model 
+            List<VpnRequest> currentRequests = new List<VpnRequest>();
+            try
+            {
+                currentRequests = loadList(currentRequests, col);
+            }
+            catch (System.ArgumentNullException e)
+            {
+                //sleep for 5 seconds then refresh page
+                System.Threading.Thread.Sleep(5000);
+                getRejectedMyRequests();
+            }
+
+            return currentRequests;
+        }
+
+        public List<VpnRequest> getApprovedMyrequests()
+        {
+            ClientContext clientContext = new ClientContext(SiteUrl);
+            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            clientContext.Load(spList);
+
+            //pulling the current user's name 
+            User user = clientContext.Web.EnsureUser(HttpContext.Current.User.Identity.Name);
+            clientContext.Load(user);
+            clientContext.ExecuteQuery();
+            FieldUserValue userValue = new FieldUserValue();
+            userValue.LookupId = user.Id;
+
+            //querying all requests created by the user 
+            CamlQuery camlQuery = new CamlQuery();
+            camlQuery.ViewXml = @"
+                <View>
+                    <Query>
+                        <Where>
+                            <And>
+                                <Eq>
+                                    <FieldRef Name='Author' LookupId='True'/>
+                                    <Value Type='Lookup'>" + userValue.LookupId + @"</Value>
+                                </Eq>
+                                <Eq>
+                                    <FieldRef Name = '" + internalRequestStatus + @"' LookupId = 'True'/>
+                                    <Value Type = 'Text'>Approved</Value>
+                                </Eq>
+                            </And>
+                        </Where>
+                    </Query>
+                </View>";
+
+            ListItemCollection col = spList.GetItems(camlQuery);
+            clientContext.Load(col);
+            clientContext.ExecuteQuery();
+
+            //modeling the query data into VpnRequest model 
+            List<VpnRequest> currentRequests = new List<VpnRequest>();
+            try
+            {
+                currentRequests = loadList(currentRequests, col);
+            }
+            catch (System.ArgumentNullException e)
+            {
+                //sleep for 5 seconds then refresh page
+                System.Threading.Thread.Sleep(5000);
+                getApprovedMyrequests();
+            }
+
+            return currentRequests;
+        }
+
+        //gets a list of requests created by the current user currently in a status that is pending a manager approval
+        public List<VpnRequest> getPendingMyRequests()
+        {
+            ClientContext clientContext = new ClientContext(SiteUrl);
+            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            clientContext.Load(spList);
+
+            //pulling the current user's name 
+            User user = clientContext.Web.EnsureUser(HttpContext.Current.User.Identity.Name);
+            clientContext.Load(user);
+            clientContext.ExecuteQuery();
+            FieldUserValue userValue = new FieldUserValue();
+            userValue.LookupId = user.Id;
+
+            //querying all requests created by the user 
+            CamlQuery camlQuery = new CamlQuery();
+            camlQuery.ViewXml = @"
+                <View>
+                    <Query>
+                        <Where>
+                            <And>
+                                <Eq>
+                                    <FieldRef Name='Author' LookupId='True'/>
+                                    <Value Type='Lookup'>" + userValue.LookupId + @"</Value>
+                                </Eq>
+                                <BeginsWith>
+                                    <FieldRef Name = '" + internalRequestStatus + @"' LookupId = 'True'/>
+                                    <Value Type = 'Text'>Pending</Value>
+                                </BeingsWith>
+                            </And>
+                        </Where>
+                    </Query>
+                </View>";
+
+            ListItemCollection col = spList.GetItems(camlQuery);
+            clientContext.Load(col);
+            clientContext.ExecuteQuery();
+
+            //modeling the query data into VpnRequest model 
+            List<VpnRequest> currentRequests = new List<VpnRequest>();
+            try
+            {
+                currentRequests = loadList(currentRequests, col);
+            }
+            catch (System.ArgumentNullException e)
+            {
+                //sleep for 5 seconds then refresh page
+                System.Threading.Thread.Sleep(5000);
+                getPendingMyRequests();
+            }
+
+            return currentRequests;
+        }
+
+
 
         public List<VpnRequest> getPendingRequests()
         {
