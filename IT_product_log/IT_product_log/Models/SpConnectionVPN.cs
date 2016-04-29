@@ -58,6 +58,9 @@ namespace IT_product_log.Models
         string internalTaskComments = "Comments";
         string internalTaskStatus = "Status";
         string internalTasksApproverComments = "_ModerationComments";
+        string internalTaskTitle = "Title";
+        string internalTaskPercentComplete = "PercentComplete";
+        string internalTaskCheckmark = "Checkmark";
 
         //internal names for the Approvers List
         string internalApproversUser = "User";
@@ -347,10 +350,6 @@ namespace IT_product_log.Models
 
         public void ReviewRequest(int id, string submit, string comments)
         {
-            //work in progress 
-            //current idea is a work around - storing the related Request's ID in Task comments 
-
-
             ClientContext clientContext = new ClientContext(SiteUrl);
 
             ListItem taskItem = null;
@@ -360,37 +359,55 @@ namespace IT_product_log.Models
             clientContext.Load(vpnRequestList);
             clientContext.ExecuteQuery();
 
-            //getting the vpnReuqests workflowid
-            //ListItem currentVpnRequest = vpnRequestList.GetItemById((id - 1000).ToString());
-            //clientContext.Load(currentVpnRequest);
-            //clientContext.ExecuteQuery();
+            //get the current VPN Request 
+            ListItem currentVpnRequestItem = vpnRequestList.GetItemById(id-1000);
+            clientContext.Load(currentVpnRequestItem);
+            clientContext.ExecuteQuery();
 
-            CamlQuery camlQuery = new CamlQuery();
-            camlQuery.ViewXml = @"
-            <View> 
-                <Query>
-                    <Where> 
-                        <Eq> 
-                            <FieldRef Name = '_ModerationComments' LookupId = 'True' />
-                            <Value Type = 'Text'> " + id.ToString() + @" </Value>
-                        </Eq>
-                    </Where>
-                </Query> 
-           </View>";
+            string status = (string)currentVpnRequestItem[internalRequestStatus];
 
-            ListItemCollection col = taskList.GetItems(camlQuery);
+            if (status.Equals("Pending Manager Approval") == true)
+            {
+                status = "Manager Approval";
+            }
+            else if (status.Equals("Pending Security Manager Approval") == true)
+            {
+                status = "Security Approval";
+            }
+            else if (status.Equals("Pending IT Manager Approval") == true)
+            {
+                status = "IT Manager Approval";
+            }
+            string taskTitle = "VPN Request/" + status + "/" + id.ToString();
+
+            //finding the task with the same title 
+            ListItemCollection col = taskList.GetItems(new CamlQuery());
             clientContext.Load(col);
             clientContext.ExecuteQuery();
 
-
-            foreach (ListItem current in col)
+            foreach(ListItem currentTask in col)
             {
-                System.Diagnostics.Debug.WriteLine("Entry: ");
-                System.Diagnostics.Debug.WriteLine(current["ID"]);
+                if (currentTask[internalTaskTitle].Equals(taskTitle))
+                {
+                    taskItem = currentTask;
+                }
             }
 
-
-
+           //updating the task as needed
+            if (submit.Equals("Approve"))
+            {
+                taskItem[internalTaskOutcome] = "Approved";
+                
+            }
+            else //reject 
+            {
+                taskItem[internalTaskOutcome] = "Rejected";
+            }
+            taskItem[internalTaskStatus] = "Completed";
+            taskItem[internalTaskPercentComplete] = 1.0;
+            taskItem.Update();
+            
+            clientContext.ExecuteQuery();
         }
 
         private List<VpnRequest> loadList(List<VpnRequest> currentRequests, ListItemCollection col)
