@@ -42,6 +42,15 @@
                             <div class="requestText"> @ViewBag.details.VPN_recipientEmail </div>
                         </td>
                     </tr>
+                    @if (@ViewBag.details.Ext_code != 0)
+                    {
+                        <tr>
+                            <td class="form">
+                                <h5>Ext</h5>
+                                <div class="requestText"> @ViewBag.details.Ext_code </div>
+                            </td>
+                        </tr>
+                    }
                 </table>
             </fieldset>
             <fieldset>
@@ -64,6 +73,13 @@
                             <h5>User Code</h5>
                             <div class="requestText"> @ViewBag.details.VPN_userCode </div>
                         </td>
+                        @if (@ViewBag.details.VPN_userStatus != @ViewBag.details.Agency)
+                        {
+                            <td class="form">
+                                <h5>Agency</h5>
+                                <div class="requestText"> @ViewBag.details.Agency </div>
+                            </td>
+                        }
                     </tr>
                 </table>
             </fieldset>
@@ -77,12 +93,17 @@
                             <h5>Company Name</h5>
                             <div class="requestText"> @ViewBag.details.Company_Name </div>
                         </td>
-                        <td class="form">
-                            <div id="compform">
-                                <h5>Company Other</h5>
-                                <div class="requestText"> @ViewBag.details.Company_Other </div>
-                            </div>
-                        </td>
+                        @if (@ViewBag.details.Company_Name != @ViewBag.details.Company_Other)
+                        {
+                            <td class="form">
+                                <div id="compform">
+                                    <h5>Company Other</h5>
+                                    <div class="requestText">
+                                        @ViewBag.details.Company_Other
+                                    </div>
+                                </div>
+                            </td>
+                        }
                     </tr>
                     <tr>
                         <td class="form">
