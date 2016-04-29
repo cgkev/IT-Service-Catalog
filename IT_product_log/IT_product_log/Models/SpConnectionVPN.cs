@@ -67,7 +67,7 @@ namespace IT_product_log.Models
         string internalApproversTitle = "Title";
 
         //the possible values of Approvers List, Title column 
-        string spNameForSecurity = "Compliance Officer";
+        string spNameForSecurity = "Security Manager";
         string spNameForITManager = "IT Manager";
 
         //possible requests statuses 
@@ -302,7 +302,6 @@ namespace IT_product_log.Models
                     isSecurity = true;
                 }
             }
-
             if (isSecurity == true)
             {
                 camlQuery = new CamlQuery();
@@ -372,7 +371,7 @@ namespace IT_product_log.Models
             }
             else if (status.Equals("Pending Security Manager Approval") == true)
             {
-                status = "Security Approval";
+                status = "Security Manager Approval";
             }
             else if (status.Equals("Pending IT Manager Approval") == true)
             {
@@ -397,16 +396,19 @@ namespace IT_product_log.Models
             if (submit.Equals("Approve"))
             {
                 taskItem[internalTaskOutcome] = "Approved";
-                
+                taskItem[internalTaskStatus] = "Approved";
+
             }
             else //reject 
             {
                 taskItem[internalTaskOutcome] = "Rejected";
+                taskItem[internalTaskStatus] = "Rejected";
             }
-            taskItem[internalTaskStatus] = "Completed";
             taskItem[internalTaskPercentComplete] = 1.0;
+            taskItem["Completed"] = true;
+            taskItem["FormData"] = "Completed";
+
             taskItem.Update();
-            
             clientContext.ExecuteQuery();
         }
 
