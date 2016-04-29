@@ -429,8 +429,8 @@ namespace IT_product_log.Models
                 temp.VPN_requestID = Int32.Parse((string)item[internalID]);
                 temp.DateSubmitted = ((DateTime)item[internalCreated]).ToString("MM/dd/yyyy");
                 temp.VPN_requestStatus = (string)item[internalRequestStatus];
-                temp.VPN_accessEnd = (DateTime)item[internalAccessEnd];
-                temp.VPN_accessStart = (DateTime)item[internalAccessStart];
+                temp.VPN_accessEnd = ((DateTime)item[internalAccessEnd]).ToString();
+                temp.VPN_accessStart = ((DateTime)item[internalAccessStart]).ToString();
                 temp.VPN_recipientFirst = (string)item[internalVpnRecipientFirst];
                 temp.VPN_recipientLast = (string)item[internalVpnRecipientLast];
                 temp.Work_Phone = (string)item[internalWorkPhone];

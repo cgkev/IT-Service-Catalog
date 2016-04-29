@@ -122,6 +122,50 @@ namespace IT_product_log.Controllers
 
             return RedirectToAction("/ReviewRequests", "Portal");
         }
+
+        //------------------------IT added fields for the form and submission----------------------------------------------------------
+
+        [HttpGet]
+        public ViewResult ReviewRequestIT(int id)
+        {
+            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
+            ViewBag.id = id;
+            ViewBag.details = storage[id - 1001];
+            ViewBag.radiusSelector = new string[] { "", "Full Access", "QTC Web Access", "R CRM Contractor", "R Indexer Remote", "R LMCO Support", "R Neudesic Contractor", "R QA Remote", "R SP Portal Contractor", "R Telehealth", "REVPN QTC Transcribers", "Other" };
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ReviewRequestIT(int id, string submit, string comments)
+        {
+            System.Diagnostics.Debug.WriteLine("param " + id + " " + submit + " " + comments);
+
+
+
+
+            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
+            for (int i = 0; i < storage.Count; i++)
+            {
+                if (storage[i].VPN_requestID == id)
+                {
+                    if (submit.Equals("Approve"))
+                        storage[i].VPN_requestStatus = "Approved";
+                    else
+                        storage[i].VPN_requestStatus = "Denied";
+
+                    System.Diagnostics.Debug.WriteLine("asdasd " + storage[i].VPN_requestID + " " + storage[i].VPN_requestStatus);
+
+                }
+            }
+
+
+
+            return RedirectToAction("/ReviewRequests", "Portal");
+        }
+
+        //------------------------End of IT added fields for the form and submission----------------------------------------------------------
+
     }
 }
 

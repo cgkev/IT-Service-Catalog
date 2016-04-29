@@ -1,11 +1,16 @@
 
+.mainStyle{
+    text-align:center;
+}
+
+
 
 /* Image Box Style */
 #mainwrapper .box {
-    float: left;
+    display: inline-block;
     cursor: pointer;
     height: 167px;
-    margin: 5px;
+    margin: 0 auto;
     position: relative;
     width: 265px;
 }

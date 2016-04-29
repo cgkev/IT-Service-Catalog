@@ -24,11 +24,11 @@ namespace IT_product_log.Models
         // -----------FORM Fields-----------
         [Required]
         [Display(Name = "First name")]
-        public string VPN_recipientFirst { get; set; }//?? is the requestor typing this??
+        public string VPN_recipientFirst { get; set; }//?? is the requestor typing this??Yes
 
         [Required]
         [Display(Name = "Last name")]
-        public string VPN_recipientLast { get; set; }//??is the requestor typing this??
+        public string VPN_recipientLast { get; set; }//??is the requestor typing this??Yes
 
         [Required]
         public string VPN_userStatus { get; set; }// is this hired.
@@ -46,20 +46,20 @@ namespace IT_product_log.Models
 
         [Required]
         [Display(Name = "ex: user@qtcm.com")]
-        public string VPN_recipientEmail { get; set; }//?? is the requestor typing this??
+        public string VPN_recipientEmail { get; set; }//?? is the requestor typing this??Yes
 
         [Required]
-        public string Company_Name { get; set; }// Company Name here but what values?    
+        public string Company_Name { get; set; }// Company Name here but what values  
 
         [Required]
         [Display(Name = "Enter other company name")]
-        public string Company_Other { get; set; }// What is this meant to hold?
+        public string Company_Other { get; set; }// 
 
         [Required]
-        public string Office_Location { get; set; }//isnt this the same as address?
+        public string Office_Location { get; set; }//isnt this the same as address
 
         [Required]
-        public string Office_Address { get; set; }// the address? 
+        public string Office_Address { get; set; }// the address 
 
         [Required]
         public string Machine_Owner { get; set; }// values meant to hold
@@ -74,20 +74,27 @@ namespace IT_product_log.Models
 
         [Required]
         [Display(Name = "Start Date")]
-        public DateTime VPN_accessEnd { get; set; }// date on this one
+        public string VPN_accessEnd { get; set; }// this used to be DateTime I hope nothing breaks
 
         [Required]
         [Display(Name = "End Date")]
-        public DateTime VPN_accessStart { get; set; }// same as the one above
+        public string VPN_accessStart { get; set; }// this used to be DateTime I hope nothing breaks
 
         [Required]
         public string Manager { get; set; }// okay this uses LDAP?
+                                           //------------New updates to this model-----------------------------------------
 
+        [Display(Name = "Ext: 999")]
+        public int Ext_code { get; set; }
 
+        [Display(Name = " ")]
+        public string Agency { get; set; }
+
+        //-------------end of new updates-----------------------------------------------
         // -----------IT Manager Approval Fields-----------
-        public string VPN_profileSelect { get; set; }//how are we getting these fields
-        public string Radius_Profile_Select { get; set; }// this one is a ditto
-        public string Radius_Profile_Other { get; set; }//Need to figure what this is for
+        public string VPN_profileSelect { get; set; }
+        public string Radius_Profile_Select { get; set; }
+        public string Radius_Profile_Other { get; set; }
 
 
     }
