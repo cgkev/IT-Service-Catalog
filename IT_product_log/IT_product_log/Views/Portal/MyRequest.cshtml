@@ -18,7 +18,105 @@
 <div class="center fiftyPercent">
     <h1>My Request - @ViewBag.id</h1>
     <a href="#" style="font-size:medium;" class="btn bootstrap-button req-status">@ViewBag.details.VPN_requestStatus</a>
-    <br/>
+    <table>
+        <tr>
+            <!-- This should always be green as its the start-->
+            <td><img src="~/images/Green.png" style="width:40px; height:40px;" /></td>
+
+            <!-- This one is for tha Manager-->
+            @if ( @ViewBag.details.VPN_requestStatus == "Approved"
+                || @ViewBag.details.VPN_requestStatus == "Pending IT Manager Approval"
+                || @ViewBag.details.VPN_requestStatus == "Pending Security Manager Approval"
+                || @ViewBag.details.VPN_requestStatus == "Rejected by Security Manager"
+                || @ViewBag.details.VPN_requestStatus == "Rejected by IT Manager")
+            {
+                <td><img src="~/images/Green.png" style="width:40px; height:40px;" /></td>
+            }
+            else
+            {
+                if ( @ViewBag.details.VPN_requestStatus == "Rejected by Manager")
+                {
+                    <td><img src="~/images/Red.png" style="width:40px; height:40px;" /></td>
+
+                }
+                else
+                {
+                    if (@ViewBag.details.VPN_requestStatus == "Pending Manager Approval")
+                    {
+                        <td><img src="~/images/Yellow.png" style="width:40px; height:40px;" /></td>
+
+                    }
+                    else
+                    {
+                        <td><img src="~/images/Grey.png" style="width:40px; height:40px;" /></td>
+                    }
+                }
+            }
+
+            <!-- This one is for Security Manager -->
+            @if ( @ViewBag.details.VPN_requestStatus == "Approved" 
+                || @ViewBag.details.VPN_requestStatus == "Pending IT Manager Approval" 
+                || @ViewBag.details.VPN_requestStatus == "Rejected by IT Manager")
+            {
+                <td><img src="~/images/Green.png" style="width:40px; height:40px;" /></td>
+            }
+            else
+            {
+                if ( @ViewBag.details.VPN_requestStatus == "Rejected by Security Manager")
+                {
+                    <td><img src="~/images/Red.png" style="width:40px; height:40px;" /></td>
+
+                }
+                else
+                {
+                    if (@ViewBag.details.VPN_requestStatus == "Pending Security Manager Approval")
+                    {
+                        <td><img src="~/images/Yellow.png" style="width:40px; height:40px;" /></td>
+
+                    }
+                    else
+                    {
+                        <td><img src="~/images/Grey.png" style="width:40px; height:40px;" /></td>
+                    }
+                }
+            }
+
+            <!--This one is for IT Manager -->
+            @if ( @ViewBag.details.VPN_requestStatus == "Approved")
+            {
+                <td><img src="~/images/Green.png" style="width:40px; height:40px;" /></td>
+            }
+            else
+            {
+                if ( @ViewBag.details.VPN_requestStatus == "Rejected by IT Manager")
+                {
+                    <td><img src="~/images/Red.png" style="width:40px; height:40px;" /></td>
+
+                }
+                else
+                {
+                    if (@ViewBag.details.VPN_requestStatus == "Pending IT Manager Approval")
+                    {
+                        <td><img src="~/images/Yellow.png" style="width:40px; height:40px;" /></td>
+
+                    }
+                    else
+                    {
+                        <td><img src="~/images/Grey.png" style="width:40px; height:40px;" /></td>
+                    }
+                }
+            }
+            <!-- this is the last one if accepted should be green-->
+            @if (@ViewBag.details.VPN_requestStatus == "Approved")
+            {
+                <td><img src="~/images/Green.png" style="width:40px; height:40px;" /></td>
+            }
+            else
+            {
+                <td><img src="~/images/Grey.png" style="width:40px; height:40px;" /></td>
+            }
+        </tr>
+    </table>
     <table>
         <tbody>
             <fieldset>
@@ -55,12 +153,12 @@
                     </tr>
                     @if (@ViewBag.details.Ext_code != 0)
                     {
-                    <tr>
-                        <td class="form">
-                            <h5>Ext</h5>
-                            <div class="requestText"> @ViewBag.details.Ext_code </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="form">
+                                <h5>Ext</h5>
+                                <div class="requestText"> @ViewBag.details.Ext_code </div>
+                            </td>
+                        </tr>
                     }
                 </table>
             </fieldset>
@@ -84,12 +182,12 @@
                             <h5>User Code</h5>
                             <div class="requestText"> @ViewBag.details.VPN_userCode </div>
                         </td>
-                        @if( @ViewBag.details.VPN_userStatus != @ViewBag.details.Agency) 
-                            {
-                        <td class="form">
-                            <h5>Agency</h5>
-                            <div class="requestText"> @ViewBag.details.Agency </div>
-                        </td>
+                        @if (@ViewBag.details.VPN_userStatus != @ViewBag.details.Agency)
+                        {
+                            <td class="form">
+                                <h5>Agency</h5>
+                                <div class="requestText"> @ViewBag.details.Agency </div>
+                            </td>
                         }
 
                     </tr>
