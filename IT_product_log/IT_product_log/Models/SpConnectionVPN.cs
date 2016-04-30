@@ -50,6 +50,8 @@ namespace IT_product_log.Models
         string internalID = "Request_x0020_ID";
         string internalCreated = "Created";
         string internalRequestStatus = "VPN_x0020_Request_x0020_Status";
+        string internalAgency = "Agency";
+        string internalExtCode = "Telephone_x0020_Extension";
 
         //internal names for the Tasks list
         string internalTasksAssignedTo = "AssingedTo";
@@ -175,6 +177,8 @@ namespace IT_product_log.Models
             listItem[internalOfficeLocation] = input.Office_Location;
             listItem[internalOfficeAddress] = input.Office_Address;
             listItem[internalMachineOwner] = input.Machine_Owner;
+            listItem[internalExtCode] = input.Ext_code;
+            listItem[internalAgency] = input.Agency;
 
             listItem.Update();
             clientContext.ExecuteQuery();
@@ -387,8 +391,7 @@ namespace IT_product_log.Models
             return currentRequests;
         }
 
-
-
+        //gets a list of requests currently pending review for the current user
         public List<VpnRequest> getPendingRequests()
         {
             //loading up all 3 lists 
@@ -609,6 +612,8 @@ namespace IT_product_log.Models
                 temp.Machine_Owner = (string)item[internalMachineOwner];
                 temp.VPN_userStatus = (string)item[internalUserStatus];
                 temp.VPN_requestor = ((FieldUserValue)item[internalCreatedBy]).LookupValue;
+                temp.Ext_code = Convert.ToInt32((double)item[internalExtCode]);
+                temp.Agency = (string)item[internalAgency];
 
                 currentRequests.Add(temp);
             }
@@ -634,7 +639,7 @@ namespace IT_product_log.Models
                      }
                 }
 
-                if (swapped == true)
+                if (swapped == false)
                 {
                     break;
                 }
