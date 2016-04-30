@@ -58,7 +58,7 @@
         </thead>
         <tbody class="hoverTable">
             <!-- Change the viewbag here to pending requests -->
-            @foreach (var item in ViewBag.list)
+            @foreach (var item in ViewBag.RequestPending)
             {
                 <tr class="clickable-row" data-href="/Portal/MyRequest/@item.VPN_requestID">
                     <td>VPN Access</td>
@@ -84,7 +84,7 @@
         </thead>
         <tbody class="hoverTable">
             <!-- Change the viewbag here to approved requests -->
-            @foreach (var item in ViewBag.list)
+            @foreach (var item in ViewBag.RequestApproved)
             {
                 <tr class="clickable-row" data-href="/Portal/MyRequest/@item.VPN_requestID">
                     <td>VPN Access</td>
@@ -110,7 +110,7 @@
         </thead>
         <tbody class="hoverTable">
             <!-- Change the viewbag here to Rejected requests -->
-            @foreach (var item in ViewBag.list)
+            @foreach (var item in ViewBag.RequestRejected)
             {
                 <tr class="clickable-row" data-href="/Portal/MyRequest/@item.VPN_requestID">
                     <td>VPN Access</td>
@@ -136,7 +136,7 @@
         </thead>
         <tbody class="hoverTable">
             <!-- Change the viewbag here to all requests -->
-            @foreach (var item in ViewBag.list)
+            @foreach (var item in ViewBag.RequestAll)
             {
                 <tr class="clickable-row" data-href="/Portal/MyRequest/@item.VPN_requestID">
                     <td>VPN Access</td>
