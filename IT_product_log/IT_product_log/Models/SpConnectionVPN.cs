@@ -506,7 +506,7 @@ namespace IT_product_log.Models
                 pendingRequests = loadList(pendingRequests, col);
             }
 
-            return pendingRequests;
+            return orderList(pendingRequests);
         }
 
         public void ReviewRequest(int id, string submit, string comments)
@@ -611,6 +611,33 @@ namespace IT_product_log.Models
                 temp.VPN_requestor = ((FieldUserValue)item[internalCreatedBy]).LookupValue;
 
                 currentRequests.Add(temp);
+            }
+            return currentRequests;
+        }
+
+        private List<VpnRequest> orderList (List<VpnRequest> currentRequests)
+        {
+            //using bubble sort algorithm 
+            int len = currentRequests.Count;
+            while(true)
+            {
+                bool swapped = false;
+                for (int i = 1 ; i < len ; i++)
+                {
+                    if(currentRequests[i-1].VPN_requestID > currentRequests[i].VPN_requestID)
+                    {
+                        //swap the two 
+                        VpnRequest temp = currentRequests[i - 1];
+                        currentRequests[i - 1] = currentRequests[i];
+                        currentRequests[i] = temp;
+                        swapped = true;
+                     }
+                }
+
+                if (swapped == true)
+                {
+                    break;
+                }
             }
             return currentRequests;
         }
