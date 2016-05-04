@@ -53,7 +53,11 @@ namespace IT_product_log.Controllers
             return View();
         }
 
-       
+        public ViewResult ReviewerThankYou()
+        {
+            return View();
+        }
+
         // -----------------MyRequest-----------------
 
         public ViewResult MyRequests()
@@ -133,7 +137,7 @@ namespace IT_product_log.Controllers
             SpConnectionVPN spConnection = new SpConnectionVPN();
             spConnection.ReviewRequest(id, submit, comments);
 
-            return RedirectToAction("/ReviewRequests", "Portal");
+            return RedirectToAction("/ReviewerThankYou", "Portal");
         }
 
         //------------------------IT added fields for the form and submission----------------------------------------------------------
