@@ -55,7 +55,7 @@
             <tr>
                 <th scope="col">Request Type</th>
                 <th scaope="col">Request ID</th>
-                <th scaope="col">Requester</th>
+                <th scaope="col">Requester name</th>
                 <th scope="col">Date Submitted</th>
                 <th scope="col"></th>
             </tr>
@@ -64,13 +64,13 @@
             <!-- Change the viewbag here -->
             @foreach (var item in ViewBag.list)
             {
-                <tr class='clickable-row' data-href="/Portal/ReviewRequest/@item.VPN_requestID">
+                <tr class='clickable-row' data-href="/Portal/ReviewRequest/@item.VPN_requestID" title="Click Here To Review Request">
                     <td>VPN Access</td>
                     <td>@item.VPN_requestID</td>
                     <td>@item.VPN_recipientFirst @item.VPN_recipientLast</td>
                     <td>@item.DateSubmitted</td>
                     <td>
-                        <a class="btn btn-primary" href="/Portal/ReviewRequest/@item.VPN_requestID" role="button">Link</a>
+                        <a class="btn btn-primary" href="/Portal/ReviewRequest/@item.VPN_requestID" role="button">Click to Review Request</a>
                     </td>
                 </tr>
             }
@@ -85,7 +85,7 @@
             <tr>
                 <th scope="col">Request Type</th>
                 <th scaope="col">Request ID</th>
-                <th scaope="col">Requester</th>
+                <th scaope="col">Requester name</th>
                 <th scope="col">Date Submitted</th>
                 <th scope="col"></th>
             </tr>
@@ -95,13 +95,13 @@
 
             @foreach (var item in ViewBag.list)
             {
-                <tr class='clickable-row' data-href="/Portal/ReviewRequest/@item.VPN_requestID">
+                <tr class='clickable-row' data-href="/Portal/ReviewRequest/@item.VPN_requestID"title="Click Here To Review Request">
                     <td>VPN Access</td>
                     <td>@item.VPN_requestID</td>
                     <td>@item.VPN_recipientFirst @item.VPN_recipientLast</td>
                     <td>@item.DateSubmitted</td>
                     <td>
-                        <a class="btn btn-primary" href="/Portal/ReviewRequest/@item.VPN_requestID" role="button">Link</a>
+                        <a class="btn btn-primary" href="/Portal/ReviewRequest/@item.VPN_requestID" role="button">Click to Review Request</a>
                     </td>
                 </tr>
             }
