@@ -55,7 +55,7 @@ namespace IT_product_log.Models
         string internalComments = "Reviewer_x0020_Comments";
 
         //internal names for the Tasks list
-        string internalTasksAssignedTo = "AssingedTo";
+        string internalTasksAssignedTo = "AssignedTo";
         string internalTaskOutcome = "WorkflowOutcome";
         string internalTaskVpnRequestID = "VPN_x0020_Request_x0020_ID";
         string internalTaskComments = "Comments";
@@ -361,15 +361,13 @@ namespace IT_product_log.Models
         }
 
         //gets a list of requests currently pending review for the current user
-        public List<VpnRequest> getPendingRequests()
+        public List<VpnRequest> getPendingReviews()
         {
             //loading up all 3 lists 
             ClientContext clientContext = new ClientContext(SiteUrl);
             List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
-            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
             List approversList = clientContext.Web.Lists.GetByTitle(ApproversListName);
             clientContext.Load(vpnRequestList);
-            clientContext.Load(taskList);
             clientContext.Load(approversList);
 
             //pulling the current user's name
@@ -479,6 +477,61 @@ namespace IT_product_log.Models
             }
 
             return orderList(pendingRequests);
+        }
+
+        public List<VpnRequest> getApprovedReviews()
+        {
+            List<VpnRequest> returnList = new List<VpnRequest>();
+
+            ClientContext clientContext = new ClientContext(SiteUrl);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
+            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
+            clientContext.Load(vpnRequestList);
+            clientContext.Load(taskList);
+
+            //pulling the current user's name
+            User user = clientContext.Web.EnsureUser(HttpContext.Current.User.Identity.Name);
+            clientContext.Load(user);
+            clientContext.ExecuteQuery();
+            FieldUserValue userValue = new FieldUserValue();
+            userValue.LookupId = user.Id;
+
+            //querying the tasklist for all tasks where current user = assigned to AND where outcome = approved
+            CamlQuery camlQuery = new CamlQuery();
+            camlQuery.ViewXml = @"
+                <View>
+                    <Query>
+                        <Where> 
+                            <And>
+                                <Eq>
+                                    <FieldRef Name='AssignedTo' LookupId='True'/>
+                                    <Value Type='Lookup'>" + userValue.LookupId + @"</Value>
+                                </Eq>
+                                <Eq>
+                                    <FieldRef Name='WorkflowOutcome' LookupId ='True'/>
+                                    <Value Type = 'Text'>Approved</Value>
+                                </Eq>
+                            </And>
+                        </Where>
+                    </Query>
+                </View>";
+
+            ListItemCollection col = taskList.GetItems(camlQuery);
+            clientContext.Load(col);
+            clientContext.ExecuteQuery();
+
+            //using the results from the query, a list containing the ID of the VPN Requests is created
+            List<string> fetchIds = new List<string>();
+            foreach (ListItem current in col)
+            {
+                string[] pieces = ((string)current[internalTaskTitle]).Split('/');
+                string vpnRequestID = pieces[2];
+                fetchIds.Add(vpnRequestID);
+            }
+
+            //fetching all VPN Requests that have that have that ID
+            returnList = loadList(fetchIds);
+            return returnList;
         }
 
         public void ReviewRequest(int id, string submit, string comments)
@@ -607,6 +660,15 @@ namespace IT_product_log.Models
                 }
             }
             return currentRequests;
+        }
+
+        //takes in a running list of request and a list of strings 
+        //takes the list of strings, finds all VPN Requests with the same ID on the SP Server 
+        //returns an updated list of requests 
+        //currentRequests = currentRequests + col
+        private List<VpnRequest> loadList (List<VpnRequest> currentRequests, List<string> col)
+        {
+            //to do 
         }
 
         private List<VpnRequest> orderList (List<VpnRequest> currentRequests)

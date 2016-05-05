@@ -104,8 +104,16 @@ namespace IT_product_log.Controllers
         public ViewResult ReviewRequests()
         {
             SpConnectionVPN spConncetion = new SpConnectionVPN();
-            List<VpnRequest> storage = spConncetion.getPendingRequests();
+            List<VpnRequest> storage = spConncetion.getApprovedReviews();
             ViewBag.list = storage;
+            //sending the ViewBags containing: 
+            //all pending reviews
+            //all reviews previously approved
+            //all reviews previously rejected
+            ViewBag.ReviewPending = spConncetion.getPendingReviews();
+            ViewBag.ReviewApproved = null;
+            ViewBag.ReviewRejected = null;
+
             return View();
         }
 
@@ -113,7 +121,7 @@ namespace IT_product_log.Controllers
         public ViewResult ReviewRequest(int id)
         {
             SpConnectionVPN spConnection = new SpConnectionVPN();
-            List<VpnRequest> storage = spConnection.getPendingRequests();
+            List<VpnRequest> storage = spConnection.getPendingReviews();
             ViewBag.id = id;
 
             //the id in the parameter is the request id : the id used on our sharepoint site
@@ -131,8 +139,6 @@ namespace IT_product_log.Controllers
         [HttpPost]
         public ActionResult ReviewRequest(int id, string submit, string comments)
         {
-            //based on previous code, submit can be checked with submit.Equals("Approve") 
-
             //implementation of this will be in spConnection, just to stay consistent
             SpConnectionVPN spConnection = new SpConnectionVPN();
             spConnection.ReviewRequest(id, submit, comments);
