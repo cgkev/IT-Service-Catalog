@@ -206,6 +206,7 @@
     <Content Include="Views\Portal\ReviewRequests.cshtml" />
     <Content Include="Views\Portal\ReviewRequest.cshtml" />
     <Content Include="Views\VPN\VPNRequest.cshtml" />
+    <Content Include="Views\Portal\ReviewerThankYou.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -234,7 +235,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49303</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49303/</IISUrl>
+          <IISUrl>http://localhost:49390/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -45,8 +45,6 @@
     <nav>
         <ul>
             <li id="selectedField" name="Pending"><a href="Javascript:void(0)">Pending</a></li>
-            <li id="reqApproved" name="Approved"><a href="Javascript:void(0)">Approved</a></li>
-            <li id="reqRejected" name="Rejected"><a href="Javascript:void(0)">Rejected</a></li>
             <li id="reqAll" name="All"><a href="Javascript:void(0)">All Requests</a></li>
         </ul>
     </nav>
@@ -79,68 +77,6 @@
         </tbody>
     </table>
     Pending should show --- remove after lists are implemented
-
-</section>
-<section id="contentApproved" style="display: none;">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Request Type</th>
-                <th scaope="col">Request ID</th>
-                <th scaope="col">Requester</th>
-                <th scope="col">Date Submitted</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody class="hoverTable">
-            <!-- Change the viewbag here -->
-
-            @foreach (var item in ViewBag.list)
-            {
-                <tr class='clickable-row' data-href="/Portal/ReviewRequest/@item.VPN_requestID">
-                    <td>VPN Access</td>
-                    <td>@item.VPN_requestID</td>
-                    <td>@item.VPN_recipientFirst @item.VPN_recipientLast</td>
-                    <td>@item.DateSubmitted</td>
-                    <td>
-                        <a class="btn btn-primary" href="/Portal/ReviewRequest/@item.VPN_requestID" role="button">Link</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    Approved should show --- remove after lists are implemented
-
-</section>
-<section id="contentRejected" style="display: none;">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Request Type</th>
-                <th scaope="col">Request ID</th>
-                <th scaope="col">Requester</th>
-                <th scope="col">Date Submitted</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody class="hoverTable">
-            <!-- Change the viewbag here -->
-
-            @foreach (var item in ViewBag.list)
-            {
-                <tr class='clickable-row' data-href="/Portal/ReviewRequest/@item.VPN_requestID">
-                    <td>VPN Access</td>
-                    <td>@item.VPN_requestID</td>
-                    <td>@item.VPN_recipientFirst @item.VPN_recipientLast</td>
-                    <td>@item.DateSubmitted</td>
-                    <td>
-                        <a class="btn btn-primary" href="/Portal/ReviewRequest/@item.VPN_requestID" role="button">Link</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    Rejected should show --- remove after lists are implemented
 
 </section>
 <section id="contentAll" style="display: none;">
