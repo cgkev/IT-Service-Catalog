@@ -217,16 +217,7 @@ namespace IT_product_log.Models
 
             //modeling the query data into VpnRequest model 
             List<VpnRequest> currentRequests = new List<VpnRequest>();
-            try
-            {
-                currentRequests = loadList(currentRequests, col);
-            }
-            catch (System.ArgumentNullException e)
-            {
-                //sleep for 5 seconds then refresh page
-                System.Threading.Thread.Sleep(5000);
-                getAllMyRequests();
-            }
+            currentRequests = loadList(currentRequests, col);
 
             return currentRequests;
         }
@@ -270,16 +261,8 @@ namespace IT_product_log.Models
 
             //modeling the query data into VpnRequest model 
             List<VpnRequest> currentRequests = new List<VpnRequest>();
-            try
-            {
-                currentRequests = loadList(currentRequests, col);
-            }
-            catch (System.ArgumentNullException e)
-            {
-                //sleep for 5 seconds then refresh page
-                System.Threading.Thread.Sleep(5000);
-                getRejectedMyRequests();
-            }
+
+            currentRequests = loadList(currentRequests, col);
 
             return currentRequests;
         }
@@ -323,16 +306,8 @@ namespace IT_product_log.Models
 
             //modeling the query data into VpnRequest model 
             List<VpnRequest> currentRequests = new List<VpnRequest>();
-            try
-            {
-                currentRequests = loadList(currentRequests, col);
-            }
-            catch (System.ArgumentNullException e)
-            {
-                //sleep for 5 seconds then refresh page
-                System.Threading.Thread.Sleep(5000);
-                getApprovedMyrequests();
-            }
+
+            currentRequests = loadList(currentRequests, col);
 
             return currentRequests;
         }
@@ -377,16 +352,8 @@ namespace IT_product_log.Models
 
             //modeling the query data into VpnRequest model 
             List<VpnRequest> currentRequests = new List<VpnRequest>();
-            try
-            {
-                currentRequests = loadList(currentRequests, col);
-            }
-            catch (System.ArgumentNullException e)
-            {
-                //sleep for 5 seconds then refresh page
-                System.Threading.Thread.Sleep(5000);
-                getPendingMyRequests();
-            }
+
+            currentRequests = loadList(currentRequests, col);
 
             return currentRequests;
         }
@@ -587,35 +554,49 @@ namespace IT_product_log.Models
             clientContext.Load(spList);
             foreach (ListItem item in col)
             {
-                clientContext.Load(item);
-                clientContext.ExecuteQuery();
+                try
+                {
+                    clientContext.Load(item);
+                    clientContext.ExecuteQuery();
 
-                VpnRequest temp = new VpnRequest();
-                temp.VPN_requestID = Int32.Parse((string)item[internalID]);
-                temp.DateSubmitted = ((DateTime)item[internalCreated]).ToString("MM/dd/yyyy");
-                temp.VPN_requestStatus = (string)item[internalRequestStatus];
-                temp.VPN_accessEnd = ((DateTime)item[internalAccessEnd]).ToString();
-                temp.VPN_accessStart = ((DateTime)item[internalAccessStart]).ToString();
-                temp.VPN_recipientFirst = (string)item[internalVpnRecipientFirst];
-                temp.VPN_recipientLast = (string)item[internalVpnRecipientLast];
-                temp.Work_Phone = (string)item[internalWorkPhone];
-                temp.VPN_recipientEmail = (string)item[internalEmail];
-                temp.VPN_userCode = Convert.ToInt32(((double)item[internalUserCode]));
-                temp.Manager = ((FieldUserValue)item[internalManager]).LookupValue;
-                temp.Systems_List = (string)item[internalSystemsList];
-                temp.VPN_justification = (string)item[internalJustification];
-                temp.VPN_userDept = (string)item[internalUserDept];
-                temp.Company_Name = (string)item[internalCompanyName];
-                temp.Company_Other = (string)item[internalCompanyOther];
-                temp.Office_Location = (string)item[internalOfficeLocation];
-                temp.Office_Address = (string)item[internalOfficeAddress];
-                temp.Machine_Owner = (string)item[internalMachineOwner];
-                temp.VPN_userStatus = (string)item[internalUserStatus];
-                temp.VPN_requestor = ((FieldUserValue)item[internalCreatedBy]).LookupValue;
-                temp.Ext_code = Convert.ToInt32((double)item[internalExtCode]);
-                temp.Agency = (string)item[internalAgency];
-
-                currentRequests.Add(temp);
+                    VpnRequest temp = new VpnRequest();
+                    temp.VPN_requestID = Int32.Parse((string)item[internalID]);
+                    temp.DateSubmitted = ((DateTime)item[internalCreated]).ToString("MM/dd/yyyy");
+                    temp.VPN_requestStatus = (string)item[internalRequestStatus];
+                    temp.VPN_accessEnd = ((DateTime)item[internalAccessEnd]).ToString();
+                    temp.VPN_accessStart = ((DateTime)item[internalAccessStart]).ToString();
+                    temp.VPN_recipientFirst = (string)item[internalVpnRecipientFirst];
+                    temp.VPN_recipientLast = (string)item[internalVpnRecipientLast];
+                    temp.Work_Phone = (string)item[internalWorkPhone];
+                    temp.VPN_recipientEmail = (string)item[internalEmail];
+                    temp.VPN_userCode = Convert.ToInt32(((double)item[internalUserCode]));
+                    temp.Manager = ((FieldUserValue)item[internalManager]).LookupValue;
+                    temp.Systems_List = (string)item[internalSystemsList];
+                    temp.VPN_justification = (string)item[internalJustification];
+                    temp.VPN_userDept = (string)item[internalUserDept];
+                    temp.Company_Name = (string)item[internalCompanyName];
+                    temp.Company_Other = (string)item[internalCompanyOther];
+                    temp.Office_Location = (string)item[internalOfficeLocation];
+                    temp.Office_Address = (string)item[internalOfficeAddress];
+                    temp.Machine_Owner = (string)item[internalMachineOwner];
+                    temp.VPN_userStatus = (string)item[internalUserStatus];
+                    temp.Agency = (string)item[internalAgency];
+                    temp.VPN_requestor = ((FieldUserValue)item[internalCreatedBy]).LookupValue;
+                    try
+                    {
+                        temp.Ext_code = Convert.ToInt32((double)item[internalExtCode]);
+                    }
+                    catch (System.ArgumentNullException e)
+                    {
+                        //extension code can be null, so we'll skip over this
+                    }
+                    currentRequests.Add(temp);
+                }
+                catch (System.ArgumentNullException e)
+                {
+                    //if something critical is null, we won't add it to the viewbag list
+                    continue;
+                }
             }
             return currentRequests;
         }
