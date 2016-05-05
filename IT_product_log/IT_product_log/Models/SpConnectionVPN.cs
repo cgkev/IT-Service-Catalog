@@ -52,6 +52,7 @@ namespace IT_product_log.Models
         string internalRequestStatus = "VPN_x0020_Request_x0020_Status";
         string internalAgency = "Agency";
         string internalExtCode = "Telephone_x0020_Extension";
+        string internalComments = "Reviewer_x0020_Comments";
 
         //internal names for the Tasks list
         string internalTasksAssignedTo = "AssingedTo";
@@ -63,6 +64,7 @@ namespace IT_product_log.Models
         string internalTaskTitle = "Title";
         string internalTaskPercentComplete = "PercentComplete";
         string internalTaskCheckmark = "Checkmark";
+        string internalTaskDesc = "Body";
 
         //internal names for the Approvers List
         string internalApproversUser = "User";
@@ -540,6 +542,11 @@ namespace IT_product_log.Models
             taskItem["Completed"] = true;
             taskItem["FormData"] = "Completed";
 
+            //updating comments in both lists 
+            taskItem[internalTaskDesc] = comments;
+            currentVpnRequestItem[internalComments] = comments;
+
+            currentVpnRequestItem.Update();
             taskItem.Update();
             clientContext.ExecuteQuery();
         }
@@ -585,6 +592,7 @@ namespace IT_product_log.Models
                     try
                     {
                         temp.Ext_code = Convert.ToInt32((double)item[internalExtCode]);
+                        temp.Reviewer_Comments = (string)item[internalComments];
                     }
                     catch (System.ArgumentNullException e)
                     {

@@ -90,6 +90,8 @@ namespace IT_product_log.Models
         [Display(Name = " ")]
         public string Agency { get; set; }
 
+        public string Reviewer_Comments { get; set; }
+
         //-------------end of new updates-----------------------------------------------
         // -----------IT Manager Approval Fields-----------
         public string VPN_profileSelect { get; set; }
