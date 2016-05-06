@@ -27,6 +27,7 @@ namespace IT_product_log.Models
         string qtcOfficeLocation = "Office Location";
         string qtcofficeSelect = "Office Address";
         string machineOwner = "Machine Owner";
+        string radiusProfileSelect = "Radius Profile Select";
 
         //internal names for the Request List 
         string internalVpnRecipientFirst = "VPN_x0020_Recipient_x0020_First";
@@ -106,6 +107,11 @@ namespace IT_product_log.Models
             }
 
             return choices.ToArray();
+        }
+
+        public string[] getVpnRadiusProfileSelect()
+        {
+            return this.getFieldChoices(radiusProfileSelect);
         }
 
         public string[] getVpnStatusTypeChoices()

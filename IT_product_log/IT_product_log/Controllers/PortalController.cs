@@ -104,7 +104,7 @@ namespace IT_product_log.Controllers
         public ViewResult ReviewRequests()
         {
             SpConnectionVPN spConncetion = new SpConnectionVPN();
-            List<VpnRequest> storage = spConncetion.getApprovedReviews();
+            List<VpnRequest> storage = spConncetion.getPendingReviews();
             ViewBag.list = storage;
             //sending the ViewBags containing: 
             //all pending reviews
@@ -130,6 +130,13 @@ namespace IT_product_log.Controllers
             {
                 if (current.VPN_requestID == id)
                 {
+                    //check if the request is in final IT manager state 
+                    if (current.VPN_requestStatus.Equals("Pending IT Manager Approval"))
+                    {
+                        System.Diagnostics.Debug.WriteLine("Worked");
+                        //redirect to IT Manager Approval Step
+                        return ReviewRequestIT(current);
+                    }
                     ViewBag.details = current;
                     return View();
                 }
@@ -150,12 +157,12 @@ namespace IT_product_log.Controllers
         //------------------------IT added fields for the form and submission----------------------------------------------------------
 
         [HttpGet]
-        public ViewResult ReviewRequestIT(int id)
+        public ViewResult ReviewRequestIT(VpnRequest current)
         {
-            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
-            ViewBag.id = id;
-            ViewBag.details = storage[id - 1001];
-            ViewBag.radiusSelector = new string[] { "", "Full Access", "QTC Web Access", "R CRM Contractor", "R Indexer Remote", "R LMCO Support", "R Neudesic Contractor", "R QA Remote", "R SP Portal Contractor", "R Telehealth", "REVPN QTC Transcribers", "Other" };
+            System.Diagnostics.Debug.WriteLine("worked v. 2");
+            ViewBag.details = current;
+            SpConnectionVPN spConnection = new SpConnectionVPN();
+            ViewBag.radiusSelector = spConnection.getVpnRadiusProfileSelect();
 
             return View();
         }
@@ -163,23 +170,8 @@ namespace IT_product_log.Controllers
         [HttpPost]
         public ActionResult ReviewRequestIT(int id, string submit, string comments)
         {
-            System.Diagnostics.Debug.WriteLine("param " + id + " " + submit + " " + comments);
-
-            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
-            for (int i = 0; i < storage.Count; i++)
-            {
-                if (storage[i].VPN_requestID == id)
-                {
-                    if (submit.Equals("Approve"))
-                        storage[i].VPN_requestStatus = "Approved";
-                    else
-                        storage[i].VPN_requestStatus = "Denied";
-
-                    System.Diagnostics.Debug.WriteLine("asdasd " + storage[i].VPN_requestID + " " + storage[i].VPN_requestStatus);
-
-                }
-            }
-            return RedirectToAction("/ReviewRequests", "Portal");
+            //to do
+            return RedirectToAction("/ReviewerThankYou", "Portal");
         }
 
         //------------------------End of IT added fields for the form and submission----------------------------------------------------------
