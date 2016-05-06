@@ -30,13 +30,13 @@
             <!-- Add the tracker here-->
         </tr>
     </table>
-    @if (@ViewBag.details.VPN_requestStatus == "Rejected by IT Manager" || @ViewBag.details.VPN_requestStatus == "Rejected by Security Manager" || @ViewBag.details.VPN_requestStatus == "Rejected by Manager" )
+    @if (@ViewBag.details.VPN_requestStatus == "Rejected by IT Manager" || @ViewBag.details.VPN_requestStatus == "Rejected by Security Manager" || @ViewBag.details.VPN_requestStatus == "Rejected by Manager")
     {
         <table>
             <tr>
-                <td>
+                <td class="form">
                     <h5>Reasons for Rejection</h5>
-                     @ViewBag.details.Reviewer_Comments 
+                    <div class="requestText"> @ViewBag.details.Reviewer_Comments </div>
                 </td>
             </tr>
         </table>
