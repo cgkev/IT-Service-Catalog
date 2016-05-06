@@ -111,8 +111,9 @@ namespace IT_product_log.Controllers
             //all reviews previously approved
             //all reviews previously rejected
             ViewBag.ReviewPending = spConncetion.getPendingReviews();
-            ViewBag.ReviewApproved = null;
-            ViewBag.ReviewRejected = null;
+            ViewBag.ReviewApproved = spConncetion.getApprovedReviews();
+            ViewBag.ReviewRejected = spConncetion.getRejectedReviews();
+            ViewBag.ReviewAll = spConncetion.getAllReviews();
 
             return View();
         }

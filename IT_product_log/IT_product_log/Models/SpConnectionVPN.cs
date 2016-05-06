@@ -530,7 +530,111 @@ namespace IT_product_log.Models
             }
 
             //fetching all VPN Requests that have that have that ID
-            returnList = loadList(fetchIds);
+            returnList = loadList(returnList ,fetchIds);
+            return returnList;
+        }
+
+        public List<VpnRequest> getRejectedReviews()
+        {
+            List<VpnRequest> returnList = new List<VpnRequest>();
+
+            ClientContext clientContext = new ClientContext(SiteUrl);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
+            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
+            clientContext.Load(vpnRequestList);
+            clientContext.Load(taskList);
+
+            //pulling the current user's name
+            User user = clientContext.Web.EnsureUser(HttpContext.Current.User.Identity.Name);
+            clientContext.Load(user);
+            clientContext.ExecuteQuery();
+            FieldUserValue userValue = new FieldUserValue();
+            userValue.LookupId = user.Id;
+
+            //querying the tasklist for all tasks where current user = assigned to AND where outcome = approved
+            CamlQuery camlQuery = new CamlQuery();
+            camlQuery.ViewXml = @"
+                <View>
+                    <Query>
+                        <Where> 
+                            <And>
+                                <Eq>
+                                    <FieldRef Name='AssignedTo' LookupId='True'/>
+                                    <Value Type='Lookup'>" + userValue.LookupId + @"</Value>
+                                </Eq>
+                                <Eq>
+                                    <FieldRef Name='WorkflowOutcome' LookupId ='True'/>
+                                    <Value Type = 'Text'>Rejected</Value>
+                                </Eq>
+                            </And>
+                        </Where>
+                    </Query>
+                </View>";
+
+            ListItemCollection col = taskList.GetItems(camlQuery);
+            clientContext.Load(col);
+            clientContext.ExecuteQuery();
+
+            //using the results from the query, a list containing the ID of the VPN Requests is created
+            List<string> fetchIds = new List<string>();
+            foreach (ListItem current in col)
+            {
+                string[] pieces = ((string)current[internalTaskTitle]).Split('/');
+                string vpnRequestID = pieces[2];
+                fetchIds.Add(vpnRequestID);
+            }
+
+            //fetching all VPN Requests that have that have that ID
+            returnList = loadList(returnList, fetchIds);
+            return returnList;
+        }
+
+        public List<VpnRequest> getAllReviews()
+        {
+            List<VpnRequest> returnList = new List<VpnRequest>();
+
+            ClientContext clientContext = new ClientContext(SiteUrl);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
+            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
+            clientContext.Load(vpnRequestList);
+            clientContext.Load(taskList);
+
+            //pulling the current user's name
+            User user = clientContext.Web.EnsureUser(HttpContext.Current.User.Identity.Name);
+            clientContext.Load(user);
+            clientContext.ExecuteQuery();
+            FieldUserValue userValue = new FieldUserValue();
+            userValue.LookupId = user.Id;
+
+            //querying the tasklist for all tasks where current user = assigned to AND where outcome = approved
+            CamlQuery camlQuery = new CamlQuery();
+            camlQuery.ViewXml = @"
+                <View>
+                    <Query>
+                        <Where> 
+                            <Eq>
+                                <FieldRef Name='AssignedTo' LookupId='True'/>
+                                <Value Type='Lookup'>" + userValue.LookupId + @"</Value>
+                            </Eq>
+                        </Where>
+                    </Query>
+                </View>";
+
+            ListItemCollection col = taskList.GetItems(camlQuery);
+            clientContext.Load(col);
+            clientContext.ExecuteQuery();
+
+            //using the results from the query, a list containing the ID of the VPN Requests is created
+            List<string> fetchIds = new List<string>();
+            foreach (ListItem current in col)
+            {
+                string[] pieces = ((string)current[internalTaskTitle]).Split('/');
+                string vpnRequestID = pieces[2];
+                fetchIds.Add(vpnRequestID);
+            }
+
+            //fetching all VPN Requests that have that have that ID
+            returnList = loadList(returnList, fetchIds);
             return returnList;
         }
 
@@ -668,7 +772,69 @@ namespace IT_product_log.Models
         //currentRequests = currentRequests + col
         private List<VpnRequest> loadList (List<VpnRequest> currentRequests, List<string> col)
         {
-            //to do 
+            ClientContext clientContext = new ClientContext(SiteUrl);
+            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            clientContext.Load(spList);
+
+            //remove any duplicates from col 
+            col = col.Distinct().ToList();
+
+            //going to traverse the list of strings (which represent VPN Request IDs) to generate a list of ListItems 
+            List<ListItem> spRequestList = new List<ListItem>();
+            foreach(string current in col)
+            {
+                spRequestList.Add(spList.GetItemById(Int32.Parse(current) - 1000));
+            }
+
+            //converting the list of ListItems in to a list of VpnRequests
+            foreach(ListItem item in spRequestList)
+            {
+                try
+                {
+                    clientContext.Load(item);
+                    clientContext.ExecuteQuery();
+
+                    VpnRequest temp = new VpnRequest();
+                    temp.VPN_requestID = Int32.Parse((string)item[internalID]);
+                    temp.DateSubmitted = ((DateTime)item[internalCreated]).ToString("MM/dd/yyyy");
+                    temp.VPN_requestStatus = (string)item[internalRequestStatus];
+                    temp.VPN_accessEnd = ((DateTime)item[internalAccessEnd]).ToString();
+                    temp.VPN_accessStart = ((DateTime)item[internalAccessStart]).ToString();
+                    temp.VPN_recipientFirst = (string)item[internalVpnRecipientFirst];
+                    temp.VPN_recipientLast = (string)item[internalVpnRecipientLast];
+                    temp.Work_Phone = (string)item[internalWorkPhone];
+                    temp.VPN_recipientEmail = (string)item[internalEmail];
+                    temp.VPN_userCode = Convert.ToInt32(((double)item[internalUserCode]));
+                    temp.Manager = ((FieldUserValue)item[internalManager]).LookupValue;
+                    temp.Systems_List = (string)item[internalSystemsList];
+                    temp.VPN_justification = (string)item[internalJustification];
+                    temp.VPN_userDept = (string)item[internalUserDept];
+                    temp.Company_Name = (string)item[internalCompanyName];
+                    temp.Company_Other = (string)item[internalCompanyOther];
+                    temp.Office_Location = (string)item[internalOfficeLocation];
+                    temp.Office_Address = (string)item[internalOfficeAddress];
+                    temp.Machine_Owner = (string)item[internalMachineOwner];
+                    temp.VPN_userStatus = (string)item[internalUserStatus];
+                    temp.Agency = (string)item[internalAgency];
+                    temp.VPN_requestor = ((FieldUserValue)item[internalCreatedBy]).LookupValue;
+                    try
+                    {
+                        temp.Ext_code = Convert.ToInt32((double)item[internalExtCode]);
+                        temp.Reviewer_Comments = (string)item[internalComments];
+                    }
+                    catch (System.ArgumentNullException e)
+                    {
+                        //extension code can be null, so we'll skip over this
+                    }
+                    currentRequests.Add(temp);
+                }
+                catch (System.ArgumentNullException e)
+                {
+                    //if something critical is null, we won't add it to the viewbag list
+                    continue;
+                }
+            }
+            return currentRequests;
         }
 
         private List<VpnRequest> orderList (List<VpnRequest> currentRequests)
