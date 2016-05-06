@@ -164,7 +164,7 @@ namespace IT_product_log.Controllers
             SpConnectionVPN spConnection = new SpConnectionVPN();
             ViewBag.radiusSelector = spConnection.getVpnRadiusProfileSelect();
 
-            return View();
+            return View("ReviewRequestIT");
         }
 
         [HttpPost]
