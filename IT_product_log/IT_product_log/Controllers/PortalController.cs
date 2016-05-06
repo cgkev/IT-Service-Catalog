@@ -159,7 +159,6 @@ namespace IT_product_log.Controllers
         [HttpGet]
         public ViewResult ReviewRequestIT(VpnRequest current)
         {
-            System.Diagnostics.Debug.WriteLine("worked v. 2");
             ViewBag.details = current;
             SpConnectionVPN spConnection = new SpConnectionVPN();
             ViewBag.radiusSelector = spConnection.getVpnRadiusProfileSelect();
@@ -168,7 +167,7 @@ namespace IT_product_log.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReviewRequestIT(int id, string submit, string comments)
+        public ActionResult ReviewRequestIT(int id, string submit, string comments, string dateEnd, string dateStart, string vpnType, string vpnProfile)
         {
             //to do
             return RedirectToAction("/ReviewerThankYou", "Portal");

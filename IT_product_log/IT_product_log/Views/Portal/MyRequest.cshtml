@@ -31,7 +31,7 @@
             <td><img src="~/images/Green.png" style="width:40px; height:40px;" /></td>
 
             <!-- This one is for tha Manager-->
-            @if ( @ViewBag.details.VPN_requestStatus == "Approved"
+            @if (@ViewBag.details.VPN_requestStatus == "Approved"
                 || @ViewBag.details.VPN_requestStatus == "Pending IT Manager Approval"
                 || @ViewBag.details.VPN_requestStatus == "Pending Security Manager Approval"
                 || @ViewBag.details.VPN_requestStatus == "Rejected by Security Manager"
@@ -41,7 +41,7 @@
             }
             else
             {
-                if ( @ViewBag.details.VPN_requestStatus == "Rejected by Manager")
+                if (@ViewBag.details.VPN_requestStatus == "Rejected by Manager")
                 {
                     <td><img src="~/images/Red.png" style="width:40px; height:40px;" /></td>
 
@@ -61,15 +61,15 @@
             }
 
             <!-- This one is for Security Manager -->
-            @if ( @ViewBag.details.VPN_requestStatus == "Approved" 
-                || @ViewBag.details.VPN_requestStatus == "Pending IT Manager Approval" 
+            @if (@ViewBag.details.VPN_requestStatus == "Approved"
+                || @ViewBag.details.VPN_requestStatus == "Pending IT Manager Approval"
                 || @ViewBag.details.VPN_requestStatus == "Rejected by IT Manager")
             {
                 <td><img src="~/images/Green.png" style="width:40px; height:40px;" /></td>
             }
             else
             {
-                if ( @ViewBag.details.VPN_requestStatus == "Rejected by Security Manager")
+                if (@ViewBag.details.VPN_requestStatus == "Rejected by Security Manager")
                 {
                     <td><img src="~/images/Red.png" style="width:40px; height:40px;" /></td>
 
@@ -89,13 +89,13 @@
             }
 
             <!--This one is for IT Manager -->
-            @if ( @ViewBag.details.VPN_requestStatus == "Approved")
+            @if (@ViewBag.details.VPN_requestStatus == "Approved")
             {
                 <td><img src="~/images/Green.png" style="width:40px; height:40px;" /></td>
             }
             else
             {
-                if ( @ViewBag.details.VPN_requestStatus == "Rejected by IT Manager")
+                if (@ViewBag.details.VPN_requestStatus == "Rejected by IT Manager")
                 {
                     <td><img src="~/images/Red.png" style="width:40px; height:40px;" /></td>
 
@@ -124,6 +124,17 @@
             }
         </tr>
     </table>
+    @if (@ViewBag.details.VPN_requestStatus == "Rejected by IT Manager" || @ViewBag.details.VPN_requestStatus == "Rejected by Security Manager" || @ViewBag.details.VPN_requestStatus == "Rejected by Manager" )
+    {
+        <table>
+            <tr>
+                <td>
+                    <h5>Reasons for Rejection</h5>
+                    <div class="requestText"> @ViewBag.details.Reviewer_Comments </div>
+                </td>
+            </tr>
+        </table>
+    }
     <table>
         <tbody>
             <fieldset>
