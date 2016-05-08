@@ -18,8 +18,7 @@ namespace IT_product_log.Controllers
     {
         public ViewResult Index()
         {
-            string name = System.Web.HttpContext.Current.User.Identity.Name;
-            Session["CurrentUserName"] = name;
+           
 
             return View();
         }
