@@ -207,6 +207,7 @@
     <Content Include="Views\Portal\ReviewRequest.cshtml" />
     <Content Include="Views\VPN\VPNRequest.cshtml" />
     <Content Include="Views\Portal\ReviewerThankYou.cshtml" />
+    <Content Include="Views\Portal\ReviewRequestIT.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -216,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Portal_Assest\Thank You Page\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -235,7 +237,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49303</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49390/</IISUrl>
+          <IISUrl>http://localhost:1300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
