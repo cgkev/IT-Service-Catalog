@@ -53,6 +53,8 @@ namespace IT_product_log.Models
         string internalRequestStatus = "VPN_x0020_Request_x0020_Status";
         string internalAgency = "Agency";
         string internalExtCode = "Telephone_x0020_Extension";
+        string internalVpnProfileSelect = "VPN_x0020_Profile_x0020_Select";
+        string internalRadiusSelect = "Radius_x0020_Profile_x0020_Selec";
         string internalComments = "Reviewer_x0020_Comments";
 
         //internal names for the Tasks list
@@ -690,6 +692,86 @@ namespace IT_product_log.Models
             }
 
            //updating the task as needed
+            if (submit.Equals("Approve"))
+            {
+                taskItem[internalTaskOutcome] = "Approved";
+                taskItem[internalTaskStatus] = "Approved";
+
+            }
+            else //reject 
+            {
+                taskItem[internalTaskOutcome] = "Rejected";
+                taskItem[internalTaskStatus] = "Rejected";
+            }
+            taskItem[internalTaskPercentComplete] = 1.0;
+            taskItem["Completed"] = true;
+            taskItem["FormData"] = "Completed";
+
+            //updating comments in both lists 
+            taskItem[internalTaskDesc] = comments;
+            currentVpnRequestItem[internalComments] = comments;
+
+            currentVpnRequestItem.Update();
+            taskItem.Update();
+            clientContext.ExecuteQuery();
+        }
+
+        public void ReviewRequest(int id, string submit, string comments, string dateEnd, string dateStart, string vpnType, string vpnProfile)
+        {
+            System.Diagnostics.Debug.WriteLine(submit);
+            System.Diagnostics.Debug.WriteLine(vpnType);
+            System.Diagnostics.Debug.WriteLine(vpnProfile);
+
+            ClientContext clientContext = new ClientContext(SiteUrl);
+
+            ListItem taskItem = null;
+            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
+            clientContext.Load(taskList);
+            clientContext.Load(vpnRequestList);
+            clientContext.ExecuteQuery();
+
+            //get the current VPN Request 
+            ListItem currentVpnRequestItem = vpnRequestList.GetItemById(id - 1000);
+            clientContext.Load(currentVpnRequestItem);
+            clientContext.ExecuteQuery();
+
+            string status = (string)currentVpnRequestItem[internalRequestStatus];
+
+            if (status.Equals("Pending Manager Approval") == true)
+            {
+                status = "Manager Approval";
+            }
+            else if (status.Equals("Pending Security Manager Approval") == true)
+            {
+                status = "Security Manager Approval";
+            }
+            else if (status.Equals("Pending IT Manager Approval") == true)
+            {
+                status = "IT Manager Approval";
+            }
+            string taskTitle = "VPN Request/" + status + "/" + id.ToString();
+
+            //updating the start and end date 
+            currentVpnRequestItem[internalAccessStart] = dateStart;
+            currentVpnRequestItem[internalAccessEnd] = dateEnd;
+            currentVpnRequestItem[internalVpnProfileSelect] = vpnProfile;
+            currentVpnRequestItem[internalRadiusSelect] = vpnType;
+
+            //finding the task with the same title 
+            ListItemCollection col = taskList.GetItems(new CamlQuery());
+            clientContext.Load(col);
+            clientContext.ExecuteQuery();
+
+            foreach (ListItem currentTask in col)
+            {
+                if (currentTask[internalTaskTitle].Equals(taskTitle))
+                {
+                    taskItem = currentTask;
+                }
+            }
+
+            //updating the task as needed
             if (submit.Equals("Approve"))
             {
                 taskItem[internalTaskOutcome] = "Approved";

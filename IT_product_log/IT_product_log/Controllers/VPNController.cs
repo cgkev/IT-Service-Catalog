@@ -44,8 +44,8 @@ namespace IT_product_log.Controllers
             spConnect.addRequest(input);
 
             //To do need to add the form validation here.
-            List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
-            storage.Add(input);
+            //List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
+            //storage.Add(input);
 
             //int var = storage.Count;//Just used this to see if the request was sent in
             return RedirectToAction("/ThankYou", "Portal");

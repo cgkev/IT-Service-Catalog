@@ -82,7 +82,8 @@ namespace IT_product_log.Models
 
         [Required]
         public string Manager { get; set; }// okay this uses LDAP?
-                                           //------------New updates to this model-----------------------------------------
+        
+        //------------New updates to this model-----------------------------------------
 
         [Display(Name = "Ext: 999")]
         public int Ext_code { get; set; }
@@ -93,6 +94,7 @@ namespace IT_product_log.Models
         public string Reviewer_Comments { get; set; }
 
         //-------------end of new updates-----------------------------------------------
+
         // -----------IT Manager Approval Fields-----------
         public string VPN_profileSelect { get; set; }
         public string Radius_Profile_Select { get; set; }

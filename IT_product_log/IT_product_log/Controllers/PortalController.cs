@@ -132,7 +132,6 @@ namespace IT_product_log.Controllers
                     //check if the request is in final IT manager state 
                     if (current.VPN_requestStatus.Equals("Pending IT Manager Approval"))
                     {
-                        System.Diagnostics.Debug.WriteLine("Worked");
                         //redirect to IT Manager Approval Step
                         return ReviewRequestIT(current);
                     }
@@ -166,9 +165,12 @@ namespace IT_product_log.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReviewRequestIT(int id, string submit, string comments, string dateEnd, string dateStart, string vpnType, string vpnProfile)
+        public ActionResult ReviewRequestIT(int id, string submit, string comments, string dateEnd, string dateStart, string vpnType, string vpnProfile, string vpnProfileOther)
         {
             //to do
+            SpConnectionVPN spConnection = new SpConnectionVPN();
+            spConnection.ReviewRequest(id, submit, comments, dateEnd, dateStart, vpnType, vpnProfile);
+
             return RedirectToAction("/ReviewerThankYou", "Portal");
         }
 
