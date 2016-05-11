@@ -191,9 +191,9 @@
                     </td>
                     <td class="form">
                         <h5>VPN Profile Select</h5>
-                        <input type="checkbox" name="checkboxes[]" id='QTC' value="QTC"> QTC
-                        <input type="checkbox" name="checkboxes[]" id='Transcriber' value="Transcriber"> Transcriber
-                        <label class="error" id="checkboxes[]-error" for="checkboxes[]" style="display: none;"></label>
+                        <input classname="checkboxP" type="checkbox" name="checkboxes" id='QTC' value="QTC"> QTC
+                        <input classname="checkboxP" type="checkbox" name="checkboxes" id='Transcriber' value="Transcriber"> Transcriber
+                        <label class="error" id="checkboxes-error" for="checkboxes" style="display: none;"></label>
                         <!-- The label above is a place holder for the error message -->
 
                     </td>
@@ -263,7 +263,7 @@
                             VPN_Radius: {
                                 required: true
                             },
-                            'checkboxes[]': {
+                            'checkboxes': {
                                 required: true
                             }
                         },
@@ -274,7 +274,7 @@
                             VPN_Radius: {
                                 required: "Please select a VPN Profile"
                             },
-                            'checkboxes[]': {
+                            'checkboxes': {
                                 required: "Please select atleast one"
                             }
                         }

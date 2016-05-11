@@ -165,11 +165,12 @@ namespace IT_product_log.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReviewRequestIT(int id, string submit, string comments, string dateEnd, string dateStart, string vpnType, string vpnProfile, string vpnProfileOther)
+        public ActionResult ReviewRequestIT(int id, string submit, string comments, string VPN_Radius, string VPN_Other, string VPN_accessStart, string VPN_accessEnd, string[] checkboxes)
         {
-            //to do
+            //to do VPN_Radius VPN_Other VPN_accessStart VPN_accessEnd comments Transcriber QTC
+            //System.Diagnostics.Debug.WriteLine(id + " " + submit + " " + VPN_Radius + " " + VPN_Other + " " + VPN_accessStart + " " + VPN_accessEnd + " " + comments + " Trans: " + checkboxes[0] + " Checkboxes: " + checkboxes[1] );
             SpConnectionVPN spConnection = new SpConnectionVPN();
-            spConnection.ReviewRequest(id, submit, comments, dateEnd, dateStart, vpnType, vpnProfile);
+            spConnection.ReviewRequest(id, submit, comments, VPN_Radius, VPN_Other, VPN_accessStart, VPN_accessEnd, checkboxes);
 
             return RedirectToAction("/ReviewerThankYou", "Portal");
         }

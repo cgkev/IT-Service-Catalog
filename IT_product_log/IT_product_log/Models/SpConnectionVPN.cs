@@ -56,6 +56,7 @@ namespace IT_product_log.Models
         string internalVpnProfileSelect = "VPN_x0020_Profile_x0020_Select";
         string internalRadiusSelect = "Radius_x0020_Profile_x0020_Selec";
         string internalComments = "Reviewer_x0020_Comments";
+        string internalVpnRadiusSelectOther = "Radius_x0020_Profile_x0020_Other";
 
         //internal names for the Tasks list
         string internalTasksAssignedTo = "AssignedTo";
@@ -716,11 +717,8 @@ namespace IT_product_log.Models
             clientContext.ExecuteQuery();
         }
 
-        public void ReviewRequest(int id, string submit, string comments, string dateEnd, string dateStart, string vpnType, string vpnProfile)
+        public void ReviewRequest(int id, string submit, string comments, string VPN_Radius, string VPN_Other, string VPN_accessStart, string VPN_accessEnd, string[] checkboxes)
         {
-            System.Diagnostics.Debug.WriteLine(submit);
-            System.Diagnostics.Debug.WriteLine(vpnType);
-            System.Diagnostics.Debug.WriteLine(vpnProfile);
 
             ClientContext clientContext = new ClientContext(SiteUrl);
 
@@ -752,11 +750,27 @@ namespace IT_product_log.Models
             }
             string taskTitle = "VPN Request/" + status + "/" + id.ToString();
 
-            //updating the start and end date 
-            currentVpnRequestItem[internalAccessStart] = dateStart;
-            currentVpnRequestItem[internalAccessEnd] = dateEnd;
-            currentVpnRequestItem[internalVpnProfileSelect] = vpnProfile;
-            currentVpnRequestItem[internalRadiusSelect] = vpnType;
+            //updating the start and end date of the request 
+
+            currentVpnRequestItem[internalAccessStart] = VPN_accessStart;
+            currentVpnRequestItem[internalAccessEnd] = VPN_accessEnd;
+
+            //updating Radius Profile Select 
+
+            currentVpnRequestItem[internalRadiusSelect] = VPN_Radius;
+
+            //updating VPN Profile Select 
+
+            if (checkboxes.Length == 2)
+            {
+                currentVpnRequestItem[internalVpnProfileSelect] = "QTC/Transcriber";
+            }
+            else if (checkboxes.Length == 1)
+            {
+                currentVpnRequestItem[internalVpnProfileSelect] = checkboxes[0];
+            }
+
+            currentVpnRequestItem.Update();
 
             //finding the task with the same title 
             ListItemCollection col = taskList.GetItems(new CamlQuery());
