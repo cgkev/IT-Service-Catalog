@@ -719,7 +719,6 @@ namespace IT_product_log.Models
 
         public void ReviewRequest(int id, string submit, string comments, string VPN_Radius, string VPN_Other, string VPN_accessStart, string VPN_accessEnd, string[] checkboxes)
         {
-
             ClientContext clientContext = new ClientContext(SiteUrl);
 
             ListItem taskItem = null;
@@ -758,6 +757,7 @@ namespace IT_product_log.Models
             //updating Radius Profile Select 
 
             currentVpnRequestItem[internalRadiusSelect] = VPN_Radius;
+            currentVpnRequestItem[internalVpnRadiusSelectOther] = VPN_Other;
 
             //updating VPN Profile Select 
 
