@@ -103,16 +103,12 @@ namespace IT_product_log.Controllers
         public ViewResult ReviewRequests()
         {
             SpConnectionVPN spConncetion = new SpConnectionVPN();
-            List<VpnRequest> storage = spConncetion.getPendingReviews();
-            ViewBag.list = storage;
             //sending the ViewBags containing: 
-            //all pending reviews
             //all reviews previously approved
             //all reviews previously rejected
             ViewBag.ReviewPending = spConncetion.getPendingReviews();
             ViewBag.ReviewApproved = spConncetion.getApprovedReviews();
             ViewBag.ReviewRejected = spConncetion.getRejectedReviews();
-            ViewBag.ReviewAll = spConncetion.getAllReviews();
 
             return View();
         }

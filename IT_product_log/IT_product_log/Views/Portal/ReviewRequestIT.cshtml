@@ -209,18 +209,19 @@
                 <tr>
                     <td class="form">
                         <h5>VPN Start Date</h5>
-                        <input type="text" id="VPN_accessStart" value="@ViewBag.details.VPN_accessStart" />
+                        <input type="text" id="VPN_accessStart" name="VPN_accessStart" value="@ViewBag.details.VPN_accessStart" />
                     </td>
                     <td class="form">
                         <h5>VPN End Date</h5>
-                        <input type="text" id="VPN_accessEnd" value="@ViewBag.details.VPN_accessEnd" />
+                        <input type="text" id="VPN_accessEnd" name="VPN_accessEnd" value="@ViewBag.details.VPN_accessEnd" />
                     </td>
                 </tr>
             </table>
             <table>
                 <tr>
-                    <h5>Please provide reason for approving or rejecting. </h5>
+                    
                     <td id="commentsBox">
+                        <h5>Please provide reason for approving or rejecting. </h5>
                         @Html.TextArea("comments")
                     </td>
 
