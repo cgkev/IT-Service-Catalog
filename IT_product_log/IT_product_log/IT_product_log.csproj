@@ -181,9 +181,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Internal Server Names\InternalTaskNames.cs" />
+    <Compile Include="Models\Internal Server Names\InternalVpnRequestNames.cs" />
     <Compile Include="Models\SpConnectionVPN.cs" />
     <Compile Include="Models\VpnRequest.cs" />
-    <Compile Include="Models\Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
