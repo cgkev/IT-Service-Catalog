@@ -7,6 +7,7 @@ using SPClient = Microsoft.SharePoint.Client;
 using System.Web.Mvc;
 using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint;
+using System.Text.RegularExpressions;
 
 namespace IT_product_log.Models
 {
@@ -852,10 +853,15 @@ namespace IT_product_log.Models
                     {
                         temp.Ext_code = Convert.ToInt32((double)item[internalExtCode]);
                         temp.Reviewer_Comments = (string)item[internalComments];
+                        
                     }
                     catch (System.ArgumentNullException e)
                     {
                         //extension code can be null, so we'll skip over this
+                    }
+                    catch (System.NullReferenceException f)
+                    {
+
                     }
                     currentRequests.Add(temp);
                 }
@@ -927,6 +933,9 @@ namespace IT_product_log.Models
                     catch (System.ArgumentNullException e)
                     {
                         //extension code can be null, so we'll skip over this
+                    }catch (System.NullReferenceException f)
+                    {
+                        //extension code can be null, so we'll skip over this 
                     }
                     currentRequests.Add(temp);
                 }

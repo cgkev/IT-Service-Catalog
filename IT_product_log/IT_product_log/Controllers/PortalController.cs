@@ -109,6 +109,7 @@ namespace IT_product_log.Controllers
             ViewBag.ReviewPending = spConncetion.getPendingReviews();
             ViewBag.ReviewApproved = spConncetion.getApprovedReviews();
             ViewBag.ReviewRejected = spConncetion.getRejectedReviews();
+            ViewBag.ReviewAll = spConncetion.getAllReviews(); //I don't know why but some parts of the front end still use this 
 
             return View();
         }
