@@ -103,16 +103,13 @@ namespace IT_product_log.Controllers
         public ViewResult ReviewRequests()
         {
             SpConnectionVPN spConncetion = new SpConnectionVPN();
-            List<VpnRequest> storage = spConncetion.getPendingReviews();
-            ViewBag.list = storage;
             //sending the ViewBags containing: 
-            //all pending reviews
             //all reviews previously approved
             //all reviews previously rejected
             ViewBag.ReviewPending = spConncetion.getPendingReviews();
             ViewBag.ReviewApproved = spConncetion.getApprovedReviews();
             ViewBag.ReviewRejected = spConncetion.getRejectedReviews();
-            ViewBag.ReviewAll = spConncetion.getAllReviews();
+            ViewBag.ReviewAll = spConncetion.getAllReviews(); //I don't know why but some parts of the front end still use this 
 
             return View();
         }
@@ -132,7 +129,6 @@ namespace IT_product_log.Controllers
                     //check if the request is in final IT manager state 
                     if (current.VPN_requestStatus.Equals("Pending IT Manager Approval"))
                     {
-                        System.Diagnostics.Debug.WriteLine("Worked");
                         //redirect to IT Manager Approval Step
                         return ReviewRequestIT(current);
                     }
@@ -166,9 +162,13 @@ namespace IT_product_log.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReviewRequestIT(int id, string submit, string comments, string dateEnd, string dateStart, string vpnType, string vpnProfile)
+        public ActionResult ReviewRequestIT(int id, string submit, string comments, string VPN_Radius, string VPN_Other, string VPN_accessStart, string VPN_accessEnd, string[] checkboxes)
         {
-            //to do
+            //to do VPN_Radius VPN_Other VPN_accessStart VPN_accessEnd comments Transcriber QTC
+            //System.Diagnostics.Debug.WriteLine(id + " " + submit + " " + VPN_Radius + " " + VPN_Other + " " + VPN_accessStart + " " + VPN_accessEnd + " " + comments + " Trans: " + checkboxes[0] + " Checkboxes: " + checkboxes[1] );
+            SpConnectionVPN spConnection = new SpConnectionVPN();
+            spConnection.ReviewRequest(id, submit, comments, VPN_Radius, VPN_Other, VPN_accessStart, VPN_accessEnd, checkboxes);
+
             return RedirectToAction("/ReviewerThankYou", "Portal");
         }
 

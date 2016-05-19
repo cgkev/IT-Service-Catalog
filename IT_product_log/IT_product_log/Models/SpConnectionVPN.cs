@@ -7,6 +7,7 @@ using SPClient = Microsoft.SharePoint.Client;
 using System.Web.Mvc;
 using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint;
+using System.Text.RegularExpressions;
 
 namespace IT_product_log.Models
 {
@@ -53,7 +54,10 @@ namespace IT_product_log.Models
         string internalRequestStatus = "VPN_x0020_Request_x0020_Status";
         string internalAgency = "Agency";
         string internalExtCode = "Telephone_x0020_Extension";
+        string internalVpnProfileSelect = "VPN_x0020_Profile_x0020_Select";
+        string internalRadiusSelect = "Radius_x0020_Profile_x0020_Selec";
         string internalComments = "Reviewer_x0020_Comments";
+        string internalVpnRadiusSelectOther = "Radius_x0020_Profile_x0020_Other";
 
         //internal names for the Tasks list
         string internalTasksAssignedTo = "AssignedTo";
@@ -714,6 +718,99 @@ namespace IT_product_log.Models
             clientContext.ExecuteQuery();
         }
 
+        public void ReviewRequest(int id, string submit, string comments, string VPN_Radius, string VPN_Other, string VPN_accessStart, string VPN_accessEnd, string[] checkboxes)
+        {
+            ClientContext clientContext = new ClientContext(SiteUrl);
+
+            ListItem taskItem = null;
+            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
+            clientContext.Load(taskList);
+            clientContext.Load(vpnRequestList);
+            clientContext.ExecuteQuery();
+
+            //get the current VPN Request 
+            ListItem currentVpnRequestItem = vpnRequestList.GetItemById(id - 1000);
+            clientContext.Load(currentVpnRequestItem);
+            clientContext.ExecuteQuery();
+
+            string status = (string)currentVpnRequestItem[internalRequestStatus];
+
+            if (status.Equals("Pending Manager Approval") == true)
+            {
+                status = "Manager Approval";
+            }
+            else if (status.Equals("Pending Security Manager Approval") == true)
+            {
+                status = "Security Manager Approval";
+            }
+            else if (status.Equals("Pending IT Manager Approval") == true)
+            {
+                status = "IT Manager Approval";
+            }
+            string taskTitle = "VPN Request/" + status + "/" + id.ToString();
+
+            //updating the start and end date of the request 
+
+            currentVpnRequestItem[internalAccessStart] = VPN_accessStart;
+            currentVpnRequestItem[internalAccessEnd] = VPN_accessEnd;
+
+            //updating Radius Profile Select 
+
+            currentVpnRequestItem[internalRadiusSelect] = VPN_Radius;
+            currentVpnRequestItem[internalVpnRadiusSelectOther] = VPN_Other;
+
+            //updating VPN Profile Select 
+
+            if (checkboxes.Length == 2)
+            {
+                currentVpnRequestItem[internalVpnProfileSelect] = "QTC/Transcriber";
+            }
+            else if (checkboxes.Length == 1)
+            {
+                currentVpnRequestItem[internalVpnProfileSelect] = checkboxes[0];
+            }
+
+            currentVpnRequestItem.Update();
+
+            //finding the task with the same title 
+            ListItemCollection col = taskList.GetItems(new CamlQuery());
+            clientContext.Load(col);
+            clientContext.ExecuteQuery();
+
+            foreach (ListItem currentTask in col)
+            {
+                if (currentTask[internalTaskTitle].Equals(taskTitle))
+                {
+                    taskItem = currentTask;
+                }
+            }
+
+            //updating the task as needed
+            if (submit.Equals("Approve"))
+            {
+                taskItem[internalTaskOutcome] = "Approved";
+                taskItem[internalTaskStatus] = "Approved";
+
+            }
+            else //reject 
+            {
+                taskItem[internalTaskOutcome] = "Rejected";
+                taskItem[internalTaskStatus] = "Rejected";
+            }
+            taskItem[internalTaskPercentComplete] = 1.0;
+            taskItem["Completed"] = true;
+            taskItem["FormData"] = "Completed";
+
+            //updating comments in both lists 
+            taskItem[internalTaskDesc] = comments;
+            currentVpnRequestItem[internalComments] = comments;
+
+            currentVpnRequestItem.Update();
+            taskItem.Update();
+            clientContext.ExecuteQuery();
+        }
+
         private List<VpnRequest> loadList(List<VpnRequest> currentRequests, ListItemCollection col)
         {
             //this method takes a ListItemCollection and converts it into a list of VpnRequest (A model Kevin created)
@@ -756,10 +853,15 @@ namespace IT_product_log.Models
                     {
                         temp.Ext_code = Convert.ToInt32((double)item[internalExtCode]);
                         temp.Reviewer_Comments = (string)item[internalComments];
+                        
                     }
                     catch (System.ArgumentNullException e)
                     {
                         //extension code can be null, so we'll skip over this
+                    }
+                    catch (System.NullReferenceException f)
+                    {
+
                     }
                     currentRequests.Add(temp);
                 }
@@ -831,6 +933,9 @@ namespace IT_product_log.Models
                     catch (System.ArgumentNullException e)
                     {
                         //extension code can be null, so we'll skip over this
+                    }catch (System.NullReferenceException f)
+                    {
+                        //extension code can be null, so we'll skip over this 
                     }
                     currentRequests.Add(temp);
                 }
