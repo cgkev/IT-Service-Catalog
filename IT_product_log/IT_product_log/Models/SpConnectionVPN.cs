@@ -16,14 +16,15 @@ namespace IT_product_log.Models
         names.InternalVpnRequestNames requestNames = new names.InternalVpnRequestNames();
         names.InternalTaskNames taskNames = new names.InternalTaskNames();
 
+        ClientContext clientContext; 
+
         public SpConnectionVPN()
         {
-            //left blank for now 
+            this.clientContext = new ClientContext(requestNames.SiteUrl);
         }
 
         public string[] getFieldChoices(string field)
         {
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
@@ -79,7 +80,6 @@ namespace IT_product_log.Models
 
         public void addRequest(VpnRequest input)
         {
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
@@ -127,7 +127,6 @@ namespace IT_product_log.Models
 
         public List<VpnRequest> getAllMyRequests()
         {
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
@@ -165,7 +164,6 @@ namespace IT_product_log.Models
 
         public List<VpnRequest> getRejectedMyRequests()
         {
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
@@ -210,7 +208,6 @@ namespace IT_product_log.Models
 
         public List<VpnRequest> getApprovedMyrequests()
         {
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
@@ -256,7 +253,6 @@ namespace IT_product_log.Models
         //gets a list of requests created by the current user currently in a status that is pending a manager approval
         public List<VpnRequest> getPendingMyRequests()
         {
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
@@ -302,8 +298,6 @@ namespace IT_product_log.Models
         //gets a list of requests currently pending review for the current user
         public List<VpnRequest> getPendingReviews()
         {
-            //loading up all 3 lists 
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
             List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             List approversList = clientContext.Web.Lists.GetByTitle(requestNames.ApproversListName);
             clientContext.Load(vpnRequestList);
@@ -422,7 +416,6 @@ namespace IT_product_log.Models
         {
             List<VpnRequest> returnList = new List<VpnRequest>();
 
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
             List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             List taskList = clientContext.Web.Lists.GetByTitle(taskNames.TaskListName);
             clientContext.Load(vpnRequestList);
@@ -477,7 +470,6 @@ namespace IT_product_log.Models
         {
             List<VpnRequest> returnList = new List<VpnRequest>();
 
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
             List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             List taskList = clientContext.Web.Lists.GetByTitle(taskNames.TaskListName);
             clientContext.Load(vpnRequestList);
@@ -532,7 +524,6 @@ namespace IT_product_log.Models
         {
             List<VpnRequest> returnList = new List<VpnRequest>();
 
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
             List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             List taskList = clientContext.Web.Lists.GetByTitle(taskNames.TaskListName);
             clientContext.Load(vpnRequestList);
@@ -579,8 +570,6 @@ namespace IT_product_log.Models
 
         public void ReviewRequest(int id, string submit, string comments)
         {
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
-
             ListItem taskItem = null;
             List taskList = clientContext.Web.Lists.GetByTitle(taskNames.TaskListName);
             List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
@@ -649,8 +638,6 @@ namespace IT_product_log.Models
 
         public void ReviewRequest(int id, string submit, string comments, string VPN_Radius, string VPN_Other, string VPN_accessStart, string VPN_accessEnd, string[] checkboxes)
         {
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
-
             ListItem taskItem = null;
             List taskList = clientContext.Web.Lists.GetByTitle(taskNames.TaskListName);
             List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
@@ -745,7 +732,6 @@ namespace IT_product_log.Models
             //this method takes a ListItemCollection and converts it into a list of VpnRequest (A model Kevin created)
             //if an ongoing list is passed in, requests are added
             //if there is no ongoing list, pass in an empty List<VpnRequest>
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
             foreach (ListItem item in col)
@@ -809,7 +795,6 @@ namespace IT_product_log.Models
         //currentRequests = currentRequests + col
         private List<VpnRequest> loadList (List<VpnRequest> currentRequests, List<string> col)
         {
-            ClientContext clientContext = new ClientContext(requestNames.SiteUrl);
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
