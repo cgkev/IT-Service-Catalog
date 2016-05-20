@@ -15,7 +15,7 @@ namespace IT_product_log.Controllers
         [HttpGet]
         public ViewResult VPNRequest()
         {
-            //fetching values for the form (sharepoint client object model)  
+            //fetching drop down list values for the form
 
             SpConnectionVPN spConnect = new SpConnectionVPN();
             ViewBag.vpnStatusType = spConnect.getVpnStatusTypeChoices();
@@ -28,26 +28,16 @@ namespace IT_product_log.Controllers
             return View();
         }
 
-
         [HttpPost]
         public ActionResult VPNRequest(VpnRequest input)
         {
-            //formating some input - kevin/ignacio's code
+            //formating some input
             input.VPN_requestStatus = "Pending Manager Approval";
             input.DateSubmitted = DateTime.Now.ToString("M/d/yyyy");
-            //input.VPN_requestID = storage[storage.Count - 1].VPN_requestID + 1;
-
-            //update SP with the data gathered - I will keep application scope data here for now in case we need it 
-            //deleted the ID increment, will be done automatically by SharePoint 
 
             SpConnectionVPN spConnect = new SpConnectionVPN();
             spConnect.addRequest(input);
 
-            //To do need to add the form validation here.
-            //List<VpnRequest> storage = (List<VpnRequest>)HttpContext.Application["vpnList"];
-            //storage.Add(input);
-
-            //int var = storage.Count;//Just used this to see if the request was sent in
             return RedirectToAction("/ThankYou", "Portal");
         }
 
@@ -97,9 +87,6 @@ namespace IT_product_log.Controllers
                 new { key = 3,  firstname = firstName[2], lastname = lastName[2], username = userName[2]}
              }
             };
-
-            
-
 
             String[] hello = new string[0];
             //this should be an empty array in other words nothing found.

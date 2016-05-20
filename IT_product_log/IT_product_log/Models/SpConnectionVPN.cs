@@ -3,99 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.SharePoint.Client;
-using SPClient = Microsoft.SharePoint.Client;
 using System.Web.Mvc;
 using Microsoft.SharePoint.Workflow;
 using Microsoft.SharePoint;
 using System.Text.RegularExpressions;
+using names = IT_product_log.Models.Internal_Server_Names;
 
 namespace IT_product_log.Models
 {
     public class SpConnectionVPN
     {
-        //server details
-        string SiteUrl = "http://qtcserver:80/Final";
+        names.InternalVpnRequestNames requestNames = new names.InternalVpnRequestNames();
+        names.InternalTaskNames taskNames = new names.InternalTaskNames();
 
-        string ListName = "VPN Request List";
-        string TaskListName = "Tasks";
-        string ApproversListName = "Approvers";
-
-        //Title constants - fields with choice select
-        //For some reason, I can't get the column retrival working with internal names (I will refactor if I have time) 
-        string vpnStatusType = "VPN User Status";
-        string deptName = "VPN User Dept";
-        string companyName = "Company Name";
-        string qtcOfficeLocation = "Office Location";
-        string qtcofficeSelect = "Office Address";
-        string machineOwner = "Machine Owner";
-        string radiusProfileSelect = "Radius Profile Select";
-
-        //internal names for the Request List 
-        string internalVpnRecipientFirst = "VPN_x0020_Recipient_x0020_First";
-        string internalVpnRecipientLast = "VPN_x0020_Recipient_x0020_Last";
-        string internalWorkPhone = "Work_x0020_Phone";
-        string internalEmail = "VPN_x0020_Recipient_x0020_Email";
-        string internalUserCode = "VPN_x0020_User_x0020_Code";
-        string internalManager = "Manager";
-        string internalSystemsList = "Systems_x0020_List";
-        string internalJustification = "VPN_x0020_Justification";
-        string internalAccessStart = "VPN_x0020_Access_x0020_Start";
-        string internalAccessEnd = "VPN_x0020_Access_x0020_End";
-        string internalUserDept = "VPN_x0020_User_x0020_Dept";
-        string internalCompanyName = "field3";
-        string internalCompanyOther = "Company_x0020_Name";
-        string internalOfficeLocation = "Office_x0020_Location";
-        string internalOfficeAddress = "QTC_x0020_Office";
-        string internalMachineOwner = "Machine_x0020_Owner";
-        string internalUserStatus = "VPN_x0020_User_x0020_Status";
-        string internalCreatedBy = "Author";
-        string internalID = "Request_x0020_ID";
-        string internalCreated = "Created";
-        string internalRequestStatus = "VPN_x0020_Request_x0020_Status";
-        string internalAgency = "Agency";
-        string internalExtCode = "Telephone_x0020_Extension";
-        string internalVpnProfileSelect = "VPN_x0020_Profile_x0020_Select";
-        string internalRadiusSelect = "Radius_x0020_Profile_x0020_Selec";
-        string internalComments = "Reviewer_x0020_Comments";
-        string internalVpnRadiusSelectOther = "Radius_x0020_Profile_x0020_Other";
-
-        //internal names for the Tasks list
-        string internalTasksAssignedTo = "AssignedTo";
-        string internalTaskOutcome = "WorkflowOutcome";
-        string internalTaskVpnRequestID = "VPN_x0020_Request_x0020_ID";
-        string internalTaskComments = "Comments";
-        string internalTaskStatus = "Status";
-        string internalTasksApproverComments = "_ModerationComments";
-        string internalTaskTitle = "Title";
-        string internalTaskPercentComplete = "PercentComplete";
-        string internalTaskCheckmark = "Checkmark";
-        string internalTaskDesc = "Body";
-
-        //internal names for the Approvers List
-        string internalApproversUser = "User";
-        string internalApproversTitle = "Title";
-
-        //the possible values of Approvers List, Title column 
-        string spNameForSecurity = "Security Manager";
-        string spNameForITManager = "IT Manager";
-
-        //possible requests statuses 
-        string pendingSecurity = "Pending Security Manager Approval";
-        string pendingITManager = "Pending IT Manager Approval";
-        string pendingManager = "Pending Manager Approval";
-
-        //built in field for all types
-        string internalWflowInstanceID = "WorkflowInstanceID";
+        ClientContext clientContext; 
 
         public SpConnectionVPN()
         {
-            //left blank for now 
+            this.clientContext = new ClientContext(requestNames.SiteUrl);
         }
 
+        /// <summary>
+        /// Grabs the choice fields of a given field. Usually used for gathering possible choices of a drop down list. 
+        /// </summary>
+        /// <param name="field">Name of the field</param>
+        /// <returns>An array of possible choices</returns>
         public string[] getFieldChoices(string field)
         {
-            ClientContext clientContext = new ClientContext(SiteUrl);
-            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
             FieldChoice choiceField = clientContext.CastTo<FieldChoice>(spList.Fields.GetByTitle(field));
@@ -115,43 +50,46 @@ namespace IT_product_log.Models
 
         public string[] getVpnRadiusProfileSelect()
         {
-            return this.getFieldChoices(radiusProfileSelect);
+            return this.getFieldChoices(requestNames.radiusProfileSelect);
         }
 
         public string[] getVpnStatusTypeChoices()
         {
-            return this.getFieldChoices(vpnStatusType);
+            return this.getFieldChoices(requestNames.vpnStatusType);
         }
 
         public string[] getDeptNameChoices()
         {
-            return this.getFieldChoices(deptName);
+            return this.getFieldChoices(requestNames.deptName);
         }
 
         public string[] getCompanyNameChoices()
         {
-            return this.getFieldChoices(companyName);
+            return this.getFieldChoices(requestNames.companyName);
         }
 
         public string[] getQtcOfficeLocationChoices()
         {
-            return this.getFieldChoices(qtcOfficeLocation);
+            return this.getFieldChoices(requestNames.qtcOfficeLocation);
         }
 
         public string[] getQtcOfficeSelectChoices()
         {
-            return this.getFieldChoices(qtcofficeSelect);
+            return this.getFieldChoices(requestNames.qtcofficeSelect);
         }
 
         public string[] getMachineOwnerChoices()
         {
-            return this.getFieldChoices(machineOwner);
+            return this.getFieldChoices(requestNames.machineOwner);
         }
 
+        /// <summary>
+        /// Adds a new request to the SharePoint site. 
+        /// </summary>
+        /// <param name="input">A VpnRequest model</param>
         public void addRequest(VpnRequest input)
         {
-            ClientContext clientContext = new ClientContext(SiteUrl);
-            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
             var itemCreateInfo = new ListItemCreationInformation();
@@ -171,35 +109,38 @@ namespace IT_product_log.Models
             FieldUserValue userValue2 = new FieldUserValue();
             userValue2.LookupId = manager.Id;
 
-            listItem[internalCreatedBy] = userValue;
-            listItem[internalVpnRecipientFirst] = input.VPN_recipientFirst;
-            listItem[internalVpnRecipientLast] = input.VPN_recipientLast;
-            listItem[internalWorkPhone] = input.Work_Phone;
-            listItem[internalEmail] = input.VPN_recipientEmail;
-            listItem[internalUserCode] = input.VPN_userCode;
-            listItem[internalManager] = userValue2;
-            listItem[internalUserDept] = input.VPN_userDept;
-            listItem[internalUserStatus] = input.VPN_userStatus;
-            listItem[internalSystemsList] = input.Systems_List;
-            listItem[internalJustification] = input.VPN_justification;
-            listItem[internalAccessStart] = input.VPN_accessStart;
-            listItem[internalAccessEnd] = input.VPN_accessEnd;
-            listItem[internalCompanyName] = input.Company_Name;
-            listItem[internalCompanyOther] = input.Company_Other;
-            listItem[internalOfficeLocation] = input.Office_Location;
-            listItem[internalOfficeAddress] = input.Office_Address;
-            listItem[internalMachineOwner] = input.Machine_Owner;
-            listItem[internalExtCode] = input.Ext_code;
-            listItem[internalAgency] = input.Agency;
+            listItem[requestNames.internalCreatedBy] = userValue;
+            listItem[requestNames.internalVpnRecipientFirst] = input.VPN_recipientFirst;
+            listItem[requestNames.internalVpnRecipientLast] = input.VPN_recipientLast;
+            listItem[requestNames.internalWorkPhone] = input.Work_Phone;
+            listItem[requestNames.internalEmail] = input.VPN_recipientEmail;
+            listItem[requestNames.internalUserCode] = input.VPN_userCode;
+            listItem[requestNames.internalManager] = userValue2;
+            listItem[requestNames.internalUserDept] = input.VPN_userDept;
+            listItem[requestNames.internalUserStatus] = input.VPN_userStatus;
+            listItem[requestNames.internalSystemsList] = input.Systems_List;
+            listItem[requestNames.internalJustification] = input.VPN_justification;
+            listItem[requestNames.internalAccessStart] = input.VPN_accessStart;
+            listItem[requestNames.internalAccessEnd] = input.VPN_accessEnd;
+            listItem[requestNames.internalCompanyName] = input.Company_Name;
+            listItem[requestNames.internalCompanyOther] = input.Company_Other;
+            listItem[requestNames.internalOfficeLocation] = input.Office_Location;
+            listItem[requestNames.internalOfficeAddress] = input.Office_Address;
+            listItem[requestNames.internalMachineOwner] = input.Machine_Owner;
+            listItem[requestNames.internalExtCode] = input.Ext_code;
+            listItem[requestNames.internalAgency] = input.Agency;
 
             listItem.Update();
             clientContext.ExecuteQuery();
         }
 
+        /// <summary>
+        /// Grabs all VPN Requests created by the current user. Queries the SharePoint backend. 
+        /// </summary>
+        /// <returns>A list of all VPN Requests created by the current user.</returns>
         public List<VpnRequest> getAllMyRequests()
         {
-            ClientContext clientContext = new ClientContext(SiteUrl);
-            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
             //pulling the current user's name 
@@ -234,10 +175,13 @@ namespace IT_product_log.Models
             return currentRequests;
         }
 
+        /// <summary>
+        /// Grabs all VPN Requests created by the current user where the current status is 'Rejected'. Queries the SharePoint backend. 
+        /// </summary>
+        /// <returns>A list of all VPN Requests created by the current user that have been rejected.</returns>
         public List<VpnRequest> getRejectedMyRequests()
         {
-            ClientContext clientContext = new ClientContext(SiteUrl);
-            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
             //pulling the current user's name 
@@ -259,7 +203,7 @@ namespace IT_product_log.Models
                                     <Value Type='Lookup'>" + userValue.LookupId + @"</Value>
                                 </Eq>
                                 <BeginsWith>
-                                    <FieldRef Name = '" + internalRequestStatus + @"' LookupId = 'True'/>
+                                    <FieldRef Name = '" + requestNames.internalRequestStatus + @"' LookupId = 'True'/>
                                     <Value Type = 'Text'>Rejected by</Value>
                                 </BeginsWith>
                             </And>
@@ -279,10 +223,13 @@ namespace IT_product_log.Models
             return currentRequests;
         }
 
+        /// <summary>
+        /// Grabs all VPN Requests created by the current user where the current status is 'Approved'. Queries the SharePoint backend. 
+        /// </summary>
+        /// <returns>A list of all VPN Requests created by the current user that have been approved.</returns>
         public List<VpnRequest> getApprovedMyrequests()
         {
-            ClientContext clientContext = new ClientContext(SiteUrl);
-            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
             //pulling the current user's name 
@@ -304,7 +251,7 @@ namespace IT_product_log.Models
                                     <Value Type='Lookup'>" + userValue.LookupId + @"</Value>
                                 </Eq>
                                 <Eq>
-                                    <FieldRef Name = '" + internalRequestStatus + @"' LookupId = 'True'/>
+                                    <FieldRef Name = '" + requestNames.internalRequestStatus + @"' LookupId = 'True'/>
                                     <Value Type = 'Text'>Approved</Value>
                                 </Eq>
                             </And>
@@ -324,11 +271,13 @@ namespace IT_product_log.Models
             return currentRequests;
         }
 
-        //gets a list of requests created by the current user currently in a status that is pending a manager approval
+        /// <summary>
+        /// Grabs all VPN Requests created by the current user where the current status is in a 'Pending' state. Queries the SharePoint backend.
+        /// </summary>
+        /// <returns>A list of all VPN Requests created by the current user that are in a pending state.</returns>
         public List<VpnRequest> getPendingMyRequests()
         {
-            ClientContext clientContext = new ClientContext(SiteUrl);
-            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
             //pulling the current user's name 
@@ -350,7 +299,7 @@ namespace IT_product_log.Models
                                     <Value Type='Lookup'>" + userValue.LookupId + @"</Value>
                                 </Eq>
                                 <BeginsWith>
-                                    <FieldRef Name = '" + internalRequestStatus + @"' LookupId = 'True'/>
+                                    <FieldRef Name = '" + requestNames.internalRequestStatus + @"' LookupId = 'True'/>
                                     <Value Type = 'Text'>Pending</Value>
                                 </BeingsWith>
                             </And>
@@ -370,13 +319,19 @@ namespace IT_product_log.Models
             return currentRequests;
         }
 
-        //gets a list of requests currently pending review for the current user
+        /// <summary>
+        /// Grabs all VPN Requests currently waiting to be reviewed by the current user. 
+        /// The status of the current user is checked first, then based on that, VPN Requests are queried. 
+        /// 1. Grabs all VPN Requests currently in status 'Pending Manager Approval' and assigned to current user 
+        /// 2. Checks if the current user is an IT Manager or Security Officer 
+        /// 3. If security officer, grab all VPN Requests currently in status 'Pending Security Officer' 
+        /// 4. if IT manager, grab all VPN Requests currently in status 'Pending IT Manager' 
+        /// </summary>
+        /// <returns>A list of all requests pending the approval of the current manager</returns>
         public List<VpnRequest> getPendingReviews()
         {
-            //loading up all 3 lists 
-            ClientContext clientContext = new ClientContext(SiteUrl);
-            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
-            List approversList = clientContext.Web.Lists.GetByTitle(ApproversListName);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
+            List approversList = clientContext.Web.Lists.GetByTitle(requestNames.ApproversListName);
             clientContext.Load(vpnRequestList);
             clientContext.Load(approversList);
 
@@ -397,12 +352,12 @@ namespace IT_product_log.Models
                         <Where> 
                             <And>
                                 <Eq>
-                                    <FieldRef Name='" + internalManager + @"' LookupId='True'/>
+                                    <FieldRef Name='" + requestNames.internalManager + @"' LookupId='True'/>
                                     <Value Type='Lookup'>" + userValue.LookupId + @"</Value>
                                 </Eq>
                                 <Eq>
-                                    <FieldRef Name='" + internalRequestStatus + @"' LookupId ='True'/>
-                                    <Value Type = 'Text'>" + pendingManager + @"</Value>
+                                    <FieldRef Name='" + requestNames.internalRequestStatus + @"' LookupId ='True'/>
+                                    <Value Type = 'Text'>" + requestNames.pendingManager + @"</Value>
                                 </Eq>
                             </And>
                         </Where>
@@ -434,12 +389,12 @@ namespace IT_product_log.Models
 
             foreach (ListItem current in col)
             {
-                if (current[internalApproversTitle].Equals(spNameForITManager))
+                if (current[requestNames.internalApproversTitle].Equals(requestNames.spNameForITManager))
                 {
                     isItManager = true;
                 }
 
-                if (current[internalApproversTitle].Equals(spNameForSecurity))
+                if (current[requestNames.internalApproversTitle].Equals(requestNames.spNameForSecurity))
                 {
                     isSecurity = true;
                 }
@@ -452,8 +407,8 @@ namespace IT_product_log.Models
                     <Query>
                         <Where> 
                             <Eq>
-                                <FieldRef Name='" + internalRequestStatus + @"' LookupId ='True'/>
-                                <Value Type = 'Text'>" + pendingSecurity + @"</Value>
+                                <FieldRef Name='" + requestNames.internalRequestStatus + @"' LookupId ='True'/>
+                                <Value Type = 'Text'>" + requestNames.pendingSecurity + @"</Value>
                             </Eq>
                         </Where>
                     </Query>
@@ -473,8 +428,8 @@ namespace IT_product_log.Models
                     <Query>
                         <Where> 
                             <Eq>
-                                <FieldRef Name='" + internalRequestStatus + @"' LookupId ='True'/>
-                                <Value Type = 'Text'>" + pendingITManager + @"</Value>
+                                <FieldRef Name='" + requestNames.internalRequestStatus + @"' LookupId ='True'/>
+                                <Value Type = 'Text'>" + requestNames.pendingITManager + @"</Value>
                             </Eq>
                         </Where>
                     </Query>
@@ -489,13 +444,16 @@ namespace IT_product_log.Models
             return orderList(pendingRequests);
         }
 
+        /// <summary>
+        /// Grabs a list of all requests that have been previously approved by the current user. 
+        /// </summary>
+        /// <returns>A list of VPN Requests previously approved by the current user</returns>
         public List<VpnRequest> getApprovedReviews()
         {
             List<VpnRequest> returnList = new List<VpnRequest>();
 
-            ClientContext clientContext = new ClientContext(SiteUrl);
-            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
-            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
+            List taskList = clientContext.Web.Lists.GetByTitle(taskNames.TaskListName);
             clientContext.Load(vpnRequestList);
             clientContext.Load(taskList);
 
@@ -534,7 +492,7 @@ namespace IT_product_log.Models
             List<string> fetchIds = new List<string>();
             foreach (ListItem current in col)
             {
-                string[] pieces = ((string)current[internalTaskTitle]).Split('/');
+                string[] pieces = ((string)current[taskNames.internalTaskTitle]).Split('/');
                 string vpnRequestID = pieces[2];
                 fetchIds.Add(vpnRequestID);
             }
@@ -544,13 +502,16 @@ namespace IT_product_log.Models
             return returnList;
         }
 
+        /// <summary>
+        /// Grabs a list of all requests that have been previously rejected by the current user. 
+        /// </summary>
+        /// <returns>A list of VPN Requests previously rejected by the current user.</returns>
         public List<VpnRequest> getRejectedReviews()
         {
             List<VpnRequest> returnList = new List<VpnRequest>();
 
-            ClientContext clientContext = new ClientContext(SiteUrl);
-            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
-            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
+            List taskList = clientContext.Web.Lists.GetByTitle(taskNames.TaskListName);
             clientContext.Load(vpnRequestList);
             clientContext.Load(taskList);
 
@@ -589,7 +550,7 @@ namespace IT_product_log.Models
             List<string> fetchIds = new List<string>();
             foreach (ListItem current in col)
             {
-                string[] pieces = ((string)current[internalTaskTitle]).Split('/');
+                string[] pieces = ((string)current[taskNames.internalTaskTitle]).Split('/');
                 string vpnRequestID = pieces[2];
                 fetchIds.Add(vpnRequestID);
             }
@@ -599,13 +560,17 @@ namespace IT_product_log.Models
             return returnList;
         }
 
+        /// <summary>
+        /// Grabs VPN Requests that the user has previously reviewed (either approved or rejected). 
+        /// NOTE: This does not mean, previously assigned to the current user. Requests will only come up if the current user approved/rejected. 
+        /// </summary>
+        /// <returns>A list of all VPN Requests the current user has ever approved, rejected, or are curretnly pending his/her approval.</returns>
         public List<VpnRequest> getAllReviews()
         {
             List<VpnRequest> returnList = new List<VpnRequest>();
 
-            ClientContext clientContext = new ClientContext(SiteUrl);
-            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
-            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
+            List taskList = clientContext.Web.Lists.GetByTitle(taskNames.TaskListName);
             clientContext.Load(vpnRequestList);
             clientContext.Load(taskList);
 
@@ -638,7 +603,7 @@ namespace IT_product_log.Models
             List<string> fetchIds = new List<string>();
             foreach (ListItem current in col)
             {
-                string[] pieces = ((string)current[internalTaskTitle]).Split('/');
+                string[] pieces = ((string)current[taskNames.internalTaskTitle]).Split('/');
                 string vpnRequestID = pieces[2];
                 fetchIds.Add(vpnRequestID);
             }
@@ -648,13 +613,18 @@ namespace IT_product_log.Models
             return returnList;
         }
 
+        /// <summary>
+        /// Submit an update to SharePoint site on a request. 
+        /// NOTE: This method is used for Manager or Security Officer's review. 
+        /// </summary>
+        /// <param name="id">The ID of the request.</param>
+        /// <param name="submit">The outcome of the form. 'Approve' being sent back means it's been approved.</param>
+        /// <param name="comments">The comments left by the current user.</param>
         public void ReviewRequest(int id, string submit, string comments)
         {
-            ClientContext clientContext = new ClientContext(SiteUrl);
-
             ListItem taskItem = null;
-            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
-            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
+            List taskList = clientContext.Web.Lists.GetByTitle(taskNames.TaskListName);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(taskList);
             clientContext.Load(vpnRequestList);
             clientContext.ExecuteQuery();
@@ -664,7 +634,7 @@ namespace IT_product_log.Models
             clientContext.Load(currentVpnRequestItem);
             clientContext.ExecuteQuery();
 
-            string status = (string)currentVpnRequestItem[internalRequestStatus];
+            string status = (string)currentVpnRequestItem[requestNames.internalRequestStatus];
 
             if (status.Equals("Pending Manager Approval") == true)
             {
@@ -687,7 +657,7 @@ namespace IT_product_log.Models
 
             foreach(ListItem currentTask in col)
             {
-                if (currentTask[internalTaskTitle].Equals(taskTitle))
+                if (currentTask[taskNames.internalTaskTitle].Equals(taskTitle))
                 {
                     taskItem = currentTask;
                 }
@@ -696,35 +666,45 @@ namespace IT_product_log.Models
            //updating the task as needed
             if (submit.Equals("Approve"))
             {
-                taskItem[internalTaskOutcome] = "Approved";
-                taskItem[internalTaskStatus] = "Approved";
+                taskItem[taskNames.internalTaskOutcome] = "Approved";
+                taskItem[taskNames.internalTaskStatus] = "Approved";
 
             }
             else //reject 
             {
-                taskItem[internalTaskOutcome] = "Rejected";
-                taskItem[internalTaskStatus] = "Rejected";
+                taskItem[taskNames.internalTaskOutcome] = "Rejected";
+                taskItem[taskNames.internalTaskStatus] = "Rejected";
             }
-            taskItem[internalTaskPercentComplete] = 1.0;
+            taskItem[taskNames.internalTaskPercentComplete] = 1.0;
             taskItem["Completed"] = true;
             taskItem["FormData"] = "Completed";
 
             //updating comments in both lists 
-            taskItem[internalTaskDesc] = comments;
-            currentVpnRequestItem[internalComments] = comments;
+            taskItem[taskNames.internalTaskDesc] = comments;
+            currentVpnRequestItem[requestNames.internalComments] = comments;
 
             currentVpnRequestItem.Update();
             taskItem.Update();
             clientContext.ExecuteQuery();
         }
 
+        /// <summary>
+        ///  Submit an update to SharePoint site on a request.
+        ///  NOTE: This method is used for IT Manager's review.
+        /// </summary>
+        /// <param name="id">The ID of the request.</param>
+        /// <param name="submit">The outcome of the form. 'Approve' being sent back means it's been approved.</param>
+        /// <param name="comments">The comments left by the current user.</param>
+        /// <param name="VPN_Radius">The VPN Radius Profile selected by the current user.</param>
+        /// <param name="VPN_Other">A fill in field for VPN Radius Profile.</param>
+        /// <param name="VPN_accessStart">Date of VPN Access start.</param>
+        /// <param name="VPN_accessEnd">Date of VPN Access end.</param>
+        /// <param name="checkboxes">Representation of the checkbox field (VPN Profile). Array of all values selected by the user.</param>
         public void ReviewRequest(int id, string submit, string comments, string VPN_Radius, string VPN_Other, string VPN_accessStart, string VPN_accessEnd, string[] checkboxes)
         {
-            ClientContext clientContext = new ClientContext(SiteUrl);
-
             ListItem taskItem = null;
-            List taskList = clientContext.Web.Lists.GetByTitle(TaskListName);
-            List vpnRequestList = clientContext.Web.Lists.GetByTitle(ListName);
+            List taskList = clientContext.Web.Lists.GetByTitle(taskNames.TaskListName);
+            List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(taskList);
             clientContext.Load(vpnRequestList);
             clientContext.ExecuteQuery();
@@ -734,7 +714,7 @@ namespace IT_product_log.Models
             clientContext.Load(currentVpnRequestItem);
             clientContext.ExecuteQuery();
 
-            string status = (string)currentVpnRequestItem[internalRequestStatus];
+            string status = (string)currentVpnRequestItem[requestNames.internalRequestStatus];
 
             if (status.Equals("Pending Manager Approval") == true)
             {
@@ -752,23 +732,23 @@ namespace IT_product_log.Models
 
             //updating the start and end date of the request 
 
-            currentVpnRequestItem[internalAccessStart] = VPN_accessStart;
-            currentVpnRequestItem[internalAccessEnd] = VPN_accessEnd;
+            currentVpnRequestItem[requestNames.internalAccessStart] = VPN_accessStart;
+            currentVpnRequestItem[requestNames.internalAccessEnd] = VPN_accessEnd;
 
             //updating Radius Profile Select 
 
-            currentVpnRequestItem[internalRadiusSelect] = VPN_Radius;
-            currentVpnRequestItem[internalVpnRadiusSelectOther] = VPN_Other;
+            currentVpnRequestItem[requestNames.internalRadiusSelect] = VPN_Radius;
+            currentVpnRequestItem[requestNames.internalVpnRadiusSelectOther] = VPN_Other;
 
             //updating VPN Profile Select 
 
             if (checkboxes.Length == 2)
             {
-                currentVpnRequestItem[internalVpnProfileSelect] = "QTC/Transcriber";
+                currentVpnRequestItem[requestNames.internalVpnProfileSelect] = "QTC/Transcriber";
             }
             else if (checkboxes.Length == 1)
             {
-                currentVpnRequestItem[internalVpnProfileSelect] = checkboxes[0];
+                currentVpnRequestItem[requestNames.internalVpnProfileSelect] = checkboxes[0];
             }
 
             currentVpnRequestItem.Update();
@@ -780,7 +760,7 @@ namespace IT_product_log.Models
 
             foreach (ListItem currentTask in col)
             {
-                if (currentTask[internalTaskTitle].Equals(taskTitle))
+                if (currentTask[taskNames.internalTaskTitle].Equals(taskTitle))
                 {
                     taskItem = currentTask;
                 }
@@ -789,35 +769,53 @@ namespace IT_product_log.Models
             //updating the task as needed
             if (submit.Equals("Approve"))
             {
-                taskItem[internalTaskOutcome] = "Approved";
-                taskItem[internalTaskStatus] = "Approved";
+                taskItem[taskNames.internalTaskOutcome] = "Approved";
+                taskItem[taskNames.internalTaskStatus] = "Approved";
 
             }
             else //reject 
             {
-                taskItem[internalTaskOutcome] = "Rejected";
-                taskItem[internalTaskStatus] = "Rejected";
+                taskItem[taskNames.internalTaskOutcome] = "Rejected";
+                taskItem[taskNames.internalTaskStatus] = "Rejected";
             }
-            taskItem[internalTaskPercentComplete] = 1.0;
+            taskItem[taskNames.internalTaskPercentComplete] = 1.0;
             taskItem["Completed"] = true;
             taskItem["FormData"] = "Completed";
 
             //updating comments in both lists 
-            taskItem[internalTaskDesc] = comments;
-            currentVpnRequestItem[internalComments] = comments;
+            taskItem[taskNames.internalTaskDesc] = comments;
+            currentVpnRequestItem[requestNames.internalComments] = comments;
 
             currentVpnRequestItem.Update();
             taskItem.Update();
             clientContext.ExecuteQuery();
         }
 
+        /// <summary>
+        /// Find a request by the ID. Uses private method loadList().
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>VPN Request with the same ID.</returns>
+        public VpnRequest getRequestById(int id)
+        {
+            string[] idString = {id.ToString()};
+            return this.loadList(new List<VpnRequest>() ,idString.ToList())[0];
+        }
+
+        /// <summary>
+        /// (Model Mapping Method) CSOM -> VpnRequest
+        /// Converts each ListItem in a ListItemCollection to a VpnRequest.
+        /// Adds each VpnRequest to an ongoing list of VpnRequests. 
+        /// </summary>
+        /// <param name="currentRequests">A running list of VpnRequests</param>
+        /// <param name="col">CSOM equivalent to VpnRequest</param>
+        /// <returns>A list of VPN Requests</returns>
         private List<VpnRequest> loadList(List<VpnRequest> currentRequests, ListItemCollection col)
         {
             //this method takes a ListItemCollection and converts it into a list of VpnRequest (A model Kevin created)
             //if an ongoing list is passed in, requests are added
             //if there is no ongoing list, pass in an empty List<VpnRequest>
-            ClientContext clientContext = new ClientContext(SiteUrl);
-            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
             foreach (ListItem item in col)
             {
@@ -827,32 +825,32 @@ namespace IT_product_log.Models
                     clientContext.ExecuteQuery();
 
                     VpnRequest temp = new VpnRequest();
-                    temp.VPN_requestID = Int32.Parse((string)item[internalID]);
-                    temp.DateSubmitted = ((DateTime)item[internalCreated]).ToString("MM/dd/yyyy");
-                    temp.VPN_requestStatus = (string)item[internalRequestStatus];
-                    temp.VPN_accessEnd = ((DateTime)item[internalAccessEnd]).ToString();
-                    temp.VPN_accessStart = ((DateTime)item[internalAccessStart]).ToString();
-                    temp.VPN_recipientFirst = (string)item[internalVpnRecipientFirst];
-                    temp.VPN_recipientLast = (string)item[internalVpnRecipientLast];
-                    temp.Work_Phone = (string)item[internalWorkPhone];
-                    temp.VPN_recipientEmail = (string)item[internalEmail];
-                    temp.VPN_userCode = Convert.ToInt32(((double)item[internalUserCode]));
-                    temp.Manager = ((FieldUserValue)item[internalManager]).LookupValue;
-                    temp.Systems_List = (string)item[internalSystemsList];
-                    temp.VPN_justification = (string)item[internalJustification];
-                    temp.VPN_userDept = (string)item[internalUserDept];
-                    temp.Company_Name = (string)item[internalCompanyName];
-                    temp.Company_Other = (string)item[internalCompanyOther];
-                    temp.Office_Location = (string)item[internalOfficeLocation];
-                    temp.Office_Address = (string)item[internalOfficeAddress];
-                    temp.Machine_Owner = (string)item[internalMachineOwner];
-                    temp.VPN_userStatus = (string)item[internalUserStatus];
-                    temp.Agency = (string)item[internalAgency];
-                    temp.VPN_requestor = ((FieldUserValue)item[internalCreatedBy]).LookupValue;
+                    temp.VPN_requestID = Int32.Parse((string)item[requestNames.internalID]);
+                    temp.DateSubmitted = ((DateTime)item[requestNames.internalCreated]).ToString("MM/dd/yyyy");
+                    temp.VPN_requestStatus = (string)item[requestNames.internalRequestStatus];
+                    temp.VPN_accessEnd = ((DateTime)item[requestNames.internalAccessEnd]).ToString();
+                    temp.VPN_accessStart = ((DateTime)item[requestNames.internalAccessStart]).ToString();
+                    temp.VPN_recipientFirst = (string)item[requestNames.internalVpnRecipientFirst];
+                    temp.VPN_recipientLast = (string)item[requestNames.internalVpnRecipientLast];
+                    temp.Work_Phone = (string)item[requestNames.internalWorkPhone];
+                    temp.VPN_recipientEmail = (string)item[requestNames.internalEmail];
+                    temp.VPN_userCode = Convert.ToInt32(((double)item[requestNames.internalUserCode]));
+                    temp.Manager = ((FieldUserValue)item[requestNames.internalManager]).LookupValue;
+                    temp.Systems_List = (string)item[requestNames.internalSystemsList];
+                    temp.VPN_justification = (string)item[requestNames.internalJustification];
+                    temp.VPN_userDept = (string)item[requestNames.internalUserDept];
+                    temp.Company_Name = (string)item[requestNames.internalCompanyName];
+                    temp.Company_Other = (string)item[requestNames.internalCompanyOther];
+                    temp.Office_Location = (string)item[requestNames.internalOfficeLocation];
+                    temp.Office_Address = (string)item[requestNames.internalOfficeAddress];
+                    temp.Machine_Owner = (string)item[requestNames.internalMachineOwner];
+                    temp.VPN_userStatus = (string)item[requestNames.internalUserStatus];
+                    temp.Agency = (string)item[requestNames.internalAgency];
+                    temp.VPN_requestor = ((FieldUserValue)item[requestNames.internalCreatedBy]).LookupValue;
                     try
                     {
-                        temp.Ext_code = Convert.ToInt32((double)item[internalExtCode]);
-                        temp.Reviewer_Comments = (string)item[internalComments];
+                        temp.Ext_code = Convert.ToInt32((double)item[requestNames.internalExtCode]);
+                        temp.Reviewer_Comments = (string)item[requestNames.internalComments];
                         
                     }
                     catch (System.ArgumentNullException e)
@@ -878,10 +876,15 @@ namespace IT_product_log.Models
         //takes the list of strings, finds all VPN Requests with the same ID on the SP Server 
         //returns an updated list of requests 
         //currentRequests = currentRequests + col
+        /// <summary>
+        /// Takes a running list of VpnRequest and adds more VpnRequests based on ID
+        /// </summary>
+        /// <param name="currentRequests">A running list of VpnRequests</param>
+        /// <param name="col">List of VPN Request IDs</param>
+        /// <returns>A list of VPN Requests equivalent to the original list given combined with another VPN Request list (given in ID)</returns>
         private List<VpnRequest> loadList (List<VpnRequest> currentRequests, List<string> col)
         {
-            ClientContext clientContext = new ClientContext(SiteUrl);
-            List spList = clientContext.Web.Lists.GetByTitle(ListName);
+            List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
             clientContext.Load(spList);
 
             //remove any duplicates from col 
@@ -903,32 +906,32 @@ namespace IT_product_log.Models
                     clientContext.ExecuteQuery();
 
                     VpnRequest temp = new VpnRequest();
-                    temp.VPN_requestID = Int32.Parse((string)item[internalID]);
-                    temp.DateSubmitted = ((DateTime)item[internalCreated]).ToString("MM/dd/yyyy");
-                    temp.VPN_requestStatus = (string)item[internalRequestStatus];
-                    temp.VPN_accessEnd = ((DateTime)item[internalAccessEnd]).ToString();
-                    temp.VPN_accessStart = ((DateTime)item[internalAccessStart]).ToString();
-                    temp.VPN_recipientFirst = (string)item[internalVpnRecipientFirst];
-                    temp.VPN_recipientLast = (string)item[internalVpnRecipientLast];
-                    temp.Work_Phone = (string)item[internalWorkPhone];
-                    temp.VPN_recipientEmail = (string)item[internalEmail];
-                    temp.VPN_userCode = Convert.ToInt32(((double)item[internalUserCode]));
-                    temp.Manager = ((FieldUserValue)item[internalManager]).LookupValue;
-                    temp.Systems_List = (string)item[internalSystemsList];
-                    temp.VPN_justification = (string)item[internalJustification];
-                    temp.VPN_userDept = (string)item[internalUserDept];
-                    temp.Company_Name = (string)item[internalCompanyName];
-                    temp.Company_Other = (string)item[internalCompanyOther];
-                    temp.Office_Location = (string)item[internalOfficeLocation];
-                    temp.Office_Address = (string)item[internalOfficeAddress];
-                    temp.Machine_Owner = (string)item[internalMachineOwner];
-                    temp.VPN_userStatus = (string)item[internalUserStatus];
-                    temp.Agency = (string)item[internalAgency];
-                    temp.VPN_requestor = ((FieldUserValue)item[internalCreatedBy]).LookupValue;
+                    temp.VPN_requestID = Int32.Parse((string)item[requestNames.internalID]);
+                    temp.DateSubmitted = ((DateTime)item[requestNames.internalCreated]).ToString("MM/dd/yyyy");
+                    temp.VPN_requestStatus = (string)item[requestNames.internalRequestStatus];
+                    temp.VPN_accessEnd = ((DateTime)item[requestNames.internalAccessEnd]).ToString();
+                    temp.VPN_accessStart = ((DateTime)item[requestNames.internalAccessStart]).ToString();
+                    temp.VPN_recipientFirst = (string)item[requestNames.internalVpnRecipientFirst];
+                    temp.VPN_recipientLast = (string)item[requestNames.internalVpnRecipientLast];
+                    temp.Work_Phone = (string)item[requestNames.internalWorkPhone];
+                    temp.VPN_recipientEmail = (string)item[requestNames.internalEmail];
+                    temp.VPN_userCode = Convert.ToInt32(((double)item[requestNames.internalUserCode]));
+                    temp.Manager = ((FieldUserValue)item[requestNames.internalManager]).LookupValue;
+                    temp.Systems_List = (string)item[requestNames.internalSystemsList];
+                    temp.VPN_justification = (string)item[requestNames.internalJustification];
+                    temp.VPN_userDept = (string)item[requestNames.internalUserDept];
+                    temp.Company_Name = (string)item[requestNames.internalCompanyName];
+                    temp.Company_Other = (string)item[requestNames.internalCompanyOther];
+                    temp.Office_Location = (string)item[requestNames.internalOfficeLocation];
+                    temp.Office_Address = (string)item[requestNames.internalOfficeAddress];
+                    temp.Machine_Owner = (string)item[requestNames.internalMachineOwner];
+                    temp.VPN_userStatus = (string)item[requestNames.internalUserStatus];
+                    temp.Agency = (string)item[requestNames.internalAgency];
+                    temp.VPN_requestor = ((FieldUserValue)item[requestNames.internalCreatedBy]).LookupValue;
                     try
                     {
-                        temp.Ext_code = Convert.ToInt32((double)item[internalExtCode]);
-                        temp.Reviewer_Comments = (string)item[internalComments];
+                        temp.Ext_code = Convert.ToInt32((double)item[requestNames.internalExtCode]);
+                        temp.Reviewer_Comments = (string)item[requestNames.internalComments];
                     }
                     catch (System.ArgumentNullException e)
                     {
@@ -948,6 +951,11 @@ namespace IT_product_log.Models
             return currentRequests;
         }
 
+        /// <summary>
+        /// Uses bubble sort to order the list by ID from lowest value to greatest.  
+        /// </summary>
+        /// <param name="currentRequests">A list of VPN Requests. </param>
+        /// <returns>A list of VPN Requests ordered by ID from lowest to greatest.</returns>
         private List<VpnRequest> orderList (List<VpnRequest> currentRequests)
         {
             //using bubble sort algorithm 
