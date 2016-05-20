@@ -23,6 +23,11 @@ namespace IT_product_log.Models
             this.clientContext = new ClientContext(requestNames.SiteUrl);
         }
 
+        /// <summary>
+        /// Grabs the choice fields of a given field. Usually used for gathering possible choices of a drop down list. 
+        /// </summary>
+        /// <param name="field">Name of the field</param>
+        /// <returns>An array of possible choices</returns>
         public string[] getFieldChoices(string field)
         {
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
@@ -78,6 +83,10 @@ namespace IT_product_log.Models
             return this.getFieldChoices(requestNames.machineOwner);
         }
 
+        /// <summary>
+        /// Adds a new request to the SharePoint site. 
+        /// </summary>
+        /// <param name="input">A VpnRequest model</param>
         public void addRequest(VpnRequest input)
         {
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
@@ -125,6 +134,10 @@ namespace IT_product_log.Models
             clientContext.ExecuteQuery();
         }
 
+        /// <summary>
+        /// Grabs all VPN Requests created by the current user. Queries the SharePoint backend. 
+        /// </summary>
+        /// <returns>A list of all VPN Requests created by the current user.</returns>
         public List<VpnRequest> getAllMyRequests()
         {
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
@@ -162,6 +175,10 @@ namespace IT_product_log.Models
             return currentRequests;
         }
 
+        /// <summary>
+        /// Grabs all VPN Requests created by the current user where the current status is 'Rejected'. Queries the SharePoint backend. 
+        /// </summary>
+        /// <returns>A list of all VPN Requests created by the current user that have been rejected.</returns>
         public List<VpnRequest> getRejectedMyRequests()
         {
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
@@ -206,6 +223,10 @@ namespace IT_product_log.Models
             return currentRequests;
         }
 
+        /// <summary>
+        /// Grabs all VPN Requests created by the current user where the current status is 'Approved'. Queries the SharePoint backend. 
+        /// </summary>
+        /// <returns>A list of all VPN Requests created by the current user that have been approved.</returns>
         public List<VpnRequest> getApprovedMyrequests()
         {
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
@@ -250,7 +271,10 @@ namespace IT_product_log.Models
             return currentRequests;
         }
 
-        //gets a list of requests created by the current user currently in a status that is pending a manager approval
+        /// <summary>
+        /// Grabs all VPN Requests created by the current user where the current status is in a 'Pending' state. Queries the SharePoint backend.
+        /// </summary>
+        /// <returns>A list of all VPN Requests created by the current user that are in a pending state.</returns>
         public List<VpnRequest> getPendingMyRequests()
         {
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
@@ -295,7 +319,15 @@ namespace IT_product_log.Models
             return currentRequests;
         }
 
-        //gets a list of requests currently pending review for the current user
+        /// <summary>
+        /// Grabs all VPN Requests currently waiting to be reviewed by the current user. 
+        /// The status of the current user is checked first, then based on that, VPN Requests are queried. 
+        /// 1. Grabs all VPN Requests currently in status 'Pending Manager Approval' and assigned to current user 
+        /// 2. Checks if the current user is an IT Manager or Security Officer 
+        /// 3. If security officer, grab all VPN Requests currently in status 'Pending Security Officer' 
+        /// 4. if IT manager, grab all VPN Requests currently in status 'Pending IT Manager' 
+        /// </summary>
+        /// <returns>A list of all requests pending the approval of the current manager</returns>
         public List<VpnRequest> getPendingReviews()
         {
             List vpnRequestList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
@@ -412,6 +444,10 @@ namespace IT_product_log.Models
             return orderList(pendingRequests);
         }
 
+        /// <summary>
+        /// Grabs a list of all requests that have been previously approved by the current user. 
+        /// </summary>
+        /// <returns>A list of VPN Requests previously approved by the current user</returns>
         public List<VpnRequest> getApprovedReviews()
         {
             List<VpnRequest> returnList = new List<VpnRequest>();
@@ -466,6 +502,10 @@ namespace IT_product_log.Models
             return returnList;
         }
 
+        /// <summary>
+        /// Grabs a list of all requests that have been previously rejected by the current user. 
+        /// </summary>
+        /// <returns>A list of VPN Requests previously rejected by the current user.</returns>
         public List<VpnRequest> getRejectedReviews()
         {
             List<VpnRequest> returnList = new List<VpnRequest>();
@@ -520,6 +560,11 @@ namespace IT_product_log.Models
             return returnList;
         }
 
+        /// <summary>
+        /// Grabs VPN Requests that the user has previously reviewed (either approved or rejected). 
+        /// NOTE: This does not mean, previously assigned to the current user. Requests will only come up if the current user approved/rejected. 
+        /// </summary>
+        /// <returns>A list of all VPN Requests the current user has ever approved, rejected, or are curretnly pending his/her approval.</returns>
         public List<VpnRequest> getAllReviews()
         {
             List<VpnRequest> returnList = new List<VpnRequest>();
@@ -568,6 +613,13 @@ namespace IT_product_log.Models
             return returnList;
         }
 
+        /// <summary>
+        /// Submit an update to SharePoint site on a request. 
+        /// NOTE: This method is used for Manager or Security Officer's review. 
+        /// </summary>
+        /// <param name="id">The ID of the request.</param>
+        /// <param name="submit">The outcome of the form. 'Approve' being sent back means it's been approved.</param>
+        /// <param name="comments">The comments left by the current user.</param>
         public void ReviewRequest(int id, string submit, string comments)
         {
             ListItem taskItem = null;
@@ -636,6 +688,18 @@ namespace IT_product_log.Models
             clientContext.ExecuteQuery();
         }
 
+        /// <summary>
+        ///  Submit an update to SharePoint site on a request.
+        ///  NOTE: This method is used for IT Manager's review.
+        /// </summary>
+        /// <param name="id">The ID of the request.</param>
+        /// <param name="submit">The outcome of the form. 'Approve' being sent back means it's been approved.</param>
+        /// <param name="comments">The comments left by the current user.</param>
+        /// <param name="VPN_Radius">The VPN Radius Profile selected by the current user.</param>
+        /// <param name="VPN_Other">A fill in field for VPN Radius Profile.</param>
+        /// <param name="VPN_accessStart">Date of VPN Access start.</param>
+        /// <param name="VPN_accessEnd">Date of VPN Access end.</param>
+        /// <param name="checkboxes">Representation of the checkbox field (VPN Profile). Array of all values selected by the user.</param>
         public void ReviewRequest(int id, string submit, string comments, string VPN_Radius, string VPN_Other, string VPN_accessStart, string VPN_accessEnd, string[] checkboxes)
         {
             ListItem taskItem = null;
@@ -727,6 +791,25 @@ namespace IT_product_log.Models
             clientContext.ExecuteQuery();
         }
 
+        /// <summary>
+        /// Find a request by the ID. Uses private method loadList().
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>VPN Request with the same ID.</returns>
+        public VpnRequest getRequestById(int id)
+        {
+            string[] idString = {id.ToString()};
+            return this.loadList(new List<VpnRequest>() ,idString.ToList())[0];
+        }
+
+        /// <summary>
+        /// (Model Mapping Method) CSOM -> VpnRequest
+        /// Converts each ListItem in a ListItemCollection to a VpnRequest.
+        /// Adds each VpnRequest to an ongoing list of VpnRequests. 
+        /// </summary>
+        /// <param name="currentRequests">A running list of VpnRequests</param>
+        /// <param name="col">CSOM equivalent to VpnRequest</param>
+        /// <returns>A list of VPN Requests</returns>
         private List<VpnRequest> loadList(List<VpnRequest> currentRequests, ListItemCollection col)
         {
             //this method takes a ListItemCollection and converts it into a list of VpnRequest (A model Kevin created)
@@ -793,6 +876,12 @@ namespace IT_product_log.Models
         //takes the list of strings, finds all VPN Requests with the same ID on the SP Server 
         //returns an updated list of requests 
         //currentRequests = currentRequests + col
+        /// <summary>
+        /// Takes a running list of VpnRequest and adds more VpnRequests based on ID
+        /// </summary>
+        /// <param name="currentRequests">A running list of VpnRequests</param>
+        /// <param name="col">List of VPN Request IDs</param>
+        /// <returns>A list of VPN Requests equivalent to the original list given combined with another VPN Request list (given in ID)</returns>
         private List<VpnRequest> loadList (List<VpnRequest> currentRequests, List<string> col)
         {
             List spList = clientContext.Web.Lists.GetByTitle(requestNames.ListName);
@@ -862,6 +951,11 @@ namespace IT_product_log.Models
             return currentRequests;
         }
 
+        /// <summary>
+        /// Uses bubble sort to order the list by ID from lowest value to greatest.  
+        /// </summary>
+        /// <param name="currentRequests">A list of VPN Requests. </param>
+        /// <returns>A list of VPN Requests ordered by ID from lowest to greatest.</returns>
         private List<VpnRequest> orderList (List<VpnRequest> currentRequests)
         {
             //using bubble sort algorithm 
