@@ -16,6 +16,9 @@ For more detail on steps 4 and 5, please refer to our project report.
 * Visual Studio 
 * SharePoint 2010
 
+####Configure the SharePoint list and workflows
+I'll do this later
+
 ####Configure Visual Studio Development Eviroment to run ASP.NET Code
 
 To run the ASP.NET web application, you will need to first spot check the internal names for the list fields. Most of them should not need to be changed, but some will. You must find a way to find the internal names of fields; there are multiple methods. The easiest is to use Visual Studio 2010 Professional (or higher) server explorer. 
