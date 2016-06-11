@@ -17,7 +17,7 @@ For more detail on steps 4 and 5, please refer to our project report.
 * SharePoint 2010
 
 ####Configure the SharePoint list and workflows
-I'll do this later
+Specifications can be found in section 4 of Project Report.pdf
 
 ####Configure Visual Studio Development Eviroment to run ASP.NET Code
 
